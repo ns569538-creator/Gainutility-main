@@ -1,0 +1,609 @@
+[
+  {
+    "id": "box-shadow-values-guide",
+    "slug": "box-shadow-values-real-websites",
+    "title": "What Box-Shadow Values Real Websites Actually Use",
+    "description": "We downloaded the homepages of the top 1,000 sites and counted every box-shadow in their CSS: 33,438 declarations across 533 reachable sites. Measured offsets, blur, spread, color, and layering — with the dataset to download.",
+    "category": "Developer",
+    "author": "GainUtility",
+    "date": "2026-09-16",
+    "readingTime": "9 min read",
+    "tags": [
+      "css",
+      "box-shadow",
+      "research",
+      "design-systems"
+    ],
+    "quickAnswer": "Real production box-shadows are small and neutral. The median vertical offset is under a pixel, blur stays single-digit for three quarters of layers, nearly half of all layers sit at y=0, and about three quarters of colors are achromatic at an alpha of 0.3 or less. Single-layer shadows outnumber stacked ones, and focus rings ship as hard literal values while most softer effects go through custom properties.",
+    "content": [
+      {
+        "paragraphs": [
+          "If you write CSS, you write box-shadow eventually — and you usually guess what looks right. This time the values are measured, not guessed. We took the top 1,000 domains from the Tranco list (pinned 2026-09-15), downloaded each homepage, parsed every box-shadow declaration in its shipped CSS, and counted what's actually in production.",
+          "The whole pipeline is reproducible: the list is pinned, the crawler and analyzer scripts live in this repo, and every measured value per site is downloadable as a CSV. No number in this article is hand-picked to make a point."
+        ],
+        "figure": "box-shadow-headline-stats"
+      },
+      {
+        "heading": "How the measurement works",
+        "paragraphs": [
+          "Each site's homepage was fetched over https with http fallback. From the served HTML we kept inline <style> blocks and linked stylesheets, up to 30 sheets per site or 8 MB per sheet, following inline @import one level deep. Sheet contents were parsed with the CSS tree parser; only box-shadow and the -webkit-box-shadow vendor twin were extracted.",
+          "Of 1,000 sampled domains, 533 served a homepage we could parse. The rest are accounted for, not hidden: 222 domains had no DNS record, 85 answered with an HTML bot-wall (403), 20 failed TLS hostname checks, 47 timed out, and the remainder split across 4xx/5xx statuses, connection resets, and certificate errors. Note the list includes shell-style pages and app entry points with no CSS at all — 28 of the 533 sites shipped no stylesheet to parse.",
+          "A declaration was counted when it appeared in the sheet. Identical -webkit-box-shadow and box-shadow pairs on the same rule collapse to one entry (3,531 such vendor twins), and values were deduplicated per site before the distinct-value counts. Shadows written entirely by JavaScript are out of scope by design.",
+          "The headline numbers below are px-space measurements: layers whose offsets, blur, and spread are all in px, laid out by the browser default font-size of 16px for typographic units (7 layers used rem and are reported separately). 3,216 declarations using other non-px units were measured for truthfulness but excluded from the pixel statistics."
+        ]
+      },
+      {
+        "heading": "Almost every top site ships a real shadow",
+        "paragraphs": [
+          "427 of 533 parsed sites — 80.1% — ship at least one resolvable box-shadow on the homepage. 'none' exists too: 390 sites reset the effect somewhere, and with 5,301 none declarations it is the single most common value, ahead of every literal shadow. That reset is normal: frameworks null out a default box-shadow before adding their own, and some effects you see on the page come from elements the type selector misses.",
+          "From the 533 sites we collected 33,438 raw declarations, collapsing to 29,907 after dedupe and the vendor-twin merge. The distinct value set is 9,168 strings, and 5,596 of those are fully usable px values (or implemented in px after resolving their custom properties)."
+        ]
+      },
+      {
+        "heading": "Where the shadow sits",
+        "paragraphs": [
+          "Site shadows are anchored to the box: 93.1% of the 21,887 measured layers use an X offset of exactly 0. Nothing drifts sideways in production CSS — even the most elaborate framework tokens keep X pinned.",
+          "Y is a real choice with two modes. 48.5% of layers sit exactly at y=0, and 50.2% push down by a small amount — the 75th percentile vertical offset is 3px. Upward shadows, the glow-below look, are a rounding error at 1.3% of layers. If you color an element but the background of the page is what should glow, write negative y — otherwise site data says: down a little, or straight down."
+        ],
+        "figure": "box-shadow-y-offset"
+      },
+      {
+        "heading": "The blur is a lot smaller than the demos",
+        "paragraphs": [
+          "Starter-kit demos blur at 10–25px. Production does not: 39.8% of layers ship blur 0 — those are the hard edges of focus rings and thin underlines — and among soft shadows the median blur is 3px, with the 75th percentile at 10px and the 90th at 24px.",
+          "The blur and the y-offset move together: when a site softens a shadow, it does so with a compact radius, not a fog bank. Values past ~40px blur exist but are the top of the tail."
+        ],
+        "figure": "box-shadow-blur"
+      },
+      {
+        "heading": "Spread, inset, and the focus ring pattern",
+        "paragraphs": [
+          "Spread defaults to none: 69.7% of layers carry spread 0. Positive spread (24%) mostly manufactures hard borders — the ring look — while negative spread (6.4%) shrinks the shadow to hug the box edge. Only 12.7% of layers are inset, and those cluster in a recognizable family: top-INSET pressed-button styles such as the Bootstrap classic inset 0 3px 5px rgba(0,0,0,.125).",
+          "What you actually see in the top values is the ability of spread to fake a border. The two most-shipped literal shadows in the whole sample are focus rings: 0 0 0 2px #fff (27 sites) and inset 0 0 0 2px #fff (18 sites) — white rings that read as borders without a border."
+        ],
+        "figure": "box-shadow-spread-inset"
+      },
+      {
+        "heading": "Color: neutral, almost never opaque",
+        "paragraphs": [
+          "The palette reads as one color: black at low opacity. 73.8% of measured layers are achromatic, and 74.9% have alpha at 0.3 or below, with the busiest bands at near-zero alpha (the largest single bucket is at or below 0.05) and at 0.1–0.15. Exactly-opaque shadows are rare — 21.3% of layers — and even those are mostly rings and utility borders, not depth shadows.",
+          "The syntax split is now hex-first: 11,453 layers (52.3%) write their color as hex such as #0000001a, and 9,585 (43.8%) as rgba(). The hex-in-alpha form carries the Tailwind token stream; HSL and named colors are negligible. Browsers default an omitted color to currentcolor, and that shows up too — 0.5% of layers lean on the default."
+        ],
+        "figure": "box-shadow-alpha"
+      },
+      {
+        "heading": "One shadow, not a stack",
+        "paragraphs": [
+          "A single layer is the default: 73.5% of the 14,517 shadowed declarations we could resolve use exactly one layer. Two layers cover 14.3%, and three or more just 12.2%. The stacks that do exist are token-driven, not art direction — the count climbs at 5–6 layers because Tailwind's ring utilities ship an inset-shadow plus a ring-offset-shadow plus a ring-shadow and their defaults as separate layers.",
+          "The tail is real but tame: one declaration reached 60 layers and another 142, both framework-table flowers that effectively render as archipelagos of nearly invisible rings."
+        ],
+        "figure": "box-shadow-layers"
+      },
+      {
+        "heading": "The most-shipped values",
+        "paragraphs": [
+          "This table ranks values by how many of the 533 sites ship them. The var() bundles are Tailwind's ring set and Bootstrap's button focus; the literals are dominated by ring-style hard shadows and small rgba drops. Material Design's canonical three-layer stack ships on 10 sites, and Google's two-layer variant on 9 — the stacks above are company templates, not the web-wide norm.",
+          "In the dataset, a row's 'declarations' column is how many times the value appeared across sheets; 'sites' is how many distinct domains placed it. kind records how we classified it: ok means the value stands as-is, global means it inherits meaning like inherit or unset, and varPartial marks values still holding a custom property after our resolution."
+        ],
+        "figure": "box-shadow-top-values"
+      },
+      {
+        "heading": "A third of sites route shadows through custom properties",
+        "paragraphs": [
+          "9,248 of the 33,438 raw declarations — 27.7% — reference a var(), and they spread wide: 260 of the 533 sites. Framework tokens are the reason: Tailwind accumulates five vars per ring declaration, and Bootstrap resolves its shades into --bs-*-box-shadow on the button.",
+          "We resolved 2,444 var() declarations to concrete pixels using only values the site itself defined: a same-rule definition first, then the sheet's :root, html, and universal selectors, then the fallback written inside the var() itself. Across those declarations, the variable lookups that succeeded split as 1,888 walked a root-level variable, 999 walked a rule-level variable, and 999 used the fallback inside the var(). A declaration can chain several lookups, so those three numbers add up to more lookups than declarations. The remainder stays honestly labelled var()-opaque — we do not guess at a site's runtime value."
+        ]
+      },
+      {
+        "heading": "The verdict table",
+        "paragraphs": [
+          "Eight popular claims about box-shadow, graded against the measured set. 'Verdict' is GainUtility's conclusion — the numbers are yours to check."
+        ],
+        "table": {
+          "caption": "Six claims about box-shadow, graded against 21,887 measured layers.",
+          "columns": [
+            "Claim",
+            "What sites do (measured)",
+            "Verdict"
+          ],
+          "rows": [
+            [
+              "Blur heavily for a soft modern look",
+              "Median blur 3 px; 75th percentile 10 px; 39.8% of layers blur 0",
+              "Only for big glows"
+            ],
+            [
+              "Stack two–three layers like Material",
+              "73.5% of declarations are a single layer; 3+ layers are 12.2%",
+              "Only for design tokens"
+            ],
+            [
+              "Offset down-and-right for depth",
+              "Offset X is 0 on 93.1% of layers; Y is 0 on 48.5% and down on 50.2%",
+              "Offset down — or not at all"
+            ],
+            [
+              "Neutral color, low opacity",
+              "73.8% achromatic; 74.9% at alpha ≤ 0.3; busiest bands ≤ 0.05 and 0.1–0.15",
+              "Correct"
+            ],
+            [
+              "Inset shadows are the depth staple",
+              "Inset: 12.7% of layers, mostly pressed-button systems",
+              "A deliberate choice, not the default"
+            ],
+            [
+              "Upward (negative-Y) glow is common",
+              "Negative Y offset: 1.3% of layers",
+              "Rare"
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "Limits you should know before quoting this",
+        "list": [
+          "Coverage: 533 of 1,000 sampled domains resolved to a parseable homepage. The 467 gaps are enumerated in the methodology, not smoothed over — expect a western/heavy-platform skew in what remains.",
+          "Homepage only: marketing pages over-represent component kit CSS and under-represent the apps behind them. A <style>-less shell on the landing page (28 sites) says nothing about the product's tab styles.",
+          "Resolution: values resolved through custom properties only use what the site defined. A var() left opaque stays opaque — we count it under var()-opaque, excluded from px statistics.",
+          "Sheet caps: 30 sheets and 8 MB per sheet bound the crawl; styles layered in above those caps are absent. Served vs. computed: eases such as transition are out of scope, and a few effects are injected by JS toggling classes with id-less selectors we trimmed.",
+          "Date: the sample is a single day (list pinned 2026-09-15) and CSS moves; re-run the scripts for a fresh slice."
+        ],
+        "figure": "box-shadow-dataset"
+      },
+      {
+        "heading": "How to use this in a design",
+        "paragraphs": [
+          "Start every shadow from 0 0 (X and Y both zero). Move Y down by 1–4 px at most, keep blur in single digits for regular raises, and leave X alone. Write the color as black at an alpha between 0.08 and 0.3 — the measured sweet band — instead of a tint. Add a second layer only when a component token demands it, and treat inset like the pressed-state tool it is.",
+          "Two value shapes are worth adopting, because production validates them: the accessible focus ring 0 0 0 2px #fff (and its inset twin for filled backgrounds) — one of the most-shipped shadows in the whole sample — and the soft one-layer raise 0 1px 2px rgba(0,0,0,.1), which ships verbatim on sites like TinyURL and OpenStreetMap. The data ranks convention, not taste: a conventional shadow is what users read as normal, and that is the point of these defaults."
+        ],
+        "tool": {
+          "label": "The Box Shadow Generator is preset so you can stack the measured bands directly.",
+          "toolId": "box-shadow-generator"
+        }
+      },
+      {
+        "pageLink": {
+          "label": "For the value-by-value syntax reference and live copy-ready examples built on these bands, see the",
+          "path": "/css/box-shadow",
+          "text": "box-shadow guide"
+        }
+      }
+    ],
+    "toolCta": {
+      "label": "Copy a measured production value with the Box Shadow Generator.",
+      "toolId": "box-shadow-generator"
+    },
+    "relatedArticles": [
+      "box-shadow-vs-drop-shadow-filter",
+      "soft-shadow-css-recipes",
+      "neumorphism-box-shadow-guide",
+      "clean-up-css-gradients-and-borders-in-design-work"
+    ],
+    "keyTakeaway": "Production box-shadows are small and neutral: keep the vertical offset at 1–4 px, blur single-digit, X at 0, and color as an achromatic low-alpha black — exactly what the top 1,000 actually ship.",
+    "seoTitle": "What Box-Shadow Values Real Websites Use (Measured Data) | GainUtility",
+    "seoDescription": "We measured box-shadow in the shipped CSS of the top 1,000 websites: 33,438 declarations across 533 sites. Offsets, blur, spread, color, and layering, with the dataset to download."
+  },
+  {
+    "id": "box-shadow-vs-drop-shadow",
+    "slug": "box-shadow-vs-drop-shadow-filter",
+    "title": "box-shadow vs filter: drop-shadow() — Which CSS Shadow to Use",
+    "description": "box-shadow draws the element's border box; filter: drop-shadow() follows the alpha shape of an image. Same-looking values are not interchangeable — the blur number even means something different.",
+    "category": "Developer",
+    "author": "GainUtility",
+    "date": "2026-09-24",
+    "readingTime": "6 min read",
+    "tags": [
+      "css",
+      "box-shadow",
+      "drop-shadow",
+      "filter",
+      "frontend"
+    ],
+    "quickAnswer": "Use box-shadow for UI surfaces: it follows the border box (rounded by border-radius), supports spread, inset, and comma-separated layers. Use filter: drop-shadow() for transparent shapes — PNG cut-outs, SVG icons — because it follows the alpha channel instead of the rectangle. The blur numbers are not equivalent: box-shadow's blur radius is twice the Gaussian standard deviation that drop-shadow's third length takes, so the same number in drop-shadow renders about twice as blurry.",
+    "content": [
+      {
+        "paragraphs": [
+          "CSS gives you three shadow primitives, and the choice between them is decided by one question: what shape should the shadow have? box-shadow shadows the element's box, text-shadow shadows each glyph, and filter: drop-shadow() shadows whatever pixels the element actually paints. The last two look like competitors, but they answer different questions — and copying a value from one to the other quietly changes how it renders.",
+          "Both demos below use the same transparent star image. The first applies box-shadow to the image element; the second applies filter: drop-shadow() to it. Watch where the shadow comes from."
+        ]
+      },
+      {
+        "heading": "Same element, different silhouette"
+      },
+      {
+        "shadowDemo": {
+          "label": "box-shadow on a transparent image — a rectangle behind the whole box",
+          "property": "box-shadow",
+          "value": "0 8px 16px rgba(16, 24, 40, 0.25)",
+          "star": true
+        }
+      },
+      {
+        "shadowDemo": {
+          "label": "filter: drop-shadow() on the same image — the shadow follows the star",
+          "property": "filter",
+          "value": "drop-shadow(0 4px 8px rgba(16, 24, 40, 0.25))",
+          "star": true
+        }
+      },
+      {
+        "paragraphs": [
+          "box-shadow is drawn from the border box, so it ignores transparency inside the element and fills the rectangle behind it — rounded if border-radius says so. drop-shadow() blurs and offsets the element's alpha mask, so the shadow only appears where the star's pixels do. On a fully opaque card both look nearly identical; on anything transparent they are completely different effects."
+        ]
+      },
+      {
+        "heading": "What each one accepts"
+      },
+      {
+        "table": {
+          "caption": "box-shadow, text-shadow, and drop-shadow() side by side.",
+          "columns": [
+            "",
+            "box-shadow",
+            "text-shadow",
+            "filter: drop-shadow()"
+          ],
+          "rows": [
+            [
+              "Silhouette",
+              "Border box (border-radius applies)",
+              "Every glyph's outline",
+              "Element's alpha shape (pixels)"
+            ],
+            [
+              "Offsets",
+              "X and Y",
+              "X and Y",
+              "X and Y"
+            ],
+            [
+              "Blur",
+              "Blur radius (2× the Gaussian σ)",
+              "Blur radius (2× the Gaussian σ)",
+              "Gaussian standard deviation (σ)"
+            ],
+            [
+              "Spread",
+              "Yes — 4th length",
+              "No",
+              "No"
+            ],
+            [
+              "inset",
+              "Yes",
+              "No",
+              "No"
+            ],
+            [
+              "Multiple layers",
+              "Comma-separated, first paints on top",
+              "Comma-separated, first paints on top",
+              "Chain functions: drop-shadow() drop-shadow()"
+            ],
+            [
+              "Where it applies",
+              "Any box-level element",
+              "Text content",
+              "Any element, via the filter property"
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "The blur number does not transfer"
+      },
+      {
+        "paragraphs": [
+          "This is the trap. box-shadow defines its blur radius so that the painted transition spans roughly that many pixels — per spec it is twice the standard deviation of the underlying Gaussian. drop-shadow() takes that standard deviation directly as its third length. The Filter Effects spec flags it: values are interpreted as for box-shadow, but the third value is the standard deviation, not the blur radius.",
+          "So filter: drop-shadow(0 4px 8px black) and box-shadow: 0 4px 8px black do not match — the filter version is twice as blurry. To port a box-shadow, halve the blur; to port a drop-shadow, double it. Offsets are literal in both, so only the third number moves."
+        ],
+        "code": {
+          "label": "Equivalent pair — same visual blur",
+          "content": "box-shadow: 0 4px 16px rgba(16, 24, 40, 0.25);\nfilter: drop-shadow(0 4px 8px rgba(16, 24, 40, 0.25));"
+        }
+      },
+      {
+        "heading": "Layers behave differently too"
+      },
+      {
+        "paragraphs": [
+          "box-shadow layers are peers in one list: each paints independently, first listed on top, so a crisp ring can sit above a soft drop in a single declaration. drop-shadow() has no comma list — the spec for this level accepts no spread and no multiple shadows. You can chain functions (filter: drop-shadow(...) drop-shadow(...)), but chained filters apply in sequence to the output of the previous one, so the second shadow falls on the first shadow's result rather than painting as a separate sheet.",
+          "inset is equally unavailable: a filter cannot draw inside the border box. Pressed wells, recessed inputs, and the dark half of soft-UI surfaces are box-shadow-only territory."
+        ]
+      },
+      {
+        "heading": "A practical rule"
+      },
+      {
+        "list": [
+          "Cards, buttons, panels, inputs — anything rectangular or border-radius'd — box-shadow. It gives you spread for rings, inset for pressed states, and comma layers for contact-plus-ambient depth.",
+          "PNG cut-outs, SVG icons, masked shapes, emoji — drop-shadow(), because the silhouette should follow the artwork, not its bounding rectangle.",
+          "Headlines and labels — text-shadow, which traces the glyphs and works without filters.",
+          "Focus rings — box-shadow with zero blur and a spread (0 0 0 2px), one of the most-shipped shadows in our measurement of top-1,000 sites."
+        ]
+      },
+      {
+        "pageLink": {
+          "label": "For the full value-by-value reference and copy-ready starting points, see the",
+          "path": "/css/box-shadow",
+          "text": "box-shadow guide"
+        }
+      },
+      {
+        "heading": "What about cost?"
+      },
+      {
+        "paragraphs": [
+          "A filter operates on rendered pixels: when the element or its shadow changes, the browser re-renders the filtered layer. box-shadow participates in normal element painting. For static UI the difference is not something you will feel, but it is one reason drop-shadow() is not a drop-in upgrade for every card — reach for it when the shape demands it, not as a default. Honesty first: measure if you have a real problem, and skip the folklore benchmarks otherwise."
+        ]
+      }
+    ],
+    "toolCta": {
+      "label": "Build the box-shadow side visually — layers, inset, and rings with live preview.",
+      "toolId": "box-shadow-generator"
+    },
+    "relatedArticles": [
+      "soft-shadow-css-recipes",
+      "neumorphism-box-shadow-guide",
+      "box-shadow-values-real-websites",
+      "clean-up-css-gradients-and-borders-in-design-work"
+    ],
+    "keyTakeaway": "Choose by silhouette: box-shadow for the border box (with spread, inset, and comma layers), drop-shadow() for transparent artwork — and remember drop-shadow's third length is a standard deviation, so halve the blur when you port.",
+    "seoTitle": "box-shadow vs drop-shadow: Which CSS Shadow to Use | GainUtility",
+    "seoDescription": "box-shadow follows the border box; drop-shadow() follows the image's alpha shape. Plus: why the same blur number renders twice as blurry in a filter."
+  },
+  {
+    "id": "soft-shadow-css-guide",
+    "slug": "soft-shadow-css-recipes",
+    "title": "Soft Shadow CSS Recipes That Don't Turn Out Muddy",
+    "description": "Copy-ready soft box-shadow values for cards, floating panels, and hover states — plus why stacked shadows go muddy, and the alpha-first method that keeps them clean.",
+    "category": "Developer",
+    "author": "GainUtility",
+    "date": "2026-09-22",
+    "readingTime": "7 min read",
+    "tags": [
+      "css",
+      "box-shadow",
+      "design-systems",
+      "frontend"
+    ],
+    "quickAnswer": "Soft does not mean big and dark. Production shadows stay small and neutral: in our measurement of the top 1,000 sites the median blur is 3px, 93.1% of layers keep X at zero, and about three quarters sit at alpha ≤ 0.3. Build softness from low alpha and a second, wider layer — not from a 40px blur at 0.4 black.",
+    "content": [
+      {
+        "paragraphs": [
+          "Soft shadows fail the same way every time: someone reaches for blur 40px, alpha 0.4, a blue-black tint — and gets a smudge that looks like a stain rather than depth. Softness is not produced by blur volume. It is produced by low contrast against the surface and a gradient that falls off gradually, which is a completely different set of knobs.",
+          "We measured this rather than guessed it: 33,438 box-shadow declarations across the shipped CSS of 533 reachable sites from the top 1,000. The recipes below stay inside the bands production actually uses."
+        ],
+        "pageLink": {
+          "label": "Every number cited here comes from that dataset — full methodology in the",
+          "path": "/blog/box-shadow-values-real-websites",
+          "text": "measured box-shadow values article"
+        }
+      },
+      {
+        "heading": "Why soft shadows go muddy"
+      },
+      {
+        "list": [
+          "Stacked alpha. Each translucent layer darkens the ones below it. Three layers at 0.3 black do not average out — they compound into a dark patch under the element.",
+          "Tinted colors. A navy or purple shadow reads as a stain on warm backgrounds. 73.8% of measured layers are achromatic — neutral black at low alpha — and neutral is what eyes read as 'shadow' rather than 'color'.",
+          "Identical rungs. Two layers with the same offset and near-same blur just double the darkness. Each rung needs a visibly different offset or blur to contribute anything new.",
+          "Blur without tuck. Big blurs grow the halo in every direction and swell the component's footprint. Pair large blurs with negative spread so the shadow tucks back under the card."
+        ]
+      },
+      {
+        "heading": "Recipe 1 — the one-layer raise"
+      },
+      {
+        "paragraphs": [
+          "Start smaller than feels right. This value ships verbatim on real sites (including TinyURL and OpenStreetMap in our sample) and is enough for most list rows, settings panels, and quiet cards: X at zero, Y at one pixel, blur at two, black at 10%."
+        ],
+        "shadowDemo": {
+          "label": "One-layer raise — production-verified",
+          "property": "box-shadow",
+          "value": "0 1px 2px rgba(0, 0, 0, 0.1)",
+          "radius": 14
+        }
+      },
+      {
+        "heading": "Recipe 2 — contact + ambient"
+      },
+      {
+        "paragraphs": [
+          "Real objects occlude light twice: a dark tight shadow where they nearly touch the surface, and a broader faint one spreading away. Two layers reproduce that — a small contact layer first (it paints on top), then a wide ambient layer with negative spread so it tucks under the card."
+        ],
+        "shadowDemo": {
+          "label": "Contact + ambient card",
+          "property": "box-shadow",
+          "value": "0 1px 2px rgba(0, 0, 0, 0.06), 0 8px 24px -6px rgba(0, 0, 0, 0.12)",
+          "radius": 16
+        }
+      },
+      {
+        "heading": "Recipe 3 — floating panel"
+      },
+      {
+        "paragraphs": [
+          "For a card that is visibly above the page — a dropdown, a popover, a hovered row — raise both rungs together. Alphas stay at or below 0.14; the lift comes from the spread of distances, not from darkness."
+        ],
+        "shadowDemo": {
+          "label": "Floating panel",
+          "property": "box-shadow",
+          "value": "0 4px 12px -2px rgba(16, 24, 40, 0.1), 0 12px 28px -8px rgba(16, 24, 40, 0.12)",
+          "radius": 20
+        }
+      },
+      {
+        "heading": "Recipe 4 — soft headline"
+      },
+      {
+        "paragraphs": [
+          "Text needs its own primitive. text-shadow traces the glyphs, so a single moderate layer keeps headline copy readable over busy backgrounds without smudging the letterforms the way a filter would."
+        ],
+        "shadowDemo": {
+          "label": "Soft text shadow",
+          "property": "text-shadow",
+          "value": "0 2px 8px rgba(0, 0, 0, 0.45)",
+          "text": "Soft headline"
+        }
+      },
+      {
+        "heading": "The alpha-first method"
+      },
+      {
+        "paragraphs": [
+          "Instead of tuning blur until it 'feels soft', fix the order of operations. Start every shadow from the color: set alpha around 0.08, then add only enough offset and blur for the edge to read. Raise alpha in small steps only when the shadow disappears against the background — and stop before it stains."
+        ],
+        "steps": [
+          "Set X to 0. Production pins X at zero on 93.1% of layers; sideways drift is not how depth reads.",
+          "Set Y to 1–4px — down a little, or straight down. Upward shadows were 1.3% of measured layers.",
+          "Set blur to single digits for raises (the median is 3px, the 75th percentile 10px). Save 24px+ for glows.",
+          "Set color to neutral black at 0.08–0.12 alpha — the busiest measured bands are near-zero and 0.1–0.15.",
+          "If it still looks flat, add a second wider rung with negative spread instead of darkening the first."
+        ],
+        "code": {
+          "label": "Tokenized soft shadow — paste into a stylesheet",
+          "content": ":root {\n  --shadow-contact: 0 1px 2px rgba(16, 24, 40, 0.08);\n  --shadow-ambient: 0 8px 24px -6px rgba(16, 24, 40, 0.12);\n}\n.card {\n  box-shadow: var(--shadow-contact), var(--shadow-ambient);\n}"
+        }
+      },
+      {
+        "pageLink": {
+          "label": "Nine more declarations with live previews live in the",
+          "path": "/css/box-shadow/examples",
+          "text": "box-shadow examples gallery"
+        }
+      }
+    ],
+    "toolCta": {
+      "label": "Tune any of these recipes layer by layer with a live preview.",
+      "toolId": "box-shadow-generator"
+    },
+    "relatedArticles": [
+      "box-shadow-values-real-websites",
+      "box-shadow-vs-drop-shadow-filter",
+      "neumorphism-box-shadow-guide"
+    ],
+    "keyTakeaway": "Softness comes from low alpha and spacing, not blur volume: X at 0, Y at 1–4px, single-digit blur, neutral black at 0.08–0.12 — then add a second rung rather than a darker one.",
+    "seoTitle": "Soft Shadow CSS Recipes That Don't Turn Muddy | GainUtility",
+    "seoDescription": "Copy-ready soft box-shadow values for cards, panels, and text — grounded in measured production data, with the alpha-first method for tuning them."
+  },
+  {
+    "id": "neumorphism-box-shadow-guide",
+    "slug": "neumorphism-box-shadow-guide",
+    "title": "Neumorphism Box Shadow: The Two-Layer Formula and Its Limits",
+    "description": "How soft-UI neumorphism works: one light layer, one dark layer, background matched to surface. Copy the formula, the inset variant, and where the style still makes sense.",
+    "category": "Developer",
+    "author": "GainUtility",
+    "date": "2026-09-19",
+    "readingTime": "6 min read",
+    "tags": [
+      "css",
+      "box-shadow",
+      "neumorphism",
+      "soft-ui",
+      "frontend"
+    ],
+    "quickAnswer": "Neumorphism is two outer box-shadows on an element whose background exactly matches its container: a light layer toward the top-left and a dark layer toward the bottom-right, so the surface appears extruded rather than floating. It works for decorative controls on a single flat background; it struggles wherever interactive elements need clear boundaries — the element and the page share one color, so only faint shading separates them.",
+    "content": [
+      {
+        "paragraphs": [
+          "Neumorphism (soft UI) breaks the normal shadow rule on purpose. Instead of lifting a white card off a gray page with one dark shadow, the element and the page are the same color, and two opposing shadows — one light, one dark — make the shape appear pressed out of (or into) the surface itself. There is no second surface color to hide behind: if the two layers are wrong, nothing else rescues the effect."
+        ]
+      },
+      {
+        "heading": "The formula"
+      },
+      {
+        "paragraphs": [
+          "Two layers, opposed offsets, matching blur. The light layer goes up-left, the dark layer down-right, implying a light source from the top-left corner. On a light surface the light layer is near-opaque white; the dark layer stays low-alpha black so it reads as shading, not dirt."
+        ],
+        "code": {
+          "label": "The core declaration",
+          "content": "box-shadow:\n  -8px -8px 16px #ffffff,\n  8px 8px 16px rgba(0, 0, 0, 0.16);"
+        }
+      },
+      {
+        "paragraphs": [
+          "Here it is live — the same two layers the generator's Neumorphism preset ships, on a surface that matches its stage exactly, which is the whole trick:"
+        ],
+        "shadowDemo": {
+          "label": "Extruded — light up-left, dark down-right",
+          "property": "box-shadow",
+          "value": "-8px -8px 16px #ffffff, 8px 8px 16px rgba(0, 0, 0, 0.16)",
+          "radius": 24,
+          "stageBg": "#E4E8E2",
+          "boxBg": "#E4E8E2"
+        }
+      },
+      {
+        "heading": "Why the background must match"
+      },
+      {
+        "paragraphs": [
+          "The white layer only reads if the surface it lands on is the same color as the element — on a pure white page the light half vanishes, and you are left with an ordinary dark drop shadow. That is also why neumorphism forces a single flat background: move the element onto a card, a gradient, or a different section color and the illusion collapses at the boundary.",
+          "Dark mode works the same way with the roles kept: a dark surface color for both element and stage, a light layer at moderate alpha, and a deeper black layer for the opposite side. The formula is symmetric; only the palette flips."
+        ]
+      },
+      {
+        "heading": "The inset (pressed) variant"
+      },
+      {
+        "paragraphs": [
+          "Flip both layers inside and the surface reads as pressed into the page — the classic soft-UI button-down and input-well state. Directions reverse with the inset: the dark layer now sits toward the top-left where light would be blocked, the light layer toward the bottom-right where it would catch the rim."
+        ],
+        "shadowDemo": {
+          "label": "Pressed — both layers inset",
+          "property": "box-shadow",
+          "value": "inset 6px 6px 12px rgba(0, 0, 0, 0.16), inset -6px -6px 12px #ffffff",
+          "radius": 24,
+          "stageBg": "#E4E8E2",
+          "boxBg": "#E4E8E2"
+        }
+      },
+      {
+        "heading": "Where it works — and where it doesn't"
+      },
+      {
+        "paragraphs": [
+          "Neumorphism is at its best on decorative, clearly-bounded surfaces: a dashboard of large stat tiles, a media-player knob, a toggle whose on/off state is obvious, a static hero panel. The extruded look is the point, and nothing depends on the tile being obviously clickable."
+        ],
+        "list": [
+          "Interactive controls need boundaries. When the button's color equals the page's color, only faint shading separates them — hover, focus, and disabled states all have to be solved separately, with a real focus ring (a zero-blur spread ring) rather than more shading.",
+          "Text-heavy UI gains nothing. The style adds no information to lists, forms, or tables; it only adds two shadows per element to keep consistent.",
+          "One background, ever. Sections with different backgrounds each need their own matched light/dark alphas, or the white layer blows out on the darker stage.",
+          "Stack carefully. Neumorphism's two layers plus a hover elevation layer compound — keep every additional layer at low alpha, or the extrusion turns into a smudge."
+        ]
+      },
+      {
+        "heading": "A working checklist"
+      },
+      {
+        "steps": [
+          "Pick the surface color and use it for both the page stage and the element background — exactly the same value.",
+          "Add the light layer at -X -Y with a 16–24px blur; near-opaque white on light surfaces.",
+          "Add the dark layer at +X +Y with the same blur; keep it around 0.12–0.18 alpha.",
+          "Give interactive versions an explicit focus ring — for example 0 0 0 2px of an accent — so keyboard users are not relying on shading.",
+          "Pair the pressed state with the inset variant so the control has a clear down position."
+        ],
+        "pageLink": {
+          "label": "For inset syntax, focus rings, and more component examples, see the",
+          "path": "/css/box-shadow",
+          "text": "box-shadow guide"
+        }
+      }
+    ],
+    "toolCta": {
+      "label": "Start from the Neumorphism preset and tune both layers against a matching stage.",
+      "toolId": "box-shadow-generator"
+    },
+    "relatedArticles": [
+      "soft-shadow-css-recipes",
+      "box-shadow-values-real-websites",
+      "box-shadow-vs-drop-shadow-filter"
+    ],
+    "keyTakeaway": "Neumorphism = matching background + light layer up-left + dark layer down-right (+ inset flip for pressed). Reserve it for decorative surfaces, and give real controls an explicit focus ring.",
+    "seoTitle": "Neumorphism Box Shadow: Two-Layer Formula & Limits | GainUtility",
+    "seoDescription": "Copy the neumorphism box-shadow formula (outer and inset), why the background must match the surface, and where soft UI works vs fails."
+  }
+]

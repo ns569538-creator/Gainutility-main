@@ -1,0 +1,53 @@
+{
+  "name": "gainutility",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run sitemap && vite build && npm run prerender",
+    "preview": "vite preview",
+    "deploy": "npm run build && wrangler pages deploy dist/client --project-name=gainutility --branch=main --commit-dirty=true",
+    "deploy:pages:preview": "npm run build && wrangler pages deploy dist/client --project-name=gainutility --branch=preview --commit-dirty=true",
+    "sitemap": "node scripts/generate-sitemap.mjs",
+    "prerender": "node scripts/prerender.mjs",
+    "br-assets:fetch": "node scripts/br-assets-fetch.mjs",
+    "br-assets:upload": "node scripts/br-assets-upload.mjs",
+    "br-assets:sync": "npm run br-assets:fetch && npm run br-assets:upload",
+    "verify:brembg": "node scripts/verify-brembg.mjs",
+    "lint": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@cantoo/pdf-lib": "^2.9.1",
+    "@tailwindcss/vite": "^4.1.14",
+    "@vitejs/plugin-react": "^5.0.4",
+    "dompurify": "^3.4.15",
+    "js-yaml": "^5.3.0",
+    "jszip": "^3.10.1",
+    "lucide-react": "^0.546.0",
+    "motion": "^12.23.24",
+    "onnxruntime-web": "^1.29.0",
+    "qrcode": "^1.5.4",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1",
+    "tesseract.js": "^7.0.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "^1.54.2",
+    "@pdf-lib/fontkit": "^1.1.1",
+    "@types/js-yaml": "^4.0.9",
+    "@types/jszip": "^3.4.0",
+    "@types/node": "^22.14.0",
+    "@types/qrcode": "^1.5.6",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "@types/tesseract.js": "^0.0.2",
+    "css-tree": "^3.2.1",
+    "onnxruntime-node": "^1.29.0",
+    "tailwindcss": "^4.1.14",
+    "typescript": "~5.8.2",
+    "vite": "^6.2.3",
+    "wrangler": "^4.127.1"
+  }
+}

@@ -1,0 +1,16 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+# Cloudflare local dev secrets (vision provider keys live here — never commit).
+.dev.vars
+.dev.vars.*
+
+# Background remover model + WASM assets (fetched/uploaded on demand)
+.cache/
+
+vite-output.txt

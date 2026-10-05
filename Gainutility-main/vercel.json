@@ -1,0 +1,961 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/json-validator",
+      "destination": "/tools/json-validator",
+      "permanent": true
+    },
+    {
+      "source": "/json-beautifier",
+      "destination": "/tools/json-beautifier",
+      "permanent": true
+    },
+    {
+      "source": "/json-minifier",
+      "destination": "/tools/json-minifier",
+      "permanent": true
+    },
+    {
+      "source": "/json-tree-viewer",
+      "destination": "/tools/json-tree-viewer",
+      "permanent": true
+    },
+    {
+      "source": "/json-compare-diff",
+      "destination": "/tools/json-compare-diff",
+      "permanent": true
+    },
+    {
+      "source": "/json-to-csv",
+      "destination": "/tools/json-to-csv",
+      "permanent": true
+    },
+    {
+      "source": "/gradient-generator",
+      "destination": "/tools/gradient-generator",
+      "permanent": true
+    },
+    {
+      "source": "/contrast-checker",
+      "destination": "/tools/contrast-checker",
+      "permanent": true
+    },
+    {
+      "source": "/base64-tool",
+      "destination": "/tools/base64-tool",
+      "permanent": true
+    },
+    {
+      "source": "/box-shadow-generator",
+      "destination": "/tools/box-shadow-generator",
+      "permanent": true
+    },
+    {
+      "source": "/border-radius-generator",
+      "destination": "/tools/border-radius-generator",
+      "permanent": true
+    },
+    {
+      "source": "/slug-generator",
+      "destination": "/tools/slug-generator",
+      "permanent": true
+    },
+    {
+      "source": "/seo-meta-generator",
+      "destination": "/tools/seo-meta-generator",
+      "permanent": true
+    },
+    {
+      "source": "/og-meta-generator",
+      "destination": "/tools/og-meta-generator",
+      "permanent": true
+    },
+    {
+      "source": "/twitter-card-generator",
+      "destination": "/tools/twitter-card-generator",
+      "permanent": true
+    },
+    {
+      "source": "/robots-txt-generator",
+      "destination": "/tools/robots-txt-generator",
+      "permanent": true
+    },
+    {
+      "source": "/xml-sitemap-generator",
+      "destination": "/tools/xml-sitemap-generator",
+      "permanent": true
+    },
+    {
+      "source": "/schema-markup-generator",
+      "destination": "/tools/schema-markup-generator",
+      "permanent": true
+    },
+    {
+      "source": "/utm-builder",
+      "destination": "/tools/utm-builder",
+      "permanent": true
+    },
+    {
+      "source": "/canonical-url-generator",
+      "destination": "/tools/canonical-url-generator",
+      "permanent": true
+    },
+    {
+      "source": "/hreflang-tag-generator",
+      "destination": "/tools/hreflang-tag-generator",
+      "permanent": true
+    },
+    {
+      "source": "/google-serp-preview",
+      "destination": "/tools/google-serp-preview",
+      "permanent": true
+    },
+    {
+      "source": "/check-my-website",
+      "destination": "/tools/check-my-website",
+      "permanent": true
+    },
+    {
+      "source": "/launch-checklist",
+      "destination": "/tools/launch-checklist",
+      "permanent": true
+    },
+    {
+      "source": "/qr-code-generator",
+      "destination": "/tools/qr-code-generator",
+      "permanent": true
+    },
+    {
+      "source": "/url-encoder-decoder",
+      "destination": "/tools/url-encoder-decoder",
+      "permanent": true
+    },
+    {
+      "source": "/html-entity-encoder",
+      "destination": "/tools/html-entity-encoder",
+      "permanent": true
+    },
+    {
+      "source": "/youtube-thumbnail-preview",
+      "destination": "/tools/youtube-thumbnail-preview",
+      "permanent": true
+    },
+    {
+      "source": "/youtube-title-analyzer",
+      "destination": "/tools/youtube-title-analyzer",
+      "permanent": true
+    },
+    {
+      "source": "/youtube-timestamp-formatter",
+      "destination": "/tools/youtube-timestamp-formatter",
+      "permanent": true
+    },
+    {
+      "source": "/youtube-chapter-generator",
+      "destination": "/tools/youtube-chapter-generator",
+      "permanent": true
+    },
+    {
+      "source": "/youtube-embed-generator",
+      "destination": "/tools/youtube-embed-generator",
+      "permanent": true
+    },
+    {
+      "source": "/youtube-url-toolkit",
+      "destination": "/tools/youtube-url-toolkit",
+      "permanent": true
+    },
+    {
+      "source": "/thumbnail-safe-zone",
+      "destination": "/tools/thumbnail-safe-zone",
+      "permanent": true
+    },
+    {
+      "source": "/youtube-description-formatter",
+      "destination": "/tools/youtube-description-formatter",
+      "permanent": true
+    },
+    {
+      "source": "/youtube-keyword-explorer",
+      "destination": "/tools/youtube-keyword-explorer",
+      "permanent": true
+    },
+    {
+      "source": "/stylish-name-generator",
+      "destination": "/tools/stylish-name-generator",
+      "permanent": true
+    },
+    {
+      "source": "/protect-pdf",
+      "destination": "/tools/protect-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/unlock-pdf",
+      "destination": "/tools/unlock-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/remove-pdf-password",
+      "destination": "/tools/remove-pdf-password",
+      "permanent": true
+    },
+    {
+      "source": "/add-pdf-watermark",
+      "destination": "/tools/add-pdf-watermark",
+      "permanent": true
+    },
+    {
+      "source": "/flatten-pdf",
+      "destination": "/tools/flatten-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/merge-pdf",
+      "destination": "/tools/merge-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/split-pdf",
+      "destination": "/tools/split-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/rotate-pdf",
+      "destination": "/tools/rotate-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/extract-pdf",
+      "destination": "/tools/extract-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/delete-pdf",
+      "destination": "/tools/delete-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/rearrange-pdf",
+      "destination": "/tools/rearrange-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/add-pdf-page-numbers",
+      "destination": "/tools/add-pdf-page-numbers",
+      "permanent": true
+    },
+    {
+      "source": "/add-pdf-header-footer",
+      "destination": "/tools/add-pdf-header-footer",
+      "permanent": true
+    },
+    {
+      "source": "/crop-pdf",
+      "destination": "/tools/crop-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/duplicate-page-finder-pdf",
+      "destination": "/tools/duplicate-page-finder-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/remove-blank-pages-pdf",
+      "destination": "/tools/remove-blank-pages-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/reverse-page-order-pdf",
+      "destination": "/tools/reverse-page-order-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/extract-odd-pages-pdf",
+      "destination": "/tools/extract-odd-pages-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/extract-even-pages-pdf",
+      "destination": "/tools/extract-even-pages-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/jpg-to-pdf",
+      "destination": "/tools/jpg-to-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/pdf-to-jpg",
+      "destination": "/tools/pdf-to-jpg",
+      "permanent": true
+    },
+    {
+      "source": "/word-to-pdf",
+      "destination": "/tools/word-to-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/pdf-to-word",
+      "destination": "/tools/pdf-to-word",
+      "permanent": true
+    },
+    {
+      "source": "/excel-to-pdf",
+      "destination": "/tools/excel-to-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/pdf-to-excel",
+      "destination": "/tools/pdf-to-excel",
+      "permanent": true
+    },
+    {
+      "source": "/powerpoint-to-pdf",
+      "destination": "/tools/powerpoint-to-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/pdf-to-powerpoint",
+      "destination": "/tools/pdf-to-powerpoint",
+      "permanent": true
+    },
+    {
+      "source": "/html-to-pdf",
+      "destination": "/tools/html-to-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/pdf-to-text",
+      "destination": "/tools/pdf-to-text",
+      "permanent": true
+    },
+    {
+      "source": "/text-to-pdf",
+      "destination": "/tools/text-to-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/pdf-to-html",
+      "destination": "/tools/pdf-to-html",
+      "permanent": true
+    },
+    {
+      "source": "/pdf-translator",
+      "destination": "/tools/pdf-translator",
+      "permanent": true
+    },
+    {
+      "source": "/remove-pdf-metadata",
+      "destination": "/tools/remove-pdf-metadata",
+      "permanent": true
+    },
+    {
+      "source": "/repair-pdf",
+      "destination": "/tools/repair-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/validate-pdf",
+      "destination": "/tools/validate-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/optimize-pdf-web",
+      "destination": "/tools/optimize-pdf-web",
+      "permanent": true
+    },
+    {
+      "source": "/reduce-pdf-image-quality",
+      "destination": "/tools/reduce-pdf-image-quality",
+      "permanent": true
+    },
+    {
+      "source": "/compress-images-inside-pdf",
+      "destination": "/tools/compress-images-inside-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/ocr-pdf",
+      "destination": "/tools/ocr-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/compare-two-pdfs",
+      "destination": "/tools/compare-two-pdfs",
+      "permanent": true
+    },
+    {
+      "source": "/split-by-file-size",
+      "destination": "/tools/split-by-file-size",
+      "permanent": true
+    },
+    {
+      "source": "/split-every-n-pages",
+      "destination": "/tools/split-every-n-pages",
+      "permanent": true
+    },
+    {
+      "source": "/image-resizer",
+      "destination": "/tools/image-resizer",
+      "permanent": true
+    },
+    {
+      "source": "/image-cropper",
+      "destination": "/tools/image-cropper",
+      "permanent": true
+    },
+    {
+      "source": "/image-converter",
+      "destination": "/tools/image-converter",
+      "permanent": true
+    },
+    {
+      "source": "/image-watermark",
+      "destination": "/tools/image-watermark",
+      "permanent": true
+    },
+    {
+      "source": "/image-blur-pixelate",
+      "destination": "/tools/image-blur-pixelate",
+      "permanent": true
+    },
+    {
+      "source": "/social-resizer",
+      "destination": "/tools/social-resizer",
+      "permanent": true
+    },
+    {
+      "source": "/favicon-generator",
+      "destination": "/tools/favicon-generator",
+      "permanent": true
+    },
+    {
+      "source": "/logo-maker",
+      "destination": "/tools/logo-maker",
+      "permanent": true
+    },
+    {
+      "source": "/collage-maker",
+      "destination": "/tools/collage-maker",
+      "permanent": true
+    },
+    {
+      "source": "/uuid-generator",
+      "destination": "/tools/uuid-generator",
+      "permanent": true
+    },
+    {
+      "source": "/jwt-decoder",
+      "destination": "/tools/jwt-decoder",
+      "permanent": true
+    },
+    {
+      "source": "/password-generator",
+      "destination": "/tools/password-generator",
+      "permanent": true
+    },
+    {
+      "source": "/password-strength-checker",
+      "destination": "/tools/password-strength-checker",
+      "permanent": true
+    },
+    {
+      "source": "/hash-generator",
+      "destination": "/tools/hash-generator",
+      "permanent": true
+    },
+    {
+      "source": "/regex-tester",
+      "destination": "/tools/regex-tester",
+      "permanent": true
+    },
+    {
+      "source": "/unix-timestamp-converter",
+      "destination": "/tools/unix-timestamp-converter",
+      "permanent": true
+    },
+    {
+      "source": "/cron-expression-builder",
+      "destination": "/tools/cron-expression-builder",
+      "permanent": true
+    },
+    {
+      "source": "/text-diff-checker",
+      "destination": "/tools/text-diff-checker",
+      "permanent": true
+    },
+    {
+      "source": "/json-schema-validator",
+      "destination": "/tools/json-schema-validator",
+      "permanent": true
+    },
+    {
+      "source": "/jsonpath-tester",
+      "destination": "/tools/jsonpath-tester",
+      "permanent": true
+    },
+    {
+      "source": "/csv-json-converter",
+      "destination": "/tools/csv-json-converter",
+      "permanent": true
+    },
+    {
+      "source": "/xml-json-converter",
+      "destination": "/tools/xml-json-converter",
+      "permanent": true
+    },
+    {
+      "source": "/sql-formatter",
+      "destination": "/tools/sql-formatter",
+      "permanent": true
+    },
+    {
+      "source": "/yaml-formatter",
+      "destination": "/tools/yaml-formatter",
+      "permanent": true
+    },
+    {
+      "source": "/http-status-code-lookup",
+      "destination": "/tools/http-status-code-lookup",
+      "permanent": true
+    },
+    {
+      "source": "/mime-type-lookup",
+      "destination": "/tools/mime-type-lookup",
+      "permanent": true
+    },
+    {
+      "source": "/url-parser",
+      "destination": "/tools/url-parser",
+      "permanent": true
+    },
+    {
+      "source": "/image-metadata-remover",
+      "destination": "/tools/image-metadata-remover",
+      "permanent": true
+    },
+    {
+      "source": "/background-remover",
+      "destination": "/tools/background-remover",
+      "permanent": true
+    },
+    {
+      "source": "/passport-photo-maker",
+      "destination": "/tools/passport-photo-maker",
+      "permanent": true
+    },
+    {
+      "source": "/image-upscaler",
+      "destination": "/tools/image-upscaler",
+      "permanent": true
+    },
+    {
+      "source": "/signature-maker",
+      "destination": "/tools/signature-maker",
+      "permanent": true
+    },
+    {
+      "source": "/csv-reconciliation",
+      "destination": "/tools/csv-reconciliation",
+      "permanent": true
+    },
+    {
+      "source": "/excel-formula-generator",
+      "destination": "/tools/excel-formula-generator",
+      "permanent": true
+    },
+    {
+      "source": "/billable-hours-calculator",
+      "destination": "/tools/billable-hours-calculator",
+      "permanent": true
+    },
+    {
+      "source": "/pdf-difference-checker",
+      "destination": "/tools/pdf-difference-checker",
+      "permanent": true
+    },
+    {
+      "source": "/business-pdf-extractor",
+      "destination": "/tools/business-pdf-extractor",
+      "permanent": true
+    },
+    {
+      "source": "/invoice-follow-up-tracker",
+      "destination": "/tools/invoice-follow-up-tracker",
+      "permanent": true
+    },
+    {
+      "source": "/font-detector",
+      "destination": "/tools/font-detector",
+      "permanent": true
+    },
+    {
+      "source": "/linkedin-carousel-maker",
+      "destination": "/tools/linkedin-carousel-maker",
+      "permanent": true
+    },
+    {
+      "source": "/color-palette-generator",
+      "destination": "/tools/color-palette-generator",
+      "permanent": true
+    },
+    {
+      "source": "/color-picker",
+      "destination": "/tools/color-picker",
+      "permanent": true
+    },
+    {
+      "source": "/color-explorer",
+      "destination": "/tools/color-explorer",
+      "permanent": true
+    },
+    {
+      "source": "/color-visualizer",
+      "destination": "/tools/color-visualizer",
+      "permanent": true
+    },
+    {
+      "source": "/image-to-palette",
+      "destination": "/tools/image-to-palette",
+      "permanent": true
+    },
+    {
+      "source": "/application-file-checker",
+      "destination": "/tools/application-file-checker",
+      "permanent": true
+    },
+    {
+      "source": "/exam-photo-fixer",
+      "destination": "/tools/exam-photo-fixer",
+      "permanent": true
+    },
+    {
+      "source": "/exam-signature-fixer",
+      "destination": "/tools/exam-signature-fixer",
+      "permanent": true
+    },
+    {
+      "source": "/exam-thumb-fixer",
+      "destination": "/tools/exam-thumb-fixer",
+      "permanent": true
+    },
+    {
+      "source": "/declaration-fixer",
+      "destination": "/tools/declaration-fixer",
+      "permanent": true
+    },
+    {
+      "source": "/pdf-exact-size",
+      "destination": "/tools/pdf-exact-size",
+      "permanent": true
+    },
+    {
+      "source": "/exam-file-requirements",
+      "destination": "/tools/exam-file-requirements",
+      "permanent": true
+    },
+    {
+      "source": "/video-audio-extractor",
+      "destination": "/tools/video-audio-extractor",
+      "permanent": true
+    },
+    {
+      "source": "/video-compressor",
+      "destination": "/tools/video-compressor",
+      "permanent": true
+    },
+    {
+      "source": "/video-resizer",
+      "destination": "/tools/video-resizer",
+      "permanent": true
+    },
+    {
+      "source": "/video-trimmer",
+      "destination": "/tools/video-trimmer",
+      "permanent": true
+    },
+    {
+      "source": "/video-converter",
+      "destination": "/tools/video-converter",
+      "permanent": true
+    },
+    {
+      "source": "/video-to-gif",
+      "destination": "/tools/video-to-gif",
+      "permanent": true
+    },
+    {
+      "source": "/photos-to-video",
+      "destination": "/tools/photos-to-video",
+      "permanent": true
+    },
+    {
+      "source": "/video-downloader",
+      "destination": "/tools/video-downloader",
+      "permanent": true
+    },
+    {
+      "source": "/add-music-to-photo",
+      "destination": "/tools/add-music-to-photo",
+      "permanent": true
+    },
+    {
+      "source": "/tools/json-formatter",
+      "destination": "/tools/json-beautifier",
+      "permanent": true
+    },
+    {
+      "source": "/json-formatter",
+      "destination": "/tools/json-beautifier",
+      "permanent": true
+    },
+    {
+      "source": "/tools/json-viewer",
+      "destination": "/tools/json-tree-viewer",
+      "permanent": true
+    },
+    {
+      "source": "/json-viewer",
+      "destination": "/tools/json-tree-viewer",
+      "permanent": true
+    },
+    {
+      "source": "/tools/json-compare",
+      "destination": "/tools/json-compare-diff",
+      "permanent": true
+    },
+    {
+      "source": "/json-compare",
+      "destination": "/tools/json-compare-diff",
+      "permanent": true
+    },
+    {
+      "source": "/tools/webp-converter",
+      "destination": "/tools/image-converter",
+      "permanent": true
+    },
+    {
+      "source": "/webp-converter",
+      "destination": "/tools/image-converter",
+      "permanent": true
+    },
+    {
+      "source": "/tools/png-jpg-converter",
+      "destination": "/tools/image-converter",
+      "permanent": true
+    },
+    {
+      "source": "/png-jpg-converter",
+      "destination": "/tools/image-converter",
+      "permanent": true
+    },
+    {
+      "source": "/tools/heic-jpg-converter",
+      "destination": "/tools/image-converter",
+      "permanent": true
+    },
+    {
+      "source": "/heic-jpg-converter",
+      "destination": "/tools/image-converter",
+      "permanent": true
+    },
+    {
+      "source": "/tools/svg-converter",
+      "destination": "/tools/image-converter",
+      "permanent": true
+    },
+    {
+      "source": "/svg-converter",
+      "destination": "/tools/image-converter",
+      "permanent": true
+    },
+    {
+      "source": "/tools/merge-selected-page-ranges",
+      "destination": "/tools/merge-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/merge-selected-page-ranges",
+      "destination": "/tools/merge-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/color-scale-generator",
+      "destination": "/studios/color/generator",
+      "permanent": true
+    },
+    {
+      "source": "/image-color-palette-extractor",
+      "destination": "/studios/color/image",
+      "permanent": true
+    },
+    {
+      "source": "/tools/color-scale-generator",
+      "destination": "/studios/color/generator",
+      "permanent": true
+    },
+    {
+      "source": "/tools/image-color-palette-extractor",
+      "destination": "/studios/color/image",
+      "permanent": true
+    },
+    {
+      "source": "/compress-pdf",
+      "destination": "/tools/compress-images-inside-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/tools/compress-pdf",
+      "destination": "/tools/compress-images-inside-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/image-compressor",
+      "destination": "/image",
+      "permanent": true
+    },
+    {
+      "source": "/tools/image-compressor",
+      "destination": "/image",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/tools/comprimir-imagem",
+      "destination": "/pt-br/image",
+      "permanent": true
+    },
+    {
+      "source": "/id/tools/kompres-gambar",
+      "destination": "/id/image",
+      "permanent": true
+    },
+    {
+      "source": "/es-mx/tools/comprimir-imagen",
+      "destination": "/es-mx/image",
+      "permanent": true
+    },
+    {
+      "source": "/es-co/tools/comprimir-imagen",
+      "destination": "/es-co/image",
+      "permanent": true
+    },
+    {
+      "source": "/de/tools/bild-komprimieren",
+      "destination": "/de/image",
+      "permanent": true
+    },
+    {
+      "source": "/fr/tools/compresser-image",
+      "destination": "/fr/image",
+      "permanent": true
+    },
+    {
+      "source": "/it/tools/comprimere-immagine",
+      "destination": "/it/image",
+      "permanent": true
+    },
+    {
+      "source": "/image/compress",
+      "destination": "/image",
+      "permanent": true
+    },
+    {
+      "source": "/compare/image-compress-vs-resize",
+      "destination": "/tools/image-resizer",
+      "permanent": true
+    },
+    {
+      "source": "/services",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/pt-br/services",
+      "destination": "/pt-br",
+      "permanent": true
+    },
+    {
+      "source": "/id/services",
+      "destination": "/id",
+      "permanent": true
+    },
+    {
+      "source": "/es-mx/services",
+      "destination": "/es-mx",
+      "permanent": true
+    },
+    {
+      "source": "/es-co/services",
+      "destination": "/es-co",
+      "permanent": true
+    },
+    {
+      "source": "/de/services",
+      "destination": "/de",
+      "permanent": true
+    },
+    {
+      "source": "/fr/services",
+      "destination": "/fr",
+      "permanent": true
+    },
+    {
+      "source": "/it/services",
+      "destination": "/it",
+      "permanent": true
+    },
+    {
+      "source": "/blog/download-exam-images-one-by-one-built-a-tool",
+      "destination": "/blog/how-to-convert-jpg-to-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/blog/exam-photo-size-frustrations-fixer",
+      "destination": "/blog/how-to-resize-an-image",
+      "permanent": true
+    },
+    {
+      "source": "/blog/download-government-exam-documents-shouldnt-be-tedious",
+      "destination": "/blog/fix-pdf-too-big-to-upload",
+      "permanent": true
+    },
+    {
+      "source": "/blog/split-merge-pdf-workflow",
+      "destination": "/blog/how-to-merge-pdf-files",
+      "permanent": true
+    },
+    {
+      "source": "/blog/compress-pdf-size-vs-quality",
+      "destination": "/blog/how-to-compress-a-pdf",
+      "permanent": true
+    },
+    {
+      "source": "/blog/real-world-box-shadow-values",
+      "destination": "/blog/box-shadow-values-real-websites",
+      "permanent": true
+    },
+    {
+      "source": "/audit",
+      "destination": "/site-audit",
+      "permanent": true
+    },
+    {
+      "source": "/video",
+      "destination": "/media",
+      "permanent": true
+    },
+    {
+      "source": "/images",
+      "destination": "/image",
+      "permanent": true
+    },
+    {
+      "source": "/tools/images",
+      "destination": "/image",
+      "permanent": true
+    }
+  ]
+}

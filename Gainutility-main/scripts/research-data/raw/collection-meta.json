@@ -1,0 +1,12 @@
+{
+  "runAt": "2026-09-16T06:01:20.724Z",
+  "args": {
+    "csv": "C:\\Users\\nav\\AppData\\Local\\Temp\\opencode\\tranco\\top-1m.csv",
+    "limit": 1000,
+    "out": "scripts\\research-data\\raw",
+    "concurrency": 14
+  },
+  "list": "C:\\Users\\nav\\AppData\\Local\\Temp\\opencode\\tranco\\top-1m.csv",
+  "total": 1000,
+  "completed": 1000
+}

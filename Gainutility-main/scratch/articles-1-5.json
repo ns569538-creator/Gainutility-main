@@ -1,0 +1,367 @@
+[
+  {
+    "id": "remove-background-from-image",
+    "slug": "how-to-remove-background-from-an-image",
+    "title": "How to Remove a Background From an Image",
+    "description": "A plain background is the easy case: sample the colour, remove it, check the edges, and download a transparent PNG. All in your browser.",
+    "category": "Images",
+    "author": "GainUtility",
+    "date": "2026-09-11",
+    "readingTime": "5 min read",
+    "tags": [
+      "background remover",
+      "images",
+      "transparent background",
+      "privacy"
+    ],
+    "quickAnswer": "Open the GainUtility background remover, load an image with a plain background, sample the background colour, and remove it. The result is a transparent PNG that downloads straight to your device.",
+    "content": [
+      {
+        "paragraphs": [
+          "Most of the time when people say “remove the background”, the background is one plain colour: a white photo backdrop, a blue screen, a light paper sweep. For that very common case you don't need an image editor or a service that emails you a result. You need colour detection, a tolerance control, and a little care with the edges.",
+          "The manual route — lasso, feather, zoom in and chase stray pixels — takes minutes and still looks rough. The commercial route uploads your photo to a server and usually charges after the first image. There's a middle path, and it runs entirely in your browser."
+        ]
+      },
+      {
+        "heading": "When colour-based removal works best",
+        "paragraphs": [
+          "Colour-based (chroma-key) removal deletes every pixel close to the sampled background colour. It shines on a specific, very common set of images:"
+        ],
+        "list": [
+          "Product photos shot on white or plain backdrops, for catalogs and marketplaces.",
+          "Scanned documents, receipts, and ID photos with plain backgrounds.",
+          "Logos and graphics sitting on a solid block of colour.",
+          "Screenshots or renders where the environment behind the subject is uniform."
+        ]
+      },
+      {
+        "heading": "Where it gets harder",
+        "paragraphs": [
+          "If the subject has hair strands, glass, or a shadow that's the same colour as the background, a quick removal leaves a colour halo or punches a hole in the object. That's expected behaviour, not a broken tool — and it's why the preview step matters. Sample a middle tone of the background instead of the darkest corner, raise tolerance a little, and zoom in on the edges before you accept the result."
+        ],
+        "tool": {
+          "label": "The GainUtility background remover runs entirely in your browser.",
+          "toolId": "background-remover"
+        }
+      },
+      {
+        "heading": "Step by step: remove a background in your browser",
+        "paragraphs": [
+          "For a uniform background, the whole task takes about a minute and needs nothing installed."
+        ],
+        "steps": [
+          "Open the GainUtility background remover and drop in your image (or click to browse, or paste from the clipboard).",
+          "Sample the background colour by clicking it. If the image has plain corners, the tool usually detects the right colour for you automatically.",
+          "Adjust the tolerance: higher values remove a broader range of similar shades, lower values keep only the exact colour you clicked.",
+          "Apply a little edge feathering so the cutout blends instead of showing a hard rim.",
+          "Remove the background, inspect the before/after result — transparency shows as a checkerboard pattern — then download the PNG."
+        ]
+      },
+      {
+        "heading": "Why browser-local processing matters",
+        "paragraphs": [
+          "Nothing is uploaded, so there's no waiting for a transfer, no per-image free-tier cap, and no copy of your photo left on a third-party server. The trade-off is honesty about the method: colour removal is not AI subject detection. Use it on the right images and the edges are just as clean."
+        ]
+      }
+    ],
+    "toolCta": {
+      "label": "Remove a background now — no upload, no account, nothing leaves your device.",
+      "toolId": "background-remover"
+    },
+    "relatedArticles": [
+      "how-to-make-a-transparent-png",
+      "background-remover-for-product-photos",
+      "how-to-compress-an-image"
+    ],
+    "keyTakeaway": "Colour-based removal cleans solid-background images in your browser — sample the colour, check the edges, and the file never leaves your device.",
+    "seoTitle": "How to Remove a Background From an Image | GainUtility",
+    "seoDescription": "Remove a plain background in your browser: sample the colour, tune the tolerance, check the edges, and download a transparent PNG. No upload."
+  },
+  {
+    "id": "make-a-transparent-png",
+    "slug": "how-to-make-a-transparent-png",
+    "title": "How to Make a Transparent PNG",
+    "description": "A transparent background lets an image sit on any page colour without a box around it. Here's how to produce one in your browser.",
+    "category": "Images",
+    "author": "GainUtility",
+    "date": "2026-09-11",
+    "readingTime": "4 min read",
+    "tags": [
+      "transparent png",
+      "transparent background",
+      "png",
+      "images"
+    ],
+    "quickAnswer": "Open the background remover, load an image with a plain background, remove the background colour, and download as PNG. The alpha channel is real, so the transparency works in every editor.",
+    "content": [
+      {
+        "paragraphs": [
+          "A PNG with a transparent background lets an image sit on any page colour, slide background, or printed surface without a white or black rectangle around it. It's the difference between a logo that looks like a sticker and one that looks like it belongs."
+        ]
+      },
+      {
+        "heading": "Why transparency requires PNG",
+        "paragraphs": [
+          "JPG is great at photos and terrible at transparency — every JPG is a full rectangle. PNG supports an alpha channel, which stores per-pixel transparency. That makes PNG the standard format for anything that gets layered: website icons, presentation graphics, product shots on coloured store pages, and print layouts."
+        ]
+      },
+      {
+        "heading": "“White background” is not “no background”",
+        "paragraphs": [
+          "A photo with a white background is still a rectangle. Put it on a dark slide and the white border becomes part of the design whether you wanted it or not.",
+          "A transparent PNG is the subject floating on nothing. The background is gone, so the image inherits whatever surface it's placed on. For product photos and logos that is usually exactly what you need."
+        ]
+      },
+      {
+        "heading": "How to make a transparent PNG in your browser",
+        "paragraphs": [
+          "When the background is a solid or near-solid colour, you can produce a transparent PNG in about a minute:"
+        ],
+        "steps": [
+          "Open the GainUtility background remover and load your image.",
+          "Make sure the background type is set to transparent (the default).",
+          "Sample the background colour by clicking it, or keep the automatically detected corner colour.",
+          "Adjust tolerance so the subject stays intact while the background disappears.",
+          "Check the before/after view — the cutout preview shows a checkerboard pattern, which is how editors mark transparency.",
+          "Download the result as PNG. The file has a real alpha channel, readable by every image viewer and editor."
+        ]
+      },
+      {
+        "heading": "When not to bother",
+        "paragraphs": [
+          "Some marketplaces re-add a white backdrop themselves, so a transparent upload can look different than intended — check the listing format first. And colour removal only shines on uniform backgrounds; for hair against a busy backdrop, a dedicated editor is the honest tool for the job."
+        ],
+        "tool": {
+          "label": "Make your own transparent PNG with the GainUtility background remover.",
+          "toolId": "background-remover"
+        }
+      }
+    ],
+    "toolCta": {
+      "label": "Turn an image into a transparent PNG in your browser.",
+      "toolId": "background-remover"
+    },
+    "relatedArticles": [
+      "how-to-remove-background-from-an-image",
+      "background-remover-for-product-photos",
+      "how-to-resize-an-image"
+    ],
+    "keyTakeaway": "Transparency means no background at all: colour removal gives you a true alpha channel PNG right in the browser.",
+    "seoTitle": "How to Make a Transparent PNG | GainUtility",
+    "seoDescription": "Make a transparent PNG in your browser. Sample the background colour, remove it, and download a file with a true alpha channel — no upload."
+  },
+  {
+    "id": "compress-image-guide",
+    "slug": "how-to-compress-an-image",
+    "title": "How to Compress Images Without Losing Too Much Quality",
+    "description": "Image size has two dials — dimensions and quality. Change them in the right order and the picture still looks good.",
+    "category": "Images",
+    "author": "GainUtility",
+    "date": "2026-09-12",
+    "readingTime": "4 min read",
+    "tags": [
+      "image compression",
+      "jpg",
+      "quality",
+      "web performance"
+    ],
+    "quickAnswer": "Resize first — cutting dimensions is the big win and costs almost nothing visually. Then lower quality in steps and check the preview. A 4000-px photo can drop from 4.8 MB to around 1.2 MB without looking damaged.",
+    "content": [
+      {
+        "paragraphs": [
+          "A phone photo these days is 4,000 pixels wide and several megabytes. If its only job is a web page, an email, or an upload form, that's a lot of wasted bytes — and wasted bytes mean slow pages and rejected uploads.",
+          "The good news is that file size has only two dials, and you control both."
+        ]
+      },
+      {
+        "heading": "Dial one: dimensions",
+        "paragraphs": [
+          "Halving the width and height of an image cuts its pixel count to a quarter. Resize first because it's the largest, least harmful lever. A 4000 × 3000 photo scaled to 2000 px wide is a fraction of the file, and at typical viewing sizes nobody can tell the difference."
+        ]
+      },
+      {
+        "heading": "Dial two: quality",
+        "paragraphs": [
+          "JPG quality is a percentage that trades file size for detail. High values (90+) preserve fine detail at a large cost; values around 60–70 usually look fine for photos on screen.",
+          "The trap is turning quality down before resizing, or both at once — you end up blurry with no size benefit. Do it in order, then check."
+        ],
+        "tool": {
+          "label": "The Image Converter lets you resize and dial quality in one preview.",
+          "toolId": "image-converter"
+        }
+      },
+      {
+        "heading": "A realistic before and after",
+        "paragraphs": [
+          "Here's what the two dials do to a real phone photo:"
+        ],
+        "list": [
+          "Original: 4000 × 3000 px, quality 92 — about 4.8 MB.",
+          "After resize to 2000 px wide and quality 62: about 1.2 MB.",
+          "You lose visible sharpness only if you print it. For screens, uploads, and listings, it's the same picture."
+        ]
+      },
+      {
+        "heading": "When to stop compressing",
+        "paragraphs": [
+          "Stop when the file does its job and the preview still looks right. If you can see banding in skies or mush in fine lines, back the quality up by 10 and re-check. The right size is the smallest one you can't tell from the original at its actual display size."
+        ]
+      }
+    ],
+    "toolCta": {
+      "label": "Shrink an image — resize and convert to WebP in one preview.",
+      "toolId": "image-converter"
+    },
+    "relatedArticles": [
+      "how-to-resize-an-image",
+      "background-remover-for-product-photos",
+      "fix-pdf-too-big-to-upload"
+    ],
+    "keyTakeaway": "Change dimensions first, quality second, and only compress until the preview stops looking right.",
+    "seoTitle": "How to Compress Images Without Losing Too Much Quality | GainUtility",
+    "seoDescription": "Image size has two dials — dimensions and quality. Change them in the right order and keep the picture looking good in your browser."
+  },
+  {
+    "id": "resize-image-guide",
+    "slug": "how-to-resize-an-image",
+    "title": "How to Resize an Image to an Exact Pixel Size",
+    "description": "Upload forms ask for exact pixel sizes and KB limits. Here's how to hit the numbers without opening a photo editor.",
+    "category": "Images",
+    "author": "GainUtility",
+    "date": "2026-09-12",
+    "readingTime": "5 min read",
+    "tags": [
+      "resize",
+      "images",
+      "pixels",
+      "forms"
+    ],
+    "quickAnswer": "Open the image resizer, upload, switch to exact dimensions, type the required width and height (e.g. 1200 × 900), and export. Match the requested orientation — forcing a portrait crop into landscape is what causes the distortion that gets forms rejected.",
+    "content": [
+      {
+        "paragraphs": [
+          "A form asks for “photo, 1200 × 900 or less, under 1 MB”. Most people react by guessing: upload the photo, get rejected, open a random editor, fiddle. There's a calmer order for this, and it starts with reading the requirement as two separate numbers."
+        ]
+      },
+      {
+        "heading": "Dimensions first, then size",
+        "paragraphs": [
+          "The pixel requirement is the strict one — a form checks it directly. So hit exact pixels first: set the width and height to the allowed maximum, or smaller than it. Then, if the file is still over a KB limit, reduce quality. Resizing to size and resizing to quality are different jobs."
+        ]
+      },
+      {
+        "heading": "The distortion trap",
+        "paragraphs": [
+          "If you stretch a portrait photo to landscape dimensions, the picture gets squashed and the form (or a reviewer) notices. When the photo doesn't match the requested orientation, crop toward the subject rather than stretching. A 1200 × 900 crop of a 4000 × 3000 photo keeps the important part and the right proportions."
+        ]
+      },
+      {
+        "heading": "A realistic before and after",
+        "paragraphs": [
+          "The same camera shot, resized for a listing form:"
+        ],
+        "list": [
+          "Original: 4032 × 3024 px wide, about 4.6 MB.",
+          "Resized to 1200 × 900 px: about 780 KB — well under a 1 MB limit.",
+          "One step, one preview, done."
+        ]
+      },
+      {
+        "heading": "Step by step",
+        "paragraphs": [
+          "The whole job, in order:"
+        ],
+        "steps": [
+          "Open the GainUtility image resizer and load your image.",
+          "Switch the mode to exact dimensions.",
+          "Enter the required size. Keep the required orientation — crop instead of stretch if they don't match.",
+          "Check the preview; adjust the crop if a useful part of the photo is being cut off.",
+          "Export and upload. If the file is still too large for a KB limit, follow it with the compressor."
+        ],
+        "tool": {
+          "label": "The Image Resizer sets exact pixel dimensions with a live preview.",
+          "toolId": "image-resizer"
+        }
+      }
+    ],
+    "toolCta": {
+      "label": "Resize an image to exact pixels in your browser.",
+      "toolId": "image-resizer"
+    },
+    "relatedArticles": [
+      "how-to-compress-an-image",
+      "background-remover-for-product-photos",
+      "fix-pdf-too-big-to-upload"
+    ],
+    "keyTakeaway": "Read the requirement as two numbers: hit exact pixels with resize and crop, then shrink to a KB limit with quality.",
+    "seoTitle": "How to Resize an Image to an Exact Pixel Size | GainUtility",
+    "seoDescription": "Resize an image to an exact pixel size in your browser — width, height, and KB limits handled in the right order, with a live preview."
+  },
+  {
+    "id": "background-remover-for-product-photos",
+    "slug": "background-remover-for-product-photos",
+    "title": "How to Prepare Product Photos for Your Online Store",
+    "description": "Consistent, clean product photos come from plain backdrops and careful edges. Here's the workflow for a catalog that looks intentional.",
+    "category": "Images",
+    "author": "GainUtility",
+    "date": "2026-09-11",
+    "readingTime": "4 min read",
+    "tags": [
+      "product photos",
+      "e-commerce",
+      "background remover",
+      "store listings"
+    ],
+    "quickAnswer": "Shoot on a plain, evenly lit backdrop, then remove the background, check the edges, and export a transparent PNG at a consistent size. Listings read well in search grids, and you can reuse one clean shot anywhere.",
+    "content": [
+      {
+        "paragraphs": [
+          "Marketplaces and independent stores both reward consistent product photos. Listings with a clean, uniform background photograph well, read clearly in search grids, and convert better than shots with cluttered rooms or harsh shadows behind the item.",
+          "The useful part: most e-commerce photography is already shot on plain backdrops — white, light gray, or neutral paper. That setup is exactly what a colour-based background remover handles best."
+        ]
+      },
+      {
+        "heading": "What makes a product photo easy to clean",
+        "paragraphs": [
+          "The most reliable shots use a consistent surface behind the item — a solid-colour sweep, a light tent, or a plain wall. That uniformity is what lets you separate the product from the background automatically.",
+          "Remove the background from such a shot and you get a transparent file you can place on any store page colour, keep on white, or composite onto a styled backdrop. One source photo goes from a single listing to usable anywhere."
+        ]
+      },
+      {
+        "heading": "Practical notes for a catalog",
+        "paragraphs": [
+          "Before you batch through your photos:"
+        ],
+        "list": [
+          "Avoid a background close to the product's colour — a white mug on white paper needs a delicate tolerance so the mug doesn't get eaten by the removal.",
+          "Watch the edges. Light feathering reduces the hard outline, but edges that rely on soft shadows may need a light touch-up pass.",
+          "Export PNG for transparency, or JPG if your marketplace flattens images back onto white anyway.",
+          "Keep dimensions consistent across the catalog so the grid looks tidy."
+        ]
+      },
+      {
+        "heading": "The workflow",
+        "paragraphs": [
+          "For a plain-background product shot, the whole job is: upload, sample the background, tune tolerance and feathering, remove, check the cutout, and export. Because processing happens in your browser, there's no upload queue and no per-image cost — useful when you're cleaning a whole batch of listings.",
+          "This is not a replacement for professional retouching on intricate subjects. For the standard store product shot, it's faster than masking by hand in an editor."
+        ],
+        "tool": {
+          "label": "Clean up product photos with the background remover — runs locally.",
+          "toolId": "background-remover"
+        }
+      }
+    ],
+    "toolCta": {
+      "label": "Prepare product photos for your store — free and in your browser.",
+      "toolId": "background-remover"
+    },
+    "relatedArticles": [
+      "how-to-resize-an-image",
+      "how-to-compress-an-image",
+      "how-to-make-a-transparent-png"
+    ],
+    "keyTakeaway": "Plain-backdrop product shots are the fast lane for browser-based removal — clean, consistent listings without opening an editor.",
+    "seoTitle": "How to Prepare Product Photos for Your Online Store | GainUtility",
+    "seoDescription": "Clean product photography for e-commerce: plain backgrounds, consistent framing, and transparent exports that sit on any store colour. Free, in your browser."
+  }
+]

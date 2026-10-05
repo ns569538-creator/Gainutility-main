@@ -1,0 +1,457 @@
+[
+  {
+    "id": "merge-pdf-guide",
+    "slug": "how-to-merge-pdf-files",
+    "title": "How to Merge Multiple PDFs Into One File",
+    "description": "Combining PDFs is mostly about order and naming. Do both deliberately and one merged file is easier to share, submit, and find later.",
+    "category": "PDF",
+    "author": "GainUtility",
+    "date": "2026-09-12",
+    "readingTime": "5 min read",
+    "tags": [
+      "pdf",
+      "merge",
+      "combine"
+    ],
+    "quickAnswer": "Upload the PDFs in reading order, arrange them the way the final document should read, then merge. Name the result with the subject first (e.g. scan-all.pdf), not “final” or “new”.",
+    "content": [
+      {
+        "paragraphs": [
+          "Merging PDFs sounds trivial until the filename problem catches up with you. The files combine fine — but if the pages are jumbled or the result is named “final-final.pdf”, you've traded several files for one you can't find."
+        ]
+      },
+      {
+        "heading": "Order is the whole job",
+        "paragraphs": [
+          "The merged document reads in exactly the order the files sit in the list. That's the one decision that matters, and it's easy to get wrong on page 3 of a 20-page merge.",
+          "A practical habit: number the source files before merging — scan-1.pdf, scan-2.pdf, scan-3.pdf — so the list order matches the reading order and is obvious at a glance."
+        ],
+        "tool": {
+          "label": "The PDF Merger joins files in the order you lay them out.",
+          "toolId": "merge-pdf"
+        }
+      },
+      {
+        "heading": "When merging is the right move",
+        "paragraphs": [
+          "Merging is the right move when the combined file has one job: a single submission, a single share link, one attachment an examiner or a client actually opens. Three related documents with three names is three chances for one of them to be missed."
+        ]
+      },
+      {
+        "heading": "Step by step",
+        "paragraphs": [
+          "The whole job, in order:"
+        ],
+        "steps": [
+          "Open the GainUtility PDF merger.",
+          "Add the source files in reading order — if it matters, rename them with numbers first so there's no guesswork.",
+          "Drag to reorder in the list if anything lands wrong.",
+          "Merge and download, then rename the result with the subject first: scan-all.pdf instead of final.pdf.",
+          "Open the merged file once and flip through it before sending it anywhere."
+        ]
+      }
+    ],
+    "toolCta": {
+      "label": "Merge PDFs in the order you want — in your browser.",
+      "toolId": "merge-pdf"
+    },
+    "relatedArticles": [
+      "how-to-split-a-pdf",
+      "how-to-compress-a-pdf",
+      "how-to-convert-jpg-to-pdf"
+    ],
+    "keyTakeaway": "Merge in reading order and name the result with the subject first — the two habits that keep a combined document tidy.",
+    "seoTitle": "How to Merge Multiple PDFs Into One File | GainUtility",
+    "seoDescription": "Merge PDFs in reading order and keep the result findable — combine files in your browser, reorder them, and download one document."
+  },
+  {
+    "id": "split-pdf-guide",
+    "slug": "how-to-split-a-pdf",
+    "title": "How to Split a PDF and Keep Only the Pages You Need",
+    "description": "Most splits are range extraction, not division in half. Pick the pages, keep only those, and cut a 20-page scan down to the two you wanted.",
+    "category": "PDF",
+    "author": "GainUtility",
+    "date": "2026-09-12",
+    "readingTime": "4 min read",
+    "tags": [
+      "pdf",
+      "split",
+      "extract pages"
+    ],
+    "quickAnswer": "Open the PDF splitter, upload the document, enter the page range you want to keep, and export. You get a new PDF with just those pages — the original stays untouched.",
+    "content": [
+      {
+        "paragraphs": [
+          "People say “split a PDF” but they usually mean one of two different things: take one section out of a long document, or break it into many smaller files. Extracting a range is the version that comes up most, and it's the easier one."
+        ]
+      },
+      {
+        "heading": "The usual case: extract a range",
+        "paragraphs": [
+          "A 20-page scan, and you need pages 7–9 for a submission. Or a syllabus PDF, and you want just the section you're studying. A range extraction gives you a new file with only those pages, exactly as numbered."
+        ]
+      },
+      {
+        "heading": "The other case: break into pieces",
+        "paragraphs": [
+          "When a document truly needs to be several files — one chapter at a time, or every N pages — you're dividing, not extracting. Choose the pattern carefully: extraction keeps what you pick; splitting by page counts machines through the whole document."
+        ],
+        "tool": {
+          "label": "The PDF Splitter extracts a page range or splits by page count.",
+          "toolId": "split-pdf"
+        }
+      },
+      {
+        "heading": "Step by step",
+        "paragraphs": [
+          "For a range extraction:"
+        ],
+        "steps": [
+          "Open the GainUtility PDF splitter and upload the document.",
+          "Choose extract mode (range) rather than divide mode, unless you really want the whole file chopped.",
+          "Enter the start and end pages. Count pages in the original — the numbering is 1-based.",
+          "Export. The original file is unchanged; you get a new, smaller PDF.",
+          "Name the extract for what it is — report-pages-1-3.pdf — so it's findable later."
+        ]
+      }
+    ],
+    "toolCta": {
+      "label": "Extract only the pages you need from a PDF.",
+      "toolId": "split-pdf"
+    },
+    "relatedArticles": [
+      "how-to-merge-pdf-files",
+      "fix-pdf-too-big-to-upload",
+      "how-to-convert-pdf-to-jpg"
+    ],
+    "keyTakeaway": "Most splits are extractions: pick the range, keep only those pages, and leave the original untouched.",
+    "seoTitle": "How to Split a PDF and Keep Only the Pages You Need | GainUtility",
+    "seoDescription": "Split a PDF by extracting the page range you need in your browser. Keep only the pages you want, unchanged original, ready to submit."
+  },
+  {
+    "id": "pdf-to-jpg-guide",
+    "slug": "how-to-convert-pdf-to-jpg",
+    "title": "How to Convert PDF Pages to JPG",
+    "description": "When a PDF needs to be an image, each page becomes one JPG. Pick the pages and the resolution, then export them as images.",
+    "category": "PDF",
+    "author": "GainUtility",
+    "date": "2026-09-12",
+    "readingTime": "4 min read",
+    "tags": [
+      "pdf",
+      "jpg",
+      "convert"
+    ],
+    "quickAnswer": "Upload the PDF, choose the pages to convert, pick a resolution, and export. Each page becomes a JPG — the result inherits the page count and any text becomes pixels.",
+    "content": [
+      {
+        "paragraphs": [
+          "A PDF is a document. A JPG is an image. Converting a PDF page to JPG is how you get something that image-only systems will accept — a photo submission portal, a social post, a preview thumbnail, a presentation slide."
+        ]
+      },
+      {
+        "heading": "One page, one JPG",
+        "paragraphs": [
+          "Conversion is per page. A 3-page PDF produces three JPGs, named after the source with the page number. If a form accepts only one image, you're choosing the page that matters, not the whole document."
+        ]
+      },
+      {
+        "heading": "Resolution is the quality of pixelation",
+        "paragraphs": [
+          "A PDF page is resolution-free until it's rasterized. Exporting at a low resolution makes a small, blurry image; higher resolution costs file size. For text you'll read on screen, medium is usually enough. For something that might be printed or zoomed, go higher."
+        ],
+        "tool": {
+          "label": "The PDF to JPG tool converts a page range at your chosen resolution.",
+          "toolId": "pdf-to-jpg"
+        }
+      },
+      {
+        "heading": "Step by step",
+        "paragraphs": [
+          "The whole job, in order:"
+        ],
+        "steps": [
+          "Open the GainUtility PDF to JPG converter and upload the document.",
+          "Choose the pages to convert — a range, or just the one page you need.",
+          "Pick a resolution. Medium for screen, higher for print or review.",
+          "Export. Collect the JPGs as they download.",
+          "Check one image before you submit it — at actual size, not zoomed to 100% in an editor you trust."
+        ]
+      }
+    ],
+    "toolCta": {
+      "label": "Convert PDF pages to individual JPGs.",
+      "toolId": "pdf-to-jpg"
+    },
+    "relatedArticles": [
+      "how-to-convert-jpg-to-pdf",
+      "how-to-split-a-pdf",
+      "fix-pdf-too-big-to-upload"
+    ],
+    "keyTakeaway": "Each PDF page becomes one JPG — choose the pages and resolution before exporting, and check one image before you submit.",
+    "seoTitle": "How to Convert PDF Pages to JPG | GainUtility",
+    "seoDescription": "Convert PDF pages to JPG in your browser. Pick the pages and resolution, and export each page as a clean image — no upload, no signup."
+  },
+  {
+    "id": "jpg-to-pdf-guide",
+    "slug": "how-to-convert-jpg-to-pdf",
+    "title": "How to Convert JPG Images to a PDF",
+    "description": "Turn a set of images into one PDF in reading order, so everything lands in a single file you can submit, email, or keep together.",
+    "category": "PDF",
+    "author": "GainUtility",
+    "date": "2026-09-12",
+    "readingTime": "4 min read",
+    "tags": [
+      "pdf",
+      "jpg",
+      "convert",
+      "scans"
+    ],
+    "quickAnswer": "Upload the JPGs in reading order, reorder them in the list if needed, and export as one PDF. Number the images first if you don't trust the upload order.",
+    "content": [
+      {
+        "paragraphs": [
+          "Every phone makes image sequences easy: photos of a document, a scanned chapter, a stack of pages shot with the camera. The hard part is that ten images stay ten files, and submissions want one. Converting them into a single PDF is the fix."
+        ]
+      },
+      {
+        "heading": "Reading order is the one decision",
+        "paragraphs": [
+          "A JPG-to-PDF converter places images in the order they appear in the list. If you shoot ten pages, the order of the result depends on the order you select them — not the order your phone happened to save them.",
+          "Easiest habit: rename before converting (page-01.jpg, page-02.jpg…). Then any upload order sorts itself, and the PDF lands in reading order."
+        ],
+        "tool": {
+          "label": "The JPG to PDF tool keeps the order you lay out.",
+          "toolId": "jpg-to-pdf"
+        }
+      },
+      {
+        "heading": "When this is the right move",
+        "paragraphs": [
+          "It's right whenever several images have one job: a single form upload, one email attachment, one file to keep on your phone. It's also the last step in a scanner workflow — grab the images, merge them, done."
+        ]
+      },
+      {
+        "heading": "Step by step",
+        "paragraphs": [
+          "The whole job, in order:"
+        ],
+        "steps": [
+          "Name your images in reading order first, to remove the guesswork.",
+          "Open the GainUtility JPG to PDF tool and add the images.",
+          "Drag to reorder the list so it matches how the document should read.",
+          "Export the PDF and open it once to confirm the page order.",
+          "Combine the result with other PDFs using the merger if you need one larger document."
+        ]
+      }
+    ],
+    "toolCta": {
+      "label": "Turn a sequence of images into one readable PDF.",
+      "toolId": "jpg-to-pdf"
+    },
+    "relatedArticles": [
+      "how-to-merge-pdf-files",
+      "background-remover-for-product-photos",
+      "how-to-make-a-transparent-png"
+    ],
+    "keyTakeaway": "Set reading order first — number the images, lay them out, then convert. One PDF, in the order you intend.",
+    "seoTitle": "How to Convert JPG Images to a PDF | GainUtility",
+    "seoDescription": "Convert JPG images to a single PDF in your browser, in the order you choose. Perfect for photo sequences, scans, and submissions."
+  },
+  {
+    "id": "compress-pdf-guide",
+    "slug": "how-to-compress-a-pdf",
+    "title": "How to Compress a PDF Without Losing What You Need",
+    "description": "A smaller PDF is only useful if it stays readable. See where the size comes from, then compress in steps you can check.",
+    "category": "PDF",
+    "author": "GainUtility",
+    "date": "2026-06-15",
+    "readingTime": "4 min read",
+    "tags": [
+      "pdf",
+      "compress",
+      "quality"
+    ],
+    "quickAnswer": "Scans are the heavy part — their images are the file. Compress in one controlled step, then check a page with fine detail. A 12 MB scan typically drops to around 4–5 MB while staying readable.",
+    "content": [
+      {
+        "paragraphs": [
+          "Everyone wants a smaller PDF, but a file that's tiny and unreadable isn't a win. The trick is to compress only as much as the file actually needs, and to check what you get."
+        ]
+      },
+      {
+        "heading": "Where the size comes from",
+        "paragraphs": [
+          "Scanned PDFs are large because they're collections of images. File size tracks how big and detailed those images are. Reduce image quality or resolution and the file shrinks — that's the whole lever."
+        ]
+      },
+      {
+        "heading": "Not every page needs the same treatment",
+        "paragraphs": [
+          "A text-heavy document survives moderate compression easily because there isn't much pixel detail to lose. A scanned page with a photo, diagram, or signature needs more care — push too far and fine lines blur."
+        ]
+      },
+      {
+        "heading": "Compress in controlled steps",
+        "paragraphs": [
+          "Rather than crushing to the smallest possible size in one attempt, compress to a level you can still read, then check a page with fine detail. Adjust only if the file is still too large.",
+          "A realistic example: a scanned report at 12.4 MB compressed on the medium setting comes out around 4.5 MB — under most submission limits while keeping the text legible."
+        ],
+        "tool": {
+          "label": "The Compress Images Inside PDF tool lets you pick a level and see the result.",
+          "toolId": "compress-images-inside-pdf"
+        }
+      },
+      {
+        "heading": "When to accept the trade-off",
+        "paragraphs": [
+          "If the document's only job is a quick skim or an upload with a hard size limit, some quality loss is fine. If you'll read it closely or need to preserve it, keep quality higher and accept the larger file."
+        ]
+      }
+    ],
+    "toolCta": {
+      "label": "Need a PDF under a size limit but still readable?",
+      "toolId": "compress-images-inside-pdf"
+    },
+    "relatedArticles": [
+      "fix-pdf-too-big-to-upload",
+      "how-to-merge-pdf-files",
+      "how-to-split-a-pdf"
+    ],
+    "keyTakeaway": "Only compress as much as a file needs: keep it readable first, then reduce size in controlled steps until it fits.",
+    "seoTitle": "How to Compress a PDF Without Losing What You Need | GainUtility",
+    "seoDescription": "Compress a PDF in your browser while keeping it readable. Understand where size comes from and reduce it in steps you can check."
+  },
+  {
+    "id": "watermark-pdf-guide",
+    "slug": "how-to-add-a-watermark-to-a-pdf",
+    "title": "How to Add a Watermark to a PDF",
+    "description": "A watermark marks a document as draft, owned, or shared — without getting in the way of the content. Here's how to place one sensibly.",
+    "category": "PDF",
+    "author": "GainUtility",
+    "date": "2026-09-13",
+    "readingTime": "4 min read",
+    "tags": [
+      "pdf",
+      "watermark",
+      "draft"
+    ],
+    "quickAnswer": "Open the PDF watermark tool, upload the document, type the watermark text (or add your image), pick placement and opacity, and export. Put it diagonally at low opacity so content stays readable.",
+    "content": [
+      {
+        "paragraphs": [
+          "The point of a watermark is to be noticed without being disruptive: this is a draft, this belongs to a client, this was shared on a certain date. A watermark that blocks the text underneath has failed at the one job it has."
+        ]
+      },
+      {
+        "heading": "Text or image watermark",
+        "paragraphs": [
+          "Text watermarks cover the common cases — “DRAFT”, “CONFIDENTIAL”, a date, your name. Image watermarks matter when the look is the point: a logo across a sales deck, a signature over a scan. Both apply the same way: fixed to every page, positioned once."
+        ]
+      },
+      {
+        "heading": "Placement and opacity",
+        "paragraphs": [
+          "Two settings decide whether a watermark looks intentional or like a mistake. A diagonal center watermark at moderate-to-low opacity can't be cropped away with a quick screenshot and still leaves content readable. Edge placement is subtler but easier to crop off in a screen grab — choose based on how protective you need to be."
+        ],
+        "tool": {
+          "label": "The PDF Watermark tool sets text or image, position, and opacity.",
+          "toolId": "add-pdf-watermark"
+        }
+      },
+      {
+        "heading": "Step by step",
+        "paragraphs": [
+          "The whole job, in order:"
+        ],
+        "steps": [
+          "Open the GainUtility PDF watermark tool and upload the document.",
+          "Add the text (or your image) and set the size and rotation.",
+          "Pick placement — diagonal center is the sensible default for drafts.",
+          "Set opacity low enough that a page of text still reads clearly underneath.",
+          "Export and open one text-heavy page to confirm it's legible."
+        ]
+      }
+    ],
+    "toolCta": {
+      "label": "Add a watermark to a PDF without hiding the content.",
+      "toolId": "add-pdf-watermark"
+    },
+    "relatedArticles": [
+      "how-to-merge-pdf-files",
+      "how-to-split-a-pdf",
+      "how-to-convert-jpg-to-pdf"
+    ],
+    "keyTakeaway": "A watermark should be seen but ignored — diagonal placement at low opacity marks the file without hiding the content.",
+    "seoTitle": "How to Add a Watermark to a PDF | GainUtility",
+    "seoDescription": "Add a text or image watermark to a PDF in your browser. Choose placement and opacity so it marks the file without hiding the content."
+  },
+  {
+    "id": "pdf-too-big-guide",
+    "slug": "fix-pdf-too-big-to-upload",
+    "title": "How to Fix a PDF That's Too Big to Upload",
+    "description": "When a form rejects a PDF for size, work backwards: check the limit, find the heavy pages, then shrink in steps until it fits.",
+    "category": "PDF",
+    "author": "GainUtility",
+    "date": "2026-09-13",
+    "readingTime": "5 min read",
+    "tags": [
+      "pdf",
+      "upload",
+      "submissions",
+      "size limit"
+    ],
+    "quickAnswer": "Check the form's size limit first, then compress the PDF in one controlled step and measure the result. If it's still too big, split out the irrelevant pages before you compress — not after.",
+    "content": [
+      {
+        "paragraphs": [
+          "Upload forms are blunt: a file is under the limit or it isn't. When your PDF is over, the fix is a short loop — measure, reduce, check — and it starts with reading the form correctly."
+        ]
+      },
+      {
+        "heading": "Read the limit before you touch the file",
+        "paragraphs": [
+          "Every form states its limit somewhere — commonly 1 MB, 5 MB, or 10 MB. Writing it down before you start prevents the usual mistake: compressing to something arbitrary, checking the wrong file, and submitting a copy that's still too big."
+        ]
+      },
+      {
+        "heading": "Find what's heavy",
+        "paragraphs": [
+          "A scanned PDF is heavy because each page is a full-size image. That's the file's weight, and it's where compression earns its keep. A 40-page scan of 9 MB can usually drop under 5 MB with the text staying clear."
+        ]
+      },
+      {
+        "heading": "Reduce in steps, check between each",
+        "paragraphs": [
+          "Compress at one level, download, and check the new size against the limit. If it still misses, decide whether to compress harder or cut pages. Trying to hit the limit in one maximal pass is how files end up unreadable — yet another rejected submission."
+        ],
+        "tool": {
+          "label": "The Compress Images Inside PDF tool gives you a level to pick and shows the result.",
+          "toolId": "compress-images-inside-pdf"
+        }
+      },
+      {
+        "heading": "Cut pages before compressing harder",
+        "paragraphs": [
+          "If the PDF mostly needs one section — the declaration, a single form page — extract just that range. A smaller document needs far less compression to fit, so the text you keep stays sharper. Removing pages and compressing are different fixes; use the cheap one first."
+        ],
+        "tool": {
+          "label": "Extract only the pages you need with the PDF Splitter.",
+          "toolId": "split-pdf"
+        }
+      }
+    ],
+    "toolCta": {
+      "label": "Bring a PDF under a submission limit — readable, not crushed.",
+      "toolId": "compress-images-inside-pdf"
+    },
+    "relatedArticles": [
+      "how-to-compress-a-pdf",
+      "how-to-resize-an-image",
+      "how-to-compress-an-image"
+    ],
+    "keyTakeaway": "Work backwards from the form: write the limit down, find the heavy pages, compress in steps, and cut pages before crushing quality.",
+    "seoTitle": "How to Fix a PDF That's Too Big to Upload | GainUtility",
+    "seoDescription": "A PDF rejected for size fits in a few steps: check the limit, find the heavy pages, compress in steps, and cut pages before quality."
+  }
+]

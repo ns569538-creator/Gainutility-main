@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>GainUtility Blog</title>
+    <link>https://gainutility.com/blog</link>
+    <description>Practical, problem-first guides from GainUtility — a collection of fast browser-based tools for PDF, image, JSON, developer, and SEO work.</description>
+    <language>en</language>
+    <atom:link href="https://gainutility.com/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to Remove a Background From an Image</title>
+      <link>https://gainutility.com/blog/how-to-remove-background-from-an-image</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/how-to-remove-background-from-an-image</guid>
+      <description>A plain background is the easy case: sample the colour, remove it, check the edges, and download a transparent PNG. All in your browser.</description>
+      <pubDate>Fri, 11 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Images</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>How to Make a Transparent PNG</title>
+      <link>https://gainutility.com/blog/how-to-make-a-transparent-png</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/how-to-make-a-transparent-png</guid>
+      <description>A transparent background lets an image sit on any page colour without a box around it. Here&apos;s how to produce one in your browser.</description>
+      <pubDate>Fri, 11 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Images</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>How to Compress Images Without Losing Too Much Quality</title>
+      <link>https://gainutility.com/blog/how-to-compress-an-image</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/how-to-compress-an-image</guid>
+      <description>Image size has two dials — dimensions and quality. Change them in the right order and the picture still looks good.</description>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Images</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>How to Resize an Image to an Exact Pixel Size</title>
+      <link>https://gainutility.com/blog/how-to-resize-an-image</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/how-to-resize-an-image</guid>
+      <description>Upload forms ask for exact pixel sizes and KB limits. Here&apos;s how to hit the numbers without opening a photo editor.</description>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Images</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>How to Prepare Product Photos for Your Online Store</title>
+      <link>https://gainutility.com/blog/background-remover-for-product-photos</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/background-remover-for-product-photos</guid>
+      <description>Consistent, clean product photos come from plain backdrops and careful edges. Here&apos;s the workflow for a catalog that looks intentional.</description>
+      <pubDate>Fri, 11 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Images</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>How to Merge Multiple PDFs Into One File</title>
+      <link>https://gainutility.com/blog/how-to-merge-pdf-files</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/how-to-merge-pdf-files</guid>
+      <description>Combining PDFs is mostly about order and naming. Do both deliberately and one merged file is easier to share, submit, and find later.</description>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 GMT</pubDate>
+      <category>PDF</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>How to Split a PDF and Keep Only the Pages You Need</title>
+      <link>https://gainutility.com/blog/how-to-split-a-pdf</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/how-to-split-a-pdf</guid>
+      <description>Most splits are range extraction, not division in half. Pick the pages, keep only those, and cut a 20-page scan down to the two you wanted.</description>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 GMT</pubDate>
+      <category>PDF</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>How to Convert PDF Pages to JPG</title>
+      <link>https://gainutility.com/blog/how-to-convert-pdf-to-jpg</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/how-to-convert-pdf-to-jpg</guid>
+      <description>When a PDF needs to be an image, each page becomes one JPG. Pick the pages and the resolution, then export them as images.</description>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 GMT</pubDate>
+      <category>PDF</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>How to Convert JPG Images to a PDF</title>
+      <link>https://gainutility.com/blog/how-to-convert-jpg-to-pdf</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/how-to-convert-jpg-to-pdf</guid>
+      <description>Turn a set of images into one PDF in reading order, so everything lands in a single file you can submit, email, or keep together.</description>
+      <pubDate>Sat, 12 Sep 2026 00:00:00 GMT</pubDate>
+      <category>PDF</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>How to Compress a PDF Without Losing What You Need</title>
+      <link>https://gainutility.com/blog/how-to-compress-a-pdf</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/how-to-compress-a-pdf</guid>
+      <description>A smaller PDF is only useful if it stays readable. See where the size comes from, then compress in steps you can check.</description>
+      <pubDate>Mon, 15 Jun 2026 00:00:00 GMT</pubDate>
+      <category>PDF</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>How to Add a Watermark to a PDF</title>
+      <link>https://gainutility.com/blog/how-to-add-a-watermark-to-a-pdf</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/how-to-add-a-watermark-to-a-pdf</guid>
+      <description>A watermark marks a document as draft, owned, or shared — without getting in the way of the content. Here&apos;s how to place one sensibly.</description>
+      <pubDate>Sun, 13 Sep 2026 00:00:00 GMT</pubDate>
+      <category>PDF</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>How to Fix a PDF That&apos;s Too Big to Upload</title>
+      <link>https://gainutility.com/blog/fix-pdf-too-big-to-upload</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/fix-pdf-too-big-to-upload</guid>
+      <description>When a form rejects a PDF for size, work backwards: check the limit, find the heavy pages, then shrink in steps until it fits.</description>
+      <pubDate>Sun, 13 Sep 2026 00:00:00 GMT</pubDate>
+      <category>PDF</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>What Box-Shadow Values Real Websites Actually Use</title>
+      <link>https://gainutility.com/blog/box-shadow-values-real-websites</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/box-shadow-values-real-websites</guid>
+      <description>We downloaded the homepages of the top 1,000 sites and counted every box-shadow in their CSS: 33,438 declarations across 533 reachable sites. Measured offsets, blur, spread, color, and layering — with the dataset to download.</description>
+      <pubDate>Wed, 16 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Developer</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>box-shadow vs filter: drop-shadow() — Which CSS Shadow to Use</title>
+      <link>https://gainutility.com/blog/box-shadow-vs-drop-shadow-filter</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/box-shadow-vs-drop-shadow-filter</guid>
+      <description>box-shadow draws the element&apos;s border box; filter: drop-shadow() follows the alpha shape of an image. Same-looking values are not interchangeable — the blur number even means something different.</description>
+      <pubDate>Thu, 24 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Developer</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>Soft Shadow CSS Recipes That Don&apos;t Turn Out Muddy</title>
+      <link>https://gainutility.com/blog/soft-shadow-css-recipes</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/soft-shadow-css-recipes</guid>
+      <description>Copy-ready soft box-shadow values for cards, floating panels, and hover states — plus why stacked shadows go muddy, and the alpha-first method that keeps them clean.</description>
+      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Developer</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>Neumorphism Box Shadow: The Two-Layer Formula and Its Limits</title>
+      <link>https://gainutility.com/blog/neumorphism-box-shadow-guide</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/neumorphism-box-shadow-guide</guid>
+      <description>How soft-UI neumorphism works: one light layer, one dark layer, background matched to surface. Copy the formula, the inset variant, and where the style still makes sense.</description>
+      <pubDate>Sat, 19 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Developer</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>How to Read and Fix Unreadable JSON From an API</title>
+      <link>https://gainutility.com/blog/format-and-debug-json-when-api-responses-are-unreadable</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/format-and-debug-json-when-api-responses-are-unreadable</guid>
+      <description>Minified API responses are one long line until you adopt the three-habit routine: format first, validate second, diff after a change.</description>
+      <pubDate>Mon, 18 May 2026 00:00:00 GMT</pubDate>
+      <category>Developer</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>How to Make a QR Code That Actually Scans</title>
+      <link>https://gainutility.com/blog/how-to-make-a-qr-code</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/how-to-make-a-qr-code</guid>
+      <description>The URL and the error-correction level decide whether a QR code scans the first time. Get those right and the rest is easy.</description>
+      <pubDate>Sun, 13 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Developer</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>How to Tune CSS Gradients, Shadows, and Contrast Without Guessing</title>
+      <link>https://gainutility.com/blog/clean-up-css-gradients-and-borders-in-design-work</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/clean-up-css-gradients-and-borders-in-design-work</guid>
+      <description>The last ten percent of a UI is gradients, shadows, and contrast — the fiddly details that eat time until you preview them instead of guessing.</description>
+      <pubDate>Mon, 04 May 2026 00:00:00 GMT</pubDate>
+      <category>Developer</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>How to Write a Page Title and Meta Description</title>
+      <link>https://gainutility.com/blog/write-seo-title-and-meta-description-in-twenty-minutes</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/write-seo-title-and-meta-description-in-twenty-minutes</guid>
+      <description>The title and meta description are the ad your page shows in search results. Write them like real sentences people read.</description>
+      <pubDate>Wed, 22 Apr 2026 00:00:00 GMT</pubDate>
+      <category>SEO</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>Why I Started Building Small Browser Tools for Everyday Problems</title>
+      <link>https://gainutility.com/blog/why-i-started-building-small-browser-tools</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/why-i-started-building-small-browser-tools</guid>
+      <description>A short, honest note on why the site exists: not to be a giant platform, but to remove small daily friction with focused browser utilities.</description>
+      <pubDate>Sat, 30 May 2026 00:00:00 GMT</pubDate>
+      <category>Productivity</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>How to Convert a PDF to Word Without Losing the Text</title>
+      <link>https://gainutility.com/blog/how-to-convert-pdf-to-word</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/how-to-convert-pdf-to-word</guid>
+      <description>PDF to Word means pulling text out of a fixed-layout file and putting it into a flowing document. What converts cleanly, what has to be rebuilt, and when OCR has to come first.</description>
+      <pubDate>Thu, 01 Oct 2026 00:00:00 GMT</pubDate>
+      <category>PDF</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>How to Convert a Word Document to PDF</title>
+      <link>https://gainutility.com/blog/how-to-convert-word-to-pdf</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/how-to-convert-word-to-pdf</guid>
+      <description>PDF is the format that renders the same on every machine. Convert a .docx by reading its structure, laying it into pages, and checking the three things that move.</description>
+      <pubDate>Thu, 01 Oct 2026 00:00:00 GMT</pubDate>
+      <category>PDF</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>Are Online PDF Tools Safe? How to Check What Happens to Your File</title>
+      <link>https://gainutility.com/blog/are-online-pdf-tools-safe</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/are-online-pdf-tools-safe</guid>
+      <description>Some online PDF tools upload your document; others never send it anywhere. How to tell which one you are using, what the major tools&apos; own terms say about deletion, and the checks worth running.</description>
+      <pubDate>Thu, 01 Oct 2026 00:00:00 GMT</pubDate>
+      <category>PDF</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>PDF File Size Limits: How Big Can Your PDF Be?</title>
+      <link>https://gainutility.com/blog/pdf-file-size-limits</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/pdf-file-size-limits</guid>
+      <description>There is no single PDF size limit - each destination publishes its own. The documented limits for email, messaging, website uploads and application portals, and how to get under the one you are facing.</description>
+      <pubDate>Thu, 01 Oct 2026 00:00:00 GMT</pubDate>
+      <category>PDF</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>How to Check Your Robots.txt and Sitemap Before You Submit Them</title>
+      <link>https://gainutility.com/blog/check-your-robots-txt-and-sitemap-before-submitting</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/check-your-robots-txt-and-sitemap-before-submitting</guid>
+      <description>Two small files decide what a crawler may read and what it should be pointed at. Reading both for a minute catches the mistakes that quietly hide pages.</description>
+      <pubDate>Thu, 03 Sep 2026 00:00:00 GMT</pubDate>
+      <category>SEO</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>How to Preview a Link Before You Share It</title>
+      <link>https://gainutility.com/blog/preview-a-link-before-you-share-it</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/preview-a-link-before-you-share-it</guid>
+      <description>A shared link is read as a title, a line of text and a picture. Render that card first and you catch the broken image and the cut-off headline before anyone else does.</description>
+      <pubDate>Thu, 17 Sep 2026 00:00:00 GMT</pubDate>
+      <category>SEO</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>How to Make a Favicon From Any Image</title>
+      <link>https://gainutility.com/blog/make-a-favicon-from-any-image</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/make-a-favicon-from-any-image</guid>
+      <description>A logo that looks sharp at 400px usually turns to mud at 16px. Starting from the right crop and the right sizes is what keeps a tab icon recognisable.</description>
+      <pubDate>Thu, 24 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Images</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>How to Compare Two JSON Files Without Losing Your Place</title>
+      <link>https://gainutility.com/blog/compare-two-json-files-without-losing-your-place</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/compare-two-json-files-without-losing-your-place</guid>
+      <description>Two JSON documents can differ in one number and still look identical line by line. Comparing by path instead of by eye turns the difference into a short list.</description>
+      <pubDate>Thu, 01 Oct 2026 00:00:00 GMT</pubDate>
+      <category>Developer</category>
+      <author>GainUtility</author>
+    </item>
+    <item>
+      <title>How to Protect a PDF With a Password</title>
+      <link>https://gainutility.com/blog/protect-a-pdf-with-a-password</link>
+      <guid isPermaLink="true">https://gainutility.com/blog/protect-a-pdf-with-a-password</guid>
+      <description>A password stops the wrong person opening a file; the printing and copying permissions are a separate setting. Knowing which is which decides whether you set the right one.</description>
+      <pubDate>Sun, 04 Oct 2026 00:00:00 GMT</pubDate>
+      <category>PDF</category>
+      <author>GainUtility</author>
+    </item>
+  </channel>
+</rss>

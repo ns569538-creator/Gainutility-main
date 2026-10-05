@@ -1,0 +1,89 @@
+{
+  "src/components/AdvancedDeveloperTools.tsx": [
+    [274, "Formatted text output"],
+    [536, "Generated JWT token"],
+    [755, "Generated password"],
+    [1044, "Calculated hash output"],
+    [1599, "Cron expression result"],
+    [1769, "Original text"],
+    [1777, "Modified text"],
+    [2273, "JSON payload"],
+    [2292, "Query result"],
+    [2415, "Source input area"],
+    [2424, "Converted output area"],
+    [2578, "Source markup input"],
+    [2592, "Markup output"],
+    [2685, "Raw SQL query"],
+    [2694, "Formatted SQL statement"],
+    [3162, "Select image file"],
+    [3419, "Upload image file"]
+  ],
+  "src/components/BorderRadiusGenerator.tsx": [
+    [303, "Top left radius"],
+    [319, "Top right radius"],
+    [336, "Bottom right radius"],
+    [353, "Bottom left radius"],
+    [382, "Top left vertical radius"],
+    [398, "Top right vertical radius"],
+    [415, "Bottom right vertical radius"],
+    [432, "Bottom left vertical radius"],
+    [537, "Sandbox backdrop color"],
+    [543, "Sandbox backdrop color hex"],
+    [557, "Shape color"],
+    [563, "Shape color hex"]
+  ],
+  "src/components/CanonicalUrlGenerator.tsx": [[256, "Generated canonical tag"]],
+  "src/colorStudio/colorUI.tsx": [[619, "Native color picker"]],
+  "src/components/FaviconGenerator.tsx": [
+    [719, "Font weight"],
+    [734, "Letter spacing"],
+    [871, "Corner radius"],
+    [890, "Zoom scale"],
+    [905, "Padding"],
+    [923, "Pan X"],
+    [937, "Pan Y"],
+    [951, "Rotation"],
+    [1010, "Background color"],
+    [1016, "Background color hex"],
+    [1030, "Foreground color"],
+    [1036, "Foreground color hex"]
+  ],
+  "src/components/GradientGenerator.tsx": [
+    [456, "Stop position"],
+    [475, "Linear angle"]
+  ],
+  "src/components/HreflangTagGenerator.tsx": [[311, "Generated hreflang tags"]],
+  "src/components/InvoiceFollowUpTracker.tsx": [[322, "Filter invoices by status"]],
+  "src/components/LogoMaker.tsx": [
+    [2239, "Font size"],
+    [2257, "Letter spacing"],
+    [2595, "Container padding"],
+    [2673, "Container border width"],
+    [2693, "Container corner radius"],
+    [2802, "Symbol offset X"],
+    [2815, "Symbol offset Y"],
+    [3180, "Icon to wordmark gap"],
+    [3200, "Wordmark to tagline gap"],
+    [3220, "Overall scale"],
+    [3253, "Logo offset X"],
+    [3268, "Logo offset Y"]
+  ],
+  "src/components/OgMetaGenerator.tsx": [[427, "Generated meta tags"]],
+  "src/components/SignatureMaker.tsx": [
+    [597, "Custom ink color hex"],
+    [617, "Nib weight"],
+    [683, "Paper detection level"]
+  ],
+  "src/components/BillableHoursCalculator.tsx": [
+    [382, "Time entry date"],
+    [405, "Time entry category"],
+    [416, "Time entry hours"],
+    [429, "Time entry rate"],
+    [441, "Time entry billable"],
+    [504, "Expense date"],
+    [527, "Expense category"],
+    [538, "Expense amount"],
+    [551, "Expense markup percent"],
+    [563, "Expense billable"]
+  ]
+}

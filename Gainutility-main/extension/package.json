@@ -1,0 +1,26 @@
+{
+  "name": "gainutility-extension",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "generate:tools": "node scripts/generate-tools.mjs",
+    "icons": "node scripts/generate-icons.mjs",
+    "dev": "npm run generate:tools && vite",
+    "build": "npm run generate:tools && npm run icons && vite build",
+    "package": "npm run build && node scripts/package.mjs",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.287",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5",
+    "@vitejs/plugin-react": "^5.0.4",
+    "vite": "^6.2.3",
+    "typescript": "~5.8.2"
+  }
+}

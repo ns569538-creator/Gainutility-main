@@ -1,0 +1,2105 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+/* Dark mode is class-driven: Layout toggles `.dark` on <html> and the design
+ * tokens below respond to the same class. Without this override Tailwind v4
+ * compiles every `dark:` utility against `prefers-color-scheme`, so the theme
+ * toggle and the utility classes would disagree. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  /* ── GAINUTILITY DESIGN TOKENS ─────────────────────────────────────── */
+  /* Spacing scale (px): 4 · 8 · 12 · 16 · 20 · 24 · 32 · 40 · 48 · 64 · 80 · 96 */
+  --space-1: 0.25rem;   /* 4  */
+  --space-2: 0.5rem;    /* 8  */
+  --space-3: 0.75rem;   /* 12 */
+  --space-4: 1rem;      /* 16 */
+  --space-5: 1.25rem;   /* 20 */
+  --space-6: 1.5rem;    /* 24 */
+  --space-8: 2rem;      /* 32 */
+  --space-10: 2.5rem;   /* 40 */
+  --space-12: 3rem;     /* 48 */
+  --space-16: 4rem;     /* 64 */
+  --space-20: 5rem;     /* 80 */
+  --space-24: 6rem;     /* 96 */
+
+  --background: #F7F8F4;
+  --surface-muted: #E8EFE0;
+  --surface-base: #FFFFFF;
+  --surface-elevated: #FFFFFF;
+  --surface-hover: #E8EFE0;
+  
+  --text-primary: #172015;
+  --text-secondary: #2D3B29;
+  --text-muted: #5C6B58;
+  /* AA-compliant (4.58:1 on #FFFFFF) — the previous #94A48F measured 2.64:1. */
+  --text-disabled: #6A7A66;
+
+  --primary: #A95F31;
+  --primary-hover: #96542A;
+  --primary-dark: #814620;
+  --primary-light: #F7E8D8;
+  
+  --secondary: #D4A845;
+  --secondary-hover: #BE9332;
+  --secondary-light: #FAF5E8;
+  
+  --accent: #D4A845;
+  --accent-hover: #BE9332;
+  
+  --accent-soft: rgba(212, 168, 69, 0.12);
+  
+  /* Semantic Border & Divider System (Light Mode: quiet, low-contrast, non-dominant) */
+  --divider: rgba(23, 32, 21, 0.06);           /* Weakest: ultra-subtle separator */
+  --border-subtle: rgba(23, 32, 21, 0.08);     /* Default structural boundary */
+  --border-default: rgba(23, 32, 21, 0.13);    /* Standard component border */
+  --border-hover: rgba(23, 32, 21, 0.22);      /* Slightly stronger on hover */
+  --border-active: #D97A3F;                    /* Clearly visible active indicator */
+  --border-focus: #D97A3F;                     /* Accessible focus indicator */
+  --border-card: rgba(23, 32, 21, 0.08);       /* Card boundary (subtle, non-boxed) */
+  --border-input: rgba(23, 32, 21, 0.12);      /* Restrained input border */
+
+  /* Backward compatibility aliases */
+  --border-light: var(--border-subtle);
+  --border-medium: var(--border-default);
+  --border-strong: var(--border-hover);
+  --border_subtle: var(--border-subtle);
+  --border_light: var(--border-subtle);
+  --border_medium: var(--border-default);
+  --border_input: var(--border-input);
+  --border_focus: var(--border-focus);
+  --border_card: var(--border-card);
+  --text_secondary: var(--text-secondary);
+  --text_disabled: var(--text-disabled);
+  
+  --shadow-xs: 0 1px 2px 0 rgba(23, 32, 21, 0.05);
+  --shadow-sm: 0 1px 3px 0 rgba(23, 32, 21, 0.04), 0 1px 2px -1px rgba(23, 32, 21, 0.03);
+  --shadow-md: 0 4px 12px -2px rgba(23, 32, 21, 0.06), 0 2px 6px -1px rgba(23, 32, 21, 0.03);
+  --shadow-lg: 0 12px 28px -4px rgba(23, 32, 21, 0.08), 0 4px 12px -2px rgba(23, 32, 21, 0.04);
+  --shadow-card-hover: 0 8px 20px -8px rgba(23, 32, 21, 0.14), 0 3px 8px -4px rgba(23, 32, 21, 0.08);
+  
+  --success: #35622D;
+  --error: #A83333;
+  --warning: #B87820;
+  --info: #286480;
+}
+
+.dark {
+  --background: #0D110D;
+  --surface-muted: #151B15;
+  --surface-base: #1D241D;
+  --surface-elevated: #252F25;
+  --surface-hover: #2D392D;
+  
+  --text-primary: #F4F7F2;
+  --text-secondary: #CBD6C8;
+  --text-muted: #94A490;
+  /* AA-compliant (4.76:1 on #1D241D) — the previous #5E6F5B measured 2.95:1. */
+  --text-disabled: #82917D;
+  
+  --primary: #E08A52;
+  --primary-hover: #EE9C66;
+  --primary-dark: #F2B182;
+  --primary-light: #331F0F;
+  
+  --secondary: #E5B96E;
+  --secondary-hover: #F2CA82;
+  --secondary-light: #2A2213;
+  
+  --accent: #E5B96E;
+  --accent-hover: #F2CA82;
+  
+  --accent-soft: rgba(229, 185, 110, 0.15);
+  
+  /* Semantic Border & Divider System (Dark Mode: calm, subtle surface difference, no bright gray outlines) */
+  --divider: rgba(244, 247, 242, 0.05);        /* Weakest: ultra-subtle separator */
+  --border-subtle: rgba(244, 247, 242, 0.07);  /* Quiet boundary, structure not bright line */
+  --border-default: rgba(244, 247, 242, 0.12); /* Standard component border */
+  --border-hover: rgba(244, 247, 242, 0.22);   /* Slightly stronger on hover */
+  --border-active: #E08A52;                    /* Clearly visible active indicator */
+  --border-focus: #E08A52;                     /* Accessible focus indicator */
+  --border-card: rgba(244, 247, 242, 0.07);    /* Quiet card boundary */
+  --border-input: rgba(244, 247, 242, 0.12);   /* Quiet input boundary */
+
+  /* Backward compatibility aliases */
+  --border-light: var(--border-subtle);
+  --border-medium: var(--border-default);
+  --border-strong: var(--border-hover);
+  --border_subtle: var(--border-subtle);
+  --border_light: var(--border-subtle);
+  --border_medium: var(--border-default);
+  --border_input: var(--border-input);
+  --border_focus: var(--border-focus);
+  --border_card: var(--border-card);
+  --text_secondary: var(--text-secondary);
+  --text_disabled: var(--text-disabled);
+  
+  --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.35);
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 4px 14px -2px rgba(0, 0, 0, 0.65), 0 2px 6px -1px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 16px 36px -4px rgba(0, 0, 0, 0.85), 0 6px 16px -2px rgba(0, 0, 0, 0.45);
+  --shadow-card-hover: 0 10px 24px -8px rgba(0, 0, 0, 0.55), 0 3px 8px -4px rgba(0, 0, 0, 0.4);
+  
+  --success: #67B057;
+  --error: #E55C5C;
+  --warning: #F2A43A;
+  --info: #4FA8D1;
+}
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono: "Roboto Mono", ui-monospace, SFMono-Regular, monospace;
+  --font-blog: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --color-bg-base: var(--background);
+  /* `bg-background` / `border-background` are used across the site; without a
+     theme entry for `background` they silently compile to nothing. */
+  --color-background: var(--background);
+  --color-surface: var(--surface-base);
+  --color-surface-base: var(--surface-base);
+  --color-surface-muted: var(--surface-muted);
+  --color-surface-hover: var(--surface-hover);
+  --color-surface-elevated: var(--surface-elevated);
+  
+  --color-text-main: var(--text-primary);
+  --color-text-primary: var(--text-primary);
+  --color-text-sub: var(--text-secondary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-disabled: var(--text-disabled);
+  
+  --color-brand-primary: var(--primary);
+  --color-brand-primary-hover: var(--primary-hover);
+  --color-brand-primary-dark: var(--primary-dark);
+  --color-brand-primary-light: var(--primary-light);
+  
+  --color-brand-secondary: var(--secondary);
+  --color-brand-secondary-hover: var(--secondary-hover);
+  --color-brand-secondary-light: var(--secondary-light);
+  
+  --color-brand-accent: var(--accent);
+  --color-brand-accent-hover: var(--accent-hover);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+
+  /* Un-prefixed aliases. Utilities such as `ring-primary/60`, `bg-primary`
+     and `border-secondary` resolve against these; without them the classes
+     compile to nothing and every focus ring silently disappears. */
+  --color-primary: var(--primary);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-light: var(--primary-light);
+  --color-secondary: var(--secondary);
+  --color-secondary-light: var(--secondary-light);
+  
+  --color-border-subtle: var(--border-subtle);
+  --color-border-default: var(--border-default);
+  --color-border-hover: var(--border-hover);
+  --color-border-active: var(--border-active);
+  --color-border-focus: var(--border-focus);
+  --color-border-light: var(--border-subtle);
+  --color-border-medium: var(--border-default);
+  --color-border-strong: var(--border-hover);
+  --color-border-card: var(--border-card);
+  --color-border-input: var(--border-input);
+  
+  --color-divider: var(--divider);
+  
+  --color-status-success: var(--success);
+  --color-status-error: var(--error);
+  --color-status-warning: var(--warning);
+  --color-status-info: var(--info);
+  
+  --shadow-premium-sm: var(--shadow-sm);
+  --shadow-premium-xs: var(--shadow-xs);
+  --shadow-premium-md: var(--shadow-md);
+  --shadow-premium-lg: var(--shadow-lg);
+}
+
+@utility border-subtle { border-color: var(--border-subtle); }
+@utility border-default { border-color: var(--border-default); }
+@utility border-light { border-color: var(--border-subtle); }
+@utility border-medium { border-color: var(--border-default); }
+@utility border-strong { border-color: var(--border-hover); }
+@utility border-card { border-color: var(--border-card); }
+@utility border-input { border-color: var(--border-input); }
+@utility border-active { border-color: var(--border-active); }
+@utility border-focus { border-color: var(--border-focus); }
+@utility border-divider { border-color: var(--divider); }
+@utility divide-divider {
+  & > :not(:last-child) {
+    border-color: var(--divider);
+  }
+}
+@utility decoration-border-strong { text-decoration-color: var(--border-hover); }
+@utility decoration-border-medium { text-decoration-color: var(--border-default); }
+@utility decoration-border-subtle { text-decoration-color: var(--border-subtle); }
+
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--border-subtle);
+  }
+  hr {
+    border-color: var(--divider);
+    border-top-width: 1px;
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   Shared Page Container (.site-container)
+   Unified horizontal alignment system shared across Header (<header>),
+   Main Workspace (<main>), and Footer (<footer>).
+   - Constrained to max-width: 1280px
+   - Centered via margin-inline: auto
+   - Fluid, responsive gutters via clamp(20px, 5vw, 64px)
+   - Zero horizontal overflow
+   ========================================================================== */
+.site-container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  /* 16px floor keeps a 320px phone's header row inside the viewport; 5vw
+     takes over from there so wider screens keep the roomier gutter. */
+  padding-inline: clamp(16px, 5vw, 64px);
+  box-sizing: border-box;
+}
+
+/* ── SHARED DESIGN TOKENS FOR TOOLS ─────────────────────────────────────── */
+:root {
+  /* Button system */
+  --tool-btn-height-sm: 40px;
+  --tool-btn-height-md: 48px;
+  --tool-btn-height-lg: 52px;
+  --tool-btn-height-touch: 44px;
+  
+  --tool-btn-radius-sm: 10px;
+  --tool-btn-radius-md: 14px;
+  --tool-btn-radius-lg: 16px;
+  
+  --tool-btn-padding-sm-x: 12px;
+  --tool-btn-padding-md-x: 16px;
+  --tool-btn-padding-lg-x: 20px;
+  --tool-btn-padding-y-sm: 10px;
+  --tool-btn-padding-y-md: 12px;
+  --tool-btn-padding-y-lg: 14px;
+  
+  /* Icon system */
+  --tool-icon-size-sm: 18px;
+  --tool-icon-size-md: 20px;
+  --tool-icon-size-lg: 22px;
+  --tool-icon-stroke: 2px;
+  
+  /* Spacing */
+  --tool-btn-gap-sm: 6px;
+  --tool-btn-gap-md: 8px;
+  --tool-btn-gap-lg: 10px;
+  --tool-control-gap: 12px;
+  
+  /* Touch targets */
+  --tool-touch-target: 44px;
+  --tool-touch-target-lg: 48px;
+  
+  /* Control heights */
+  --tool-control-height: 48px;
+  --tool-control-height-lg: 56px;
+  --tool-input-height: 48px;
+  
+  /* Card/panel */
+  --tool-card-radius: 20px;
+  --tool-panel-radius: 18px;
+  --tool-panel-padding: 20px;
+  --tool-panel-padding-sm: 16px;
+  
+  /* Border system - only for functional boundaries (inputs, cards, buttons) */
+  --tool-border-width: 1px;
+  --tool-border-width-thick: 2px;
+  --tool-border-dashed-width: 2px;
+  
+  /* Focus ring system */
+  --tool-focus-ring-width: 2px;
+  --tool-focus-ring-offset: 2px;
+  --tool-focus-ring-color: var(--color-brand-primary);
+  
+  /* Shadow scale */
+  --tool-shadow-sm: var(--shadow-premium-sm);
+  --tool-shadow-md: var(--shadow-premium-md);
+  --tool-shadow-lg: var(--shadow-premium-lg);
+  --tool-shadow-card-hover: var(--shadow-card-hover);
+}
+
+/* ── GLOBAL FOUNDATION ───────────────────────────────────────────────── */
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Native UI (scrollbars, form controls, selects) follows the active theme so
+   nothing stays bright white inside a dark page. */
+html {
+  color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Driven by the same tokens the app uses, so the canvas behind the app
+     (overscroll, first paint) matches the theme instead of staying white. */
+  background-color: var(--background);
+  color: var(--text-primary);
+}
+
+/* The command palette sets this class while it is open: freeze the page
+   underneath so scrolling the result list never scrolls the content behind
+   the backdrop. `html` is targeted too because it is the viewport's
+   scrolling element — locking only <body> still lets the document scroll. */
+body.command-palette-active,
+html:has(body.command-palette-active) {
+  overflow: hidden;
+}
+
+/* ── TOUCH TARGETS ────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  button, a, input, select, textarea {
+    touch-action: manipulation;
+  }
+  button:not([class*="min-h-"]):not([class*="h-"]) {
+    min-height: 44px;
+  }
+  /* Every editable control needs to be a comfortable touch target too.
+     Range sliders and native checkboxes/radios keep their natural sizing. */
+  input:not([type="range"]):not([type="checkbox"]):not([type="radio"]),
+  select,
+  textarea {
+    min-height: 44px;
+  }
+}
+
+/* ── KEYBOARD FOCUS ──────────────────────────────────────────────────── */
+/* Every focusable element shows a ring on keyboard focus, not only the ones
+   hand-wired with `focus-visible:ring-*`. Declared in @layer base so a
+   component's own focus utilities (ring/outline, in the utilities layer) still
+   win — and elements that set `outline-none` without a replacement ring are
+   the intentional exception, not an accident. */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-brand-primary);
+    outline-offset: 2px;
+  }
+}
+
+/* Buttons wrap naturally instead of clipping. Explicit `whitespace-nowrap`
+   utilities (declared in @layer utilities) still take precedence, so buttons
+   that intentionally stay on one line keep that behaviour. */
+@layer base {
+  button {
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-break: normal;
+    max-width: 100%;
+  }
+}
+
+/* Grid/flex children must be allowed to shrink below their intrinsic content
+   width so long text wraps instead of forcing horizontal overflow. */
+@layer base {
+  .grid > * {
+    min-width: 0;
+  }
+}
+
+/* ── CODE & TABLES ────────────────────────────────────────────────────── */
+pre, code, pre code {
+  font-family: var(--font-mono);
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+pre {
+  overflow-x: auto;
+}
+
+table {
+  max-width: 100%;
+}
+
+pre code, .code-output, [class*="font-mono"] {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+@layer base {
+  img, video, canvas, svg {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Controls keep a 24x24 floor (WCAG 2.5.8 target size, AA) even when a grid or
+   table squeezes them below their intrinsic size; `max-width: 100%` still stops
+   them from growing past their container. Deliberately unlayered so no
+   `min-w-0` utility can shrink a control back under the accessible minimum.
+   Visually hidden controls (`.sr-only` file pickers, skip links) and range
+   sliders keep their old sizing — QA exempts them and a forced 24px box would
+   disturb the layouts that hide them. */
+input, textarea, select {
+  max-width: 100%;
+  min-width: 0;
+  min-height: 0;
+}
+
+input:not(.sr-only):not([type="range"]),
+textarea:not(.sr-only),
+select:not(.sr-only) {
+  min-width: 24px;
+  min-height: 24px;
+}
+
+/* Icon-only buttons must stay tappable: a 24px floor (WCAG 2.5.8 AA) declared
+   in @layer base, so a component's own `min-w-*` utility can still raise it
+   but nothing can drop a squeezed button below the accessible minimum. */
+@layer base {
+  button:not(.sr-only) {
+    min-width: 24px;
+    min-height: 24px;
+  }
+}
+
+/* ── TRANSPARENCY CHECKERBOARD ───────────────────────────────────────── */
+/* Light variant for light surfaces; dark variant for the dark preview stage.
+   Applied to image surfaces so transparent pixels (PNG/WebP alpha) read as a
+   standard editor checkerboard instead of a flat background. */
+.gu-checkerboard,
+.gu-checkerboard-dark {
+  background-size: 20px 20px;
+}
+
+.gu-checkerboard {
+  --cb-a: #ffffff;
+  --cb-b: #ececec;
+}
+
+.gu-checkerboard-dark {
+  --cb-a: #161914;
+  --cb-b: #262a20;
+}
+
+.gu-checkerboard,
+.gu-checkerboard-dark {
+  background-color: var(--cb-a);
+  background-image:
+    conic-gradient(var(--cb-b) 0 25%, transparent 0 50%, var(--cb-b) 0 75%, transparent 0);
+}
+
+/* ── CONTAINER ────────────────────────────────────────────────────────── */
+.tool-container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .tool-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .tool-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* ── SCROLLBAR ────────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-input);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Explicit, self-contained scroll container used across the editor panels.
+   WebKit scrollbars are already themed globally; this keeps Firefox thin too. */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-input) transparent;
+}
+
+/* ── BACKGROUND PATTERN ───────────────────────────────────────────────── */
+.gu-bg-pattern {
+  background-image:
+    radial-gradient(circle, var(--border-subtle) 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+  background-position: 0 0;
+}
+
+.dark .gu-bg-pattern {
+  background-image:
+    radial-gradient(circle, var(--border-subtle) 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+}
+
+/* ── TYPOGRAPHY SYSTEM ────────────────────────────────────────────────── */
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BLOG DESIGN TOKENS
+   -------------------------------------------------------------------
+   One shared, fluid design system for the Blog (index + article pages).
+   Values are chosen to match the existing warm, editorial design while
+   keeping typography and spacing fluid via clamp().
+
+   Semantic tokens map to the roles the Blog actually uses, so the same
+   element type (article title, description, metadata, section heading)
+   always shares one token — no arbitrary per-element sizing.
+   ═══════════════════════════════════════════════════════════════════════ */
+:root {
+  /* Content widths: outer page shell vs the readable article column. */
+  --blog-container-max: 960px;
+  --blog-article-max: 720px;
+
+  /* Fluid page gutter: ~20px mobile → ~40px tablet → ~48px desktop. */
+  --blog-gutter: clamp(1.25rem, 2.5vw, 3rem);
+
+  /* Fluid page vertical rhythm between major sections. */
+  --blog-section-space: clamp(2.5rem, 6vw, 4.5rem);
+
+  /* Editorial amber accent (already exercised by --primary). */
+  --blog-accent: var(--primary);
+
+  /* Divider used under article rows / sections. */
+  --blog-divider: var(--border-subtle);
+
+  /* Article title, ~20px mobile → ~24px desktop. */
+  --blog-title: clamp(1.25rem, 1.15rem + 0.4vw, 1.5rem);
+
+  /* Article/masthead title, ~24px mobile → ~34px desktop. */
+  --blog-featured-title: clamp(1.5rem, 1.25rem + 0.9vw, 2.125rem);
+
+  /* Section heading, ~22px mobile → ~28px desktop. */
+  --blog-section-title: clamp(1.375rem, 1.2rem + 0.5vw, 1.75rem);
+
+  /* Body / description copy. */
+  --blog-body: clamp(1rem, 0.92rem + 0.2vw, 1.15rem);
+
+  /* Metadata (read time · date). */
+  --blog-meta: clamp(0.8125rem, 0.79rem + 0.15vw, 0.9375rem);
+
+  /* Small labels / kickers (uppercase category). */
+  --blog-label: clamp(0.6875rem, 0.66rem + 0.08vw, 0.8125rem);
+}
+
+/* Blog reading surface — Lato for a calmer, more editorial feel than the
+   homepage. Body sits at a comfortable 17–19px with generous leading.
+   Display headings (.blog-display / .blog-featured-title / .blog-section-
+   title / .blog-article-title) declare their own sans stack later in this
+   file and win on source order at equal specificity. */
+.blog-type,
+.blog-type * {
+  font-family: var(--font-blog);
+}
+
+/* Fluid page shell for the Blog index and article pages. */
+.blog-container {
+  width: 100%;
+  max-width: var(--blog-container-max);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--blog-gutter);
+  padding-right: var(--blog-gutter);
+}
+
+/* Narrower, readable column for individual article pages. */
+.blog-container--article {
+  max-width: var(--blog-article-max);
+}
+
+/* Vertical rhythm between the major Blog sections — fluid via clamp(). */
+.blog-flow {
+  display: flex;
+  flex-direction: column;
+  gap: var(--blog-section-space);
+}
+
+/* Section headings are anchor targets; keep them clear of the fixed nav. */
+.blog-type [id],
+section[id] {
+  scroll-margin-top: 88px;
+}
+
+/* Editorial display heading stack — all fluid via clamp(). */
+.blog-display {
+  font-family: var(--font-sans);
+  font-size: clamp(1.75rem, 1.25rem + 1.5vw, 2.5rem);
+  line-height: 1.15;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.blog-featured-title {
+  font-family: var(--font-sans);
+  font-size: var(--blog-featured-title);
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+}
+
+.blog-article-title {
+  font-family: var(--font-sans);
+  font-size: var(--blog-title);
+  line-height: 1.3;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.blog-section-title {
+  font-family: var(--font-sans);
+  font-size: var(--blog-section-title);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.blog-body {
+  font-size: var(--blog-body);
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.blog-meta {
+  font-size: var(--blog-meta);
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+.blog-label {
+  font-size: var(--blog-label);
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Editorial link treatment — underline + subtle colour transition only. */
+.blog-link {
+  color: var(--blog-accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--blog-accent) 35%, transparent);
+  text-underline-offset: 3px;
+  transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+.blog-link:hover {
+  color: var(--primary-hover);
+  text-decoration-color: var(--primary-hover);
+}
+
+/* Readable measure for flow content (article body, lead paragraphs). */
+.blog-measure {
+  max-width: 66ch;
+}
+
+/* Hero headline: fluid 2rem → 3.5rem. Natural wrap with max-width;
+   slightly looser leading on small screens so the two lines read as one
+   cohesive headline, tightened up on desktop. */
+.display-hero {
+  font-family: var(--font-sans);
+  font-size: clamp(1.75rem, 0.5rem + 3.5vw, 3.5rem);
+  line-height: 1.12;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+@media (min-width: 1024px) {
+  .display-hero {
+    line-height: 1.05;
+  }
+}
+
+/* Thin amber accent line below "Minus the fuss." */
+.hero-amber-line::after {
+  content: "";
+  display: block;
+  width: 2.5rem;
+  height: 3px;
+  margin-top: 0.5rem;
+  border-radius: 3px;
+  background: var(--primary);
+}
+
+/* Hero eyebrow/kicker — deliberately smaller & quieter than the default
+   .text-eyebrow so it reads as a caption, not a label competing with the
+   display headline. */
+.hero-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--text-muted);
+}
+
+/* Section heading: 38-48px */
+.display-xl {
+  font-family: var(--font-sans);
+  font-size: clamp(1.75rem, 3vw + 0.75rem, 2.5rem);
+  line-height: 1.05;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.display-lg {
+  font-family: var(--font-sans);
+  font-size: clamp(1.75rem, 1rem + 2.5vw, 2.625rem);
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+}
+
+.heading-h1 {
+  font-family: var(--font-sans);
+  font-size: clamp(1.375rem, 2vw + 0.4rem, 1.625rem);
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.heading-h2 {
+  font-family: var(--font-sans);
+  font-size: clamp(1.125rem, 1.5vw + 0.3rem, 1.375rem);
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+.heading-h3 {
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 1.2vw + 0.25rem, 1.125rem);
+  line-height: 1.35;
+  font-weight: 600;
+}
+
+.heading-h4 {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+/* ── SEMANTIC RESPONSIVE TYPE SCALE ────────────────────────────────────
+   One scale shared by every page. Desktop ↔ tablet ↔ mobile behaviour is
+   baked into each class via clamp(), so pages stop scaling independently.
+   Use these instead of raw `text-2xl`/`text-[17px]` in shared surfaces. */
+
+/* Hero / marketing display — 32 → 64 */
+.text-display {
+  font-family: var(--font-sans);
+  font-size: clamp(2rem, 0.5rem + 4.4vw, 4rem);
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+}
+
+/* Page / tool title — 22 → 32 */
+.text-h1 {
+  font-family: var(--font-sans);
+  font-size: clamp(1.375rem, 1rem + 1.5vw, 2rem);
+  line-height: 1.2;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+}
+
+/* Section heading — 18 → 24 */
+.text-h2 {
+  font-family: var(--font-sans);
+  font-size: clamp(1.125rem, 1rem + 0.9vw, 1.5rem);
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+/* Card / sub-section heading — 16 → 18 */
+.text-h3 {
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 0.95rem + 0.5vw, 1.125rem);
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--text-primary);
+}
+
+/* Supporting / descriptive copy — 16 → 18 */
+.text-body-lg {
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 0.95rem + 0.4vw, 1.125rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* Default body copy — 15 → 16 */
+.text-body {
+  font-family: var(--font-sans);
+  font-size: clamp(0.9375rem, 0.92rem + 0.2vw, 1rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* Compact body copy / helper text — 13 → 14 */
+.text-body-sm {
+  font-family: var(--font-sans);
+  font-size: clamp(0.8125rem, 0.8rem + 0.2vw, 0.875rem);
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+/* Form field labels, button labels on small controls — 13px fixed */
+.text-label {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* Metadata / captions / timestamps — 12px fixed */
+.text-meta {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+/* Eyebrow / kicker above headings — 11px uppercase */
+.text-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Section eyebrow — 12→13px mono, orange, uppercase. Sits above a dominant
+   section H2 (.display-lg) and must read as a label, never as a heading. */
+.section-eyebrow {
+  font-family: var(--font-mono);
+  font-size: clamp(0.75rem, 0.73rem + 0.1vw, 0.8125rem);
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ABOUT PAGE — long-form editorial typography
+   ---------------------------------------------------------------------------
+   Max reading width ~720px · body 17–18px · line-height 1.6–1.7
+/* ── ABOUT PAGE (EDITORIAL PRODUCT DIRECTION) ──────────────────────────
+   Clean typography hierarchy · comfortable reading measure (680-760px)
+   Warm human voice · no excessive borders · restrained principles grid
+   Mobile: H1 32–38px · H2 24–28px · body 16–17px · padding 16–24px
+   Desktop: H1 44–50px · H2 28–34px · body 17–18.5px · measure ~68ch
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.about-page {
+  width: 100%;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 5vw + 0.5rem, 4.25rem);
+}
+
+/* ── Topbar: Breadcrumb + Updated Meta ────────────────────────────────── */
+.about-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-bottom: 0.25rem;
+}
+
+.about-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-disabled);
+  white-space: nowrap;
+}
+
+.about-meta-icon {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  color: var(--text-disabled);
+}
+
+/* ── Hero Section ─────────────────────────────────────────────────────── */
+.about-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+}
+
+.about-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary);
+}
+
+.about-display {
+  font-family: var(--font-sans);
+  font-size: clamp(2.125rem, 1.4rem + 2.5vw, 3.125rem);
+  line-height: 1.12;
+  font-weight: 750;
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+
+.about-lead-measure {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 68ch;
+  margin-top: 0.5rem;
+}
+
+.about-lead-p {
+  font-family: var(--font-sans);
+  font-size: clamp(1.125rem, 1.05rem + 0.25vw, 1.25rem);
+  line-height: 1.68;
+  color: var(--text-primary);
+  font-weight: 450;
+  letter-spacing: -0.01em;
+}
+
+/* ── Editorial Section Spacing & Typography ───────────────────────────── */
+.about-editorial-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.125rem;
+}
+
+.about-h2 {
+  font-family: var(--font-sans);
+  font-size: clamp(1.4375rem, 1.2rem + 0.9vw, 1.9375rem);
+  line-height: 1.26;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.about-measure {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 68ch;
+}
+
+.about-body {
+  font-family: var(--font-sans);
+  font-size: clamp(1.03125rem, 0.98rem + 0.18vw, 1.125rem);
+  line-height: 1.72;
+  color: var(--text-secondary);
+  max-width: 68ch;
+}
+
+/* ── Feature Bullet List ──────────────────────────────────────────────── */
+.about-feature-list {
+  list-style: none;
+  margin: 0.5rem 0 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.about-feature-item {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 0.96rem + 0.15vw, 1.0625rem);
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.about-feature-bullet {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* ── Contextual Internal Navigation Strip ────────────────────────────── */
+.about-contextual-nav {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.625rem;
+  padding: 0.875rem 1.125rem;
+  margin-top: 0.75rem;
+  background: color-mix(in srgb, var(--surface-muted) 45%, transparent);
+  border-radius: 0.75rem;
+  max-width: 68ch;
+}
+
+.about-contextual-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.about-contextual-links {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.about-contextual-link {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 550;
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.18s ease;
+}
+
+.about-contextual-link:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.about-contextual-sep {
+  font-size: 0.75rem;
+  color: var(--text-disabled);
+}
+
+/* ── Builder Section ("One person, building it") ──────────────────────── */
+.about-builder-section {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.5rem 1.75rem;
+  background: color-mix(in srgb, var(--surface-muted) 35%, transparent);
+  border-left: 3px solid var(--primary);
+  border-radius: 0 1rem 1rem 0;
+  max-width: 68ch;
+}
+
+.about-builder-marker {
+  padding-top: 0.25rem;
+  flex-shrink: 0;
+}
+
+.about-builder-dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--primary);
+}
+
+.about-builder-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+
+.about-builder-title {
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  line-height: 1.3;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  color: var(--text-primary);
+}
+
+.about-builder-body {
+  font-family: var(--font-sans);
+  font-size: 1.03125rem;
+  line-height: 1.68;
+  color: var(--text-secondary);
+}
+
+/* ── Principles Grid ("What I care about") ────────────────────────────── */
+.about-values-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.125rem;
+  margin-top: 0.25rem;
+}
+
+@media (min-width: 600px) {
+  .about-values-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+  }
+}
+
+.about-value-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+  padding: 1.5rem;
+  background: var(--surface-base);
+  border: 1px solid var(--border-subtle);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .about-value-card:hover {
+    border-color: var(--border-default);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+  }
+}
+
+.about-value-icon-box {
+  width: 2.375rem;
+  height: 2.375rem;
+  border-radius: 0.625rem;
+  background: color-mix(in srgb, var(--primary) 12%, transparent);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.about-value-icon-svg {
+  width: 18px;
+  height: 18px;
+}
+
+.about-value-title {
+  font-family: var(--font-sans);
+  font-size: 1.0625rem;
+  line-height: 1.35;
+  font-weight: 650;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  margin-top: 1rem;
+}
+
+.about-value-body {
+  font-family: var(--font-sans);
+  font-size: 0.953125rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-top: 0.4rem;
+}
+
+/* ── Closing Section & Restrained CTA ─────────────────────────────────── */
+.about-closing-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.875rem;
+  padding-top: 1.5rem;
+}
+
+.about-closing-rule {
+  width: 100%;
+  height: 1px;
+  background: var(--divider);
+  margin-bottom: 1.75rem;
+}
+
+.about-closing-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.375rem, 1.15rem + 0.8vw, 1.75rem);
+  line-height: 1.25;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.about-closing-body {
+  font-family: var(--font-sans);
+  font-size: clamp(1.03125rem, 0.98rem + 0.15vw, 1.125rem);
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+.about-cta-container {
+  margin-top: 0.75rem;
+}
+
+.about-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 48px;
+  padding: 0 1.75rem;
+  border-radius: 12px;
+  background: var(--primary);
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-size: 0.96875rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: background-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.about-cta-btn:hover {
+  background: var(--primary-hover);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.about-cta-btn:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+.about-cta-arrow {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  transition: transform 0.18s ease-out;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .about-cta-btn:hover .about-cta-arrow {
+    transform: translateX(3px);
+  }
+}
+
+/* ── Mobile adjustments (320px – 639px) ───────────────────────────────── */
+@media (max-width: 639px) {
+  .about-page {
+    gap: clamp(2rem, 5vw, 2.75rem);
+  }
+
+  .about-topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .about-builder-section {
+    padding: 1.25rem 1.25rem;
+    gap: 0.875rem;
+  }
+
+  .about-value-card {
+    padding: 1.25rem;
+  }
+
+  .about-cta-btn {
+    min-height: 44px;
+    padding: 0 1.5rem;
+    font-size: 0.9375rem;
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ── BROWSE TOOLS — CATEGORY TAB SCROLLER ────────────────────────────── */
+/* Mobile/tablet: the tab row scrolls horizontally; the page itself never
+   scrolls. The row reserves right-side breathing room (`pr-10 sm:pr-12`
+   in the component) so the scroll affordance never overlaps a pill. */
+.browse-tabs-scroller {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+}
+.browse-tabs-scroller::-webkit-scrollbar {
+  display: none;
+}
+.browse-tabs-scroller > * {
+  scroll-snap-align: start;
+}
+
+/* Subtle, native-feeling right-edge fade that signals "more categories →".
+   Purely decorative; the scrollable content sits underneath and stays
+   tappable. Never rendered over a pill because the scroller reserves space. */
+.browse-tabs-fade {
+  background: linear-gradient(to right, transparent, var(--background) 82%);
+}
+
+/* ── GRID HELPERS ─────────────────────────────────────────────────────── */
+.gap-tool {
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .gap-tool {
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gap-tool {
+    gap: 2.5rem;
+  }
+}
+
+.grid-responsive-2 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .grid-responsive-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.grid-responsive-3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .grid-responsive-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.grid-responsive-4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .grid-responsive-4 {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-responsive-4 {
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  }
+}
+
+/* ── LINE CLAMPING ────────────────────────────────────────────────────── */
+.line-clamp-1 { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 1; }
+.line-clamp-2 { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.line-clamp-3 { overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+
+/* ── TOOL CARD LAYOUT FIX ─────────────────────────────────────────────── */
+.tool-card-text-wrap {
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: normal;
+  max-width: 100%;
+}
+
+/* ── CONTENT-FIRST GRID ───────────────────────────────────────────────── */
+/* Grid that adapts column count based on content width needs.
+   Use minmax(280px, 1fr) to guarantee readable tool names at any count. */
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .content-grid {
+    gap: 1rem;
+  }
+}
+
+/* Dense variant with a slightly smaller minimum track for icon/name cards. */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .card-grid {
+    gap: 1rem;
+  }
+}
+
+/* Reusable auto-fit grid for the "Continue Editing" style recommendation
+   cards — never squeezes below ~230px so titles stay on real words. */
+.reco-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 230px), 1fr));
+  gap: 1rem;
+}
+
+/* Compact related-tools row (shown after a task is complete). Quiet by
+   design: no animation, no glowing accents — just a clear, contextual next
+   step that never competes with the primary download action. */
+.gu-related {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 190px), 1fr));
+  gap: 0.75rem;
+}
+@media (min-width: 640px) {
+  .gu-related {
+    gap: 1rem;
+  }
+}
+.gu-related-card {
+  text-align: left;
+}
+
+/* ── STICKY MOBILE BAR ───────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .sticky-mobile-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 45;
+    background: var(--surface-base);
+    border-top: 1px solid var(--border-subtle);
+    padding: 0.75rem 1rem;
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+    box-shadow: 0 -4px 12px -2px rgba(23, 32, 21, 0.08);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  .has-sticky-bar {
+    padding-bottom: 80px;
+  }
+}
+
+/* ── TABLE SCROLL ─────────────────────────────────────────────────────── */
+.table-scroll-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  max-width: 100%;
+}
+
+.table-scroll-container::-webkit-scrollbar {
+  height: 4px;
+}
+
+/* ── TRANSITIONS ──────────────────────────────────────────────────────── */
+.transition-all-premium {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── ANIMATIONS ───────────────────────────────────────────────────────── */
+@keyframes hero-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-hero-fade-in {
+  animation: hero-fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+.animate-hero-fade-in-delay-1 {
+  animation: hero-fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  opacity: 0;
+}
+
+.animate-hero-fade-in-delay-2 {
+  animation: hero-fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+  opacity: 0;
+}
+
+.animate-hero-fade-in-delay-3 {
+  animation: hero-fade-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+  opacity: 0;
+}
+
+@keyframes status-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.animate-status-pulse {
+  animation: status-pulse 2s ease-in-out infinite;
+}
+
+@keyframes error-shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-4px); }
+  40%, 80% { transform: translateX(4px); }
+}
+
+.animate-error-shake {
+  animation: error-shake 0.4s ease-in-out;
+}
+
+@keyframes pulse-progress {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(250%); }
+}
+
+.animate-pulse-progress {
+  animation: pulse-progress 1.4s ease-in-out infinite;
+}
+
+/* ── VIEW TRANSITIONS ─────────────────────────────────────────────────── */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 250ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ── MOBILE NAV DRAWER (bottom sheet) ───────────────────────────────── */
+@keyframes mobile-drawer-in {
+  from { opacity: 0; transform: translateY(100%); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes mobile-drawer-out {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(100%); }
+}
+.gu-drawer-enter { animation: mobile-drawer-in 0.26s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+.gu-drawer-exit { animation: mobile-drawer-out 0.22s cubic-bezier(0.4, 0, 1, 1) forwards; }
+
+/* ── REDUCED MOTION ───────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    background-attachment: scroll !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0s !important;
+    transition-delay: 0s !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════ */
+/* INTERACTION TOKENS — subtle, quick, physical micro-interactions        */
+/* ═══════════════════════════════════════════════════════════════════════ */
+
+/* Fast: 120–150ms · Normal: 180–220ms · Expanded: 220–280ms */
+.gu-fast    { transition-duration: 0.14s !important; }
+.gu-normal  { transition-duration: 0.2s !important; }
+.gu-expanded{ transition-duration: 0.26s !important; }
+
+/* Arrow / icon drift helpers (2–4px). Use alongside a group-hover state. */
+.gu-arrow { transition: transform 0.18s ease-out, color 0.15s ease, opacity 0.15s ease; }
+.group:hover .gu-arrow { transform: translateX(3px); }
+.group:hover .gu-arrow-left { transform: translateX(-3px); }
+
+/* Generic press feedback — never dramatic shrink, just 1px settle + tint */
+.gu-press {
+  transition: transform 0.14s ease-out, background-color 0.15s ease, border-color 0.15s ease, box-shadow 0.2s ease;
+}
+.gu-press:active { transform: translateY(1px); }
+
+/* WCAG 2.5.8 target size for small text CTAs: grows the hit area to ~40px
+   while the equal negative margin keeps surrounding rows exactly as tall as
+   they were, so nothing on the page reflows. */
+.gu-tap {
+  padding-block: 0.75rem;
+  margin-block: -0.75rem;
+}
+
+/* Breadcrumb trails are 16–20px text links; pad them out to a 40px target.
+   Targeting the landmark covers every breadcrumb implementation on the site
+   (Common.Breadcrumbs plus the inline hub-page crumbs). */
+nav[aria-label="Breadcrumb"] a,
+nav[aria-label="Breadcrumb"] button {
+  padding-block: 0.75rem;
+  margin-block: -0.75rem;
+}
+
+/* Card lift used for "this will open" affordance — 2px max */
+.gu-lift {
+  transition: transform 0.18s ease-out, border-color 0.18s ease, box-shadow 0.22s ease, background-color 0.18s ease;
+}
+.group:hover .gu-lift,
+a.gu-lift:hover { transform: translateY(-2px); }
+.group:active .gu-lift,
+a.gu-lift:active { transform: translateY(0); }
+
+/* Subtle row background + arrow drift for "Also Popular" style lists */
+.gu-row {
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+/* Focus ring helper — keyboard-only, visible, brand color */
+.gu-focus {
+  outline: none;
+}
+.gu-focus:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Nav underline indicator (quiet default, strong active) */
+.gu-navlink {
+  position: relative;
+  transition: color 0.15s ease;
+}
+.gu-navlink::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -4px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--border-active);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  opacity: 0;
+}
+.gu-navlink[aria-current="true"]::after,
+.gu-navlink.gu-active::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+/* Tool-chip hover — interactive, opens the specific tool */
+.gu-chip {
+  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+/* Feed row for Recently Added */
+.gu-feed-row {
+  transition: background-color 0.15s ease;
+  border-radius: 8px;
+}
+
+/* Hamburger <-> X morph */
+.gu-burger-line {
+  transition: transform 0.2s ease-out, opacity 0.15s ease-out;
+}
+
+/* Privacy info popover entrance */
+@keyframes popover-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.gu-popover-in { animation: popover-in 0.18s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+/* Header dropdown entrance (4–6px vertical) */
+@keyframes dropdown-in {
+  from { opacity: 0; transform: translateY(-5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.gu-dropdown-in { animation: dropdown-in 0.16s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+/* Expandable inline list (Browse Studio "+6 more") */
+.gu-expand-in {
+  animation: popover-in 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════ */
+/* STUDIO UTILITY CARDS — lift, press, icon tile & keyboard focus        */
+/* ═══════════════════════════════════════════════════════════════════════ */
+
+/* Explicit green alias used by keyboard focus outlines. */
+:root { --brand-green: var(--primary); }
+.dark { --brand-green: var(--primary); }
+
+/* Icon tile inside every tool card: the SVG deepens + nudges on hover,
+   the tile itself picks up a light brand tint. */
+.gu-icon-tile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* FAQ answer panel — animates open/closed via grid-template-rows so the
+   height is real (0fr → 1fr) and keyboard/touch state stays in sync. */
+.gu-faq-panel {
+  display: grid;
+  transition: grid-template-rows 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover / press / focus behaviour for interactive utility cards.
+   Hover-able (mouse) devices only, and skip entirely for reduced motion.
+   Border-first, restrained rise — no decorative colour flood on the card. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .gu-utility-card {
+    transition: transform 0.18s ease-out, border-color 0.18s ease, box-shadow 0.22s ease, background-color 0.18s ease;
+    box-shadow: none;
+  }
+  .gu-utility-card:hover {
+    transform: translateY(-1px);
+    border-color: color-mix(in srgb, var(--primary) 40%, var(--border-light));
+  }
+  .gu-utility-card:active {
+    transform: translateY(0);
+    background-color: var(--surface-muted);
+  }
+  .gu-utility-card:hover .gu-icon-tile svg {
+    transform: translateY(-1px) scale(1.05);
+  }
+  .gu-utility-card .gu-icon-tile svg {
+    transition: transform 0.18s ease-out;
+  }
+  /* Browse tool cards: a slightly deeper lift than base cards, a soft
+     elevation shadow, a subtle brand tint on the icon tile and a stronger
+     "Open →" affordance — all driven from the one shared card class so
+     every tool card gets identical interactions. */
+  .browse-tool-card:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in srgb, var(--primary) 55%, var(--border-light));
+    background-color: color-mix(in srgb, var(--surface-base) 100%, var(--primary) 2%);
+    box-shadow: var(--shadow-card-hover);
+  }
+  .browse-tool-card:hover .gu-visual-tile {
+    border-color: color-mix(in srgb, var(--primary) 45%, var(--border-light));
+    background-color: color-mix(in srgb, var(--primary-light) 30%, transparent);
+  }
+  .browse-tool-card:hover .gu-open-cta {
+    color: var(--primary-dark);
+  }
+  .browse-tool-card .gu-arrow,
+  .browse-tool-card:hover .gu-arrow {
+    transition: transform 0.18s ease-out;
+  }
+  .browse-tool-card:hover .gu-arrow {
+    transform: translateX(2px);
+  }
+}
+
+/* Keyboard focus — replaces the browser default so the ring, radius and
+   offset are brand-consistent. Always visible when it matters. */
+.gu-utility-card {
+  outline: none;
+}
+.gu-utility-card:focus-visible {
+  outline: 2px solid var(--brand-green);
+  outline-offset: 3px;
+}
+
+/* ── MOBILE FORM CONTROLS ────────────────────────────────────────────────
+   iOS Safari auto-zooms any focused input/select/textarea whose font-size
+   is below 16px. Force every editable control to at least 16px on phones;
+   larger viewports keep their (smaller) classes via the `sm:` variants. */
+@media (max-width: 639.98px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════ */
+/* SERVICES PAGE — hero door reveal + process journey                     */
+/* Scoped to the Services page only; nothing here affects other routes.   */
+/* ═══════════════════════════════════════════════════════════════════════ */
+
+/* Two solid panels that slide apart to reveal the hero. This is a pure CSS
+   entrance (keyframe animations, no JS state), so the server and client
+   markup are identical — no hydration mismatch. The hero content below is
+   always in the DOM and always valid; the doors are a decorative overlay
+   that ignores pointer input. After the entrance the panels stay translated
+   out of view, so they never intercept clicks, cover links or affect
+   layout/scroll. */
+.gu-door-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 20;
+}
+.gu-door {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  background: var(--text-primary);
+  will-change: transform;
+}
+.gu-door--left {
+  left: 0;
+  padding-left: 26px;
+  justify-content: flex-start;
+  border-right: 1px solid var(--primary);
+  animation: gu-door-open-left 950ms cubic-bezier(0.7, 0, 0.3, 1) 150ms forwards;
+}
+.gu-door--right {
+  right: 0;
+  padding-right: 26px;
+  justify-content: flex-end;
+  border-left: 1px solid var(--primary);
+  animation: gu-door-open-right 950ms cubic-bezier(0.7, 0, 0.3, 1) 150ms forwards;
+}
+.gu-door .gu-door-mark {
+  font-weight: 600;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: var(--primary);
+  user-select: none;
+}
+@keyframes gu-door-open-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-101%); }
+}
+@keyframes gu-door-open-right {
+  from { transform: translateX(0); }
+  to   { transform: translateX(101%); }
+}
+
+/* Hero content rise — CSS-only, timed with the doors. Base opacity is 1, so
+   if the animation is skipped (reduced motion, unsupported animations) the
+   hero stays fully visible. */
+.gu-hero-inner {
+  opacity: 1;
+  animation: gu-hero-rise 650ms ease 480ms both;
+}
+@keyframes gu-hero-rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Journey: idle ball pulse + finish-flag nudge. SVG geometry is driven by
+   JS, these are purely cosmetic additions. */
+@keyframes gu-ball-pulse {
+  0%, 100% { r: 7px; }
+  50%      { r: 9px; }
+}
+.gu-ball-pulse { animation: gu-ball-pulse 1.8s ease-in-out infinite; }
+
+@keyframes gu-flag-nudge {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
+.gu-flag-nudge { animation: gu-flag-nudge 1.6s ease-in-out infinite; }
+
+/* On mobile the map becomes a vertical timeline — keep the label type small
+   enough to read beside the dot. */
+.gu-map-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.01em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Never paint the closed door panels over the hero for reduced-motion
+     users — the hero shows immediately at full opacity. */
+  .gu-door-wrap { display: none; }
+  .gu-hero-inner { animation: none !important; opacity: 1 !important; }
+}
+
+/* Services index rows — subtle rise, tinted border and a growing orange bar
+   on the left. Hover only, and skipped for reduced motion. */
+.gu-service-row {
+  transition: background-color 0.18s ease, border-color 0.2s ease, transform 0.18s ease;
+}
+.gu-service-row::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 3px;
+  border-radius: 4px;
+  background: var(--primary);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.2s ease;
+}
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .gu-service-row:hover {
+    background-color: var(--surface-base);
+    border-color: color-mix(in srgb, var(--primary) 32%, var(--border-light));
+    transform: translateX(4px);
+  }
+  .gu-service-row:hover::before {
+    transform: scaleY(1);
+  }
+}
+
+/* Media platform shared buttons — quiet, primary/ghost, matching the cream/amber language. */
+.prBtnPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0 1.1rem;
+  border-radius: 12px;
+  font-family: var(--font-sans, inherit);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #faf8f1;
+  background-color: var(--primary);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.18s ease;
+}
+.prBtnPrimary:hover { background-color: var(--primary-hover); }
+.prBtnPrimary:disabled { opacity: 0.45; pointer-events: none; }
+.prBtnPrimary .lucide, .prBtnPrimary svg { width: 1rem; height: 1rem; flex-shrink: 0; }
+
+.prBtnGhost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0 1rem;
+  border-radius: 12px;
+  font-family: var(--font-sans, inherit);
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  background-color: transparent;
+  border: 1px solid var(--border-medium);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+.prBtnGhost:hover { background-color: var(--surface-muted); color: var(--text-primary); }
+.prBtnGhost .lucide, .prBtnGhost svg { width: 1rem; height: 1rem; flex-shrink: 0; }
+
+/* ── GAINUTILITY PREMIUM RANGE SLIDER ─────────────────────────────────────── */
+.gu-slider-input {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 8px;
+  background: var(--surface-muted);
+  border-radius: 9999px;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.gu-slider-input:hover {
+  background: var(--border-default);
+}
+
+.gu-slider-input:focus-visible {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 3px;
+}
+
+.gu-slider-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 2px solid var(--surface-base);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.22);
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+}
+
+.gu-slider-input::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+  background: var(--primary-hover);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.32);
+}
+
+.gu-slider-input::-webkit-slider-thumb:active {
+  transform: scale(1.18);
+  background: var(--primary-dark);
+}
+
+.gu-slider-input::-moz-range-thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--primary);
+  border: 2px solid var(--surface-base);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.22);
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+}
+
+.gu-slider-input::-moz-range-thumb:hover {
+  transform: scale(1.12);
+  background: var(--primary-hover);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.32);
+}
+
+.gu-slider-input::-moz-range-thumb:active {
+  transform: scale(1.18);
+  background: var(--primary-dark);
+}
+
+.gu-slider-input::-moz-range-track {
+  height: 8px;
+  background: var(--surface-muted);
+  border-radius: 9999px;
+}

@@ -1,0 +1,15 @@
+import { readFileSync, writeFileSync } from "node:fs";
+const H = { "user-agent": "Mozilla/5.0 (compatible; index-audit)" };
+const r = await fetch("https://gainutility.com/sitemap.xml", { headers: H });
+const live = await r.text();
+writeFileSync("scripts/sitemap-live-before.xml", live);
+const get = (x) => new Set([...x.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]));
+const L = get(live);
+const local = get(readFileSync("public/sitemap.xml", "utf8"));
+const onlyLive = [...L].filter((u) => !local.has(u));
+const onlyLocal = [...local].filter((u) => !L.has(u));
+console.log("live:", L.size, "local:", local.size);
+console.log("only on LIVE (dropped by local build):", onlyLive.length);
+for (const u of onlyLive) console.log("   -", u);
+console.log("only in LOCAL (added by local build):", onlyLocal.length);
+for (const u of onlyLocal) console.log("   +", u);

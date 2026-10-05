@@ -1,0 +1,19 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "gainutility",
+  "main": "./src/index.ts",
+  "compatibility_date": "2025-04-01",
+  "compatibility_flags": ["nodejs_compat"],
+  "assets": {
+    "not_found_handling": "single-page-application",
+    "html_handling": "drop-trailing-slash",
+    "binding": "ASSETS"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "gainutility-db",
+      "database_id": "5b7f6814-e857-4aeb-bc8e-8f3b609bfc8a"
+    }
+  ]
+}

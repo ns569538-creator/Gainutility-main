@@ -1,0 +1,1208 @@
+{
+  "generatedAt": "2026-09-16T06:23:11Z",
+  "methodology": {
+    "sampled": 1000,
+    "successful": 533,
+    "successRatePct": 53.3,
+    "remRootPx": 16,
+    "failureBreakdown": {
+      "TypeError:ENOTFOUND": 222,
+      "no 2xx homepage (last status 404)": 22,
+      "TypeError:ECONNREFUSED": 2,
+      "TypeError:ERR_TLS_CERT_ALTNAME_INVALID": 20,
+      "TypeError:ECONNRESET": 12,
+      "no 2xx homepage (last status 403)": 85,
+      "no 2xx homepage (last status 202)": 9,
+      "no 2xx homepage (last status 400)": 2,
+      "AbortError": 13,
+      "no 2xx homepage (last status 429)": 3,
+      "TypeError:UND_ERR_SOCKET": 3,
+      "no 2xx homepage (last status 418)": 1,
+      "TypeError:UND_ERR_CONNECT_TIMEOUT": 47,
+      "TypeError:Error": 2,
+      "no 2xx homepage (last status 401)": 2,
+      "no 2xx homepage (last status 498)": 2,
+      "TypeError:ERR_SSL_TLSV1_ALERT_INTERNAL_ERROR": 4,
+      "TypeError:ENOENT": 2,
+      "no 2xx homepage (last status 520)": 1,
+      "no 2xx homepage (last status 503)": 2,
+      "no 2xx homepage (last status 451)": 1,
+      "TypeError:SELF_SIGNED_CERT_IN_CHAIN": 1,
+      "no 2xx homepage (last status 402)": 3,
+      "no 2xx homepage (last status 204)": 2,
+      "no 2xx homepage (last status 500)": 1,
+      "TypeError:ERR_SSL_TLSV1_UNRECOGNIZED_NAME": 1,
+      "TypeError:UNABLE_TO_VERIFY_LEAF_SIGNATURE": 1,
+      "TypeError:CERT_HAS_EXPIRED": 1
+    },
+    "sheetsPerSite": {
+      "min": 0,
+      "p05": 0,
+      "p10": 0,
+      "p25": 1,
+      "p50": 3,
+      "p75": 6,
+      "p90": 14,
+      "p95": 21.399999999999977,
+      "p99": 30,
+      "max": 30,
+      "mean": 5.0600375234521575,
+      "sitesWithNoStyleOrLink": 28
+    },
+    "sheetFetchNon200": 37
+  },
+  "declarations": {
+    "rawRows": 33438,
+    "deduped": 29907,
+    "vendorPairsCollapsed": 3531,
+    "distinctValues": 9168,
+    "distinctPxValues": 5596,
+    "kinds": {
+      "ok": 17733,
+      "none": 5301,
+      "varPartial": 3712,
+      "varOnly": 2375,
+      "malformed": 596,
+      "global": 190
+    },
+    "stats": {
+      "ok": 17733,
+      "none": 5301,
+      "global": 190,
+      "varOnly": 2375,
+      "varPartial": 3712,
+      "malformed": 596,
+      "varResolved": 2444,
+      "varPartiallyResolved": 613
+    },
+    "resolvedVia": {
+      "literal": 15289,
+      "rootProp": 1888,
+      "ruleProp": 999,
+      "fallback": 999
+    },
+    "otherUnitDecls": 3216
+  },
+  "layers": {
+    "pxLayers": 21887,
+    "remAt16Layers": 7,
+    "offsetX": {
+      "min": -1479,
+      "p05": 0,
+      "p10": 0,
+      "p25": 0,
+      "p50": 0,
+      "p75": 0,
+      "p90": 0,
+      "p95": 0,
+      "p99": 10,
+      "max": 10067,
+      "mean": 3.1706308767761686
+    },
+    "offsetY": {
+      "min": -522,
+      "p05": 0,
+      "p10": 0,
+      "p25": 0,
+      "p50": 0.83,
+      "p75": 3,
+      "p90": 8,
+      "p95": 12,
+      "p99": 40,
+      "max": 999,
+      "mean": 3.380988095867587
+    },
+    "blur": {
+      "min": 0,
+      "p05": 0,
+      "p10": 0,
+      "p25": 0,
+      "p50": 3,
+      "p75": 10,
+      "p90": 24,
+      "p95": 36,
+      "p99": 88,
+      "max": 510,
+      "mean": 9.463249978015952
+    },
+    "spread": {
+      "min": -70,
+      "p05": -2,
+      "p10": 0,
+      "p25": 0,
+      "p50": 0,
+      "p75": 0,
+      "p90": 2,
+      "p95": 3,
+      "p99": 10,
+      "max": 99999,
+      "mean": 24.95580624297528
+    },
+    "details": {
+      "xZeroPct": 93.1,
+      "yPositivePct": 50.2,
+      "yZeroPct": 48.5,
+      "yNegativePct": 1.3,
+      "blurZeroPct": 39.8,
+      "spreadNegativePct": 6.4,
+      "spreadZeroPct": 69.7,
+      "spreadPositivePct": 24,
+      "insetLayersPct": 12.7
+    },
+    "color": {
+      "syntax": {
+        "hex": 11453,
+        "rgba": 9585,
+        "hsl": 311,
+        "rgb": 285,
+        "named": 70,
+        "currentcolor": 69
+      },
+      "omittedColorsPct": 0.5,
+      "achromaticPct": 73.8,
+      "alphaExact1Pct": 21.3,
+      "alphaLe30Pct": 74.9,
+      "alphaBuckets": {
+        ">0..0.05": 4604,
+        "0.05..0.1": 2750,
+        "0.1..0.15": 3477,
+        "0.15..0.2": 2031,
+        "0.2..0.25": 728,
+        "0.25..0.3": 1154,
+        "0.3..0.4": 885,
+        "0.4..0.5": 628,
+        "0.5..0.7": 465,
+        "0.7..1": 357,
+        "exact1": 4625
+      }
+    },
+    "perDecl": {
+      "countedDecls": 14517,
+      "counts": {
+        "1": 10670,
+        "2": 2071,
+        "3": 1009,
+        "4": 228,
+        "5": 332,
+        "6": 173,
+        "7": 17,
+        "8": 11,
+        "9": 4,
+        "60": 1,
+        "142": 1
+      },
+      "single": 10670,
+      "two": 2071,
+      "threePlus": 1776,
+      "maxLayers": 142
+    }
+  },
+  "sites": {
+    "withShadowPct": 80.1,
+    "withShadowCount": 427
+  },
+  "topValuesBySitePresence": [
+    {
+      "value": "none",
+      "sites": 390,
+      "decls": 5218,
+      "kind": "none",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "unset",
+      "sites": 60,
+      "decls": 143,
+      "kind": "global",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "var(--tw-inset-shadow),var(--tw-inset-ring-shadow),var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow)",
+      "sites": 30,
+      "decls": 874,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 0 0 2px #fff",
+      "sites": 27,
+      "decls": 105,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)",
+      "sites": 26,
+      "decls": 496,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000)",
+      "sites": 20,
+      "decls": 134,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "inset 0 0 0 2px #fff",
+      "sites": 18,
+      "decls": 55,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "inherit",
+      "sites": 16,
+      "decls": 29,
+      "kind": "global",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "inset 0 0 0 1px #fff",
+      "sites": 15,
+      "decls": 37,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 0 0 1px #0000001a,0 1px 3px #0000001a",
+      "sites": 14,
+      "decls": 14,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 0 3px #3336",
+      "sites": 14,
+      "decls": 14,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 0 0 1px #fff",
+      "sites": 13,
+      "decls": 15,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 0 0 0 transparent",
+      "sites": 13,
+      "decls": 18,
+      "kind": "ok",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "0",
+      "sites": 12,
+      "decls": 14,
+      "kind": "malformed",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "inset 0 1px 1px rgba(0,0,0,.075)",
+      "sites": 12,
+      "decls": 36,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 5px 15px rgba(0,0,0,.5)",
+      "sites": 12,
+      "decls": 12,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 .5rem 1rem rgba(0,0,0,.15)",
+      "sites": 12,
+      "decls": 14,
+      "kind": "ok",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "0 0 1em #fff",
+      "sites": 11,
+      "decls": 17,
+      "kind": "ok",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "0 1px 1px rgba(0,0,0,.05)",
+      "sites": 11,
+      "decls": 11,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 .125rem .25rem rgba(0,0,0,.075)",
+      "sites": 11,
+      "decls": 14,
+      "kind": "ok",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "0 0 3px 1px #3898ec",
+      "sites": 11,
+      "decls": 17,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 1px 0 rgba(0,0,0,.15)",
+      "sites": 10,
+      "decls": 19,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2)",
+      "sites": 10,
+      "decls": 10,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 2px 10px rgba(0,0,0,.2)",
+      "sites": 10,
+      "decls": 11,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "inset 0 3px 5px rgba(0,0,0,.125)",
+      "sites": 10,
+      "decls": 26,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 1rem 3rem rgba(0,0,0,.175)",
+      "sites": 10,
+      "decls": 10,
+      "kind": "ok",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "0px 1px 2px 0px rgba(60,64,67,0.3),0px 1px 3px 1px rgba(60,64,67,0.15)",
+      "sites": 9,
+      "decls": 9,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "inset 0 2px 0 rgba(0,0,0,.15)",
+      "sites": 9,
+      "decls": 9,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 1px 0 rgba(0,0,0,0.15),0 1px 2px rgba(0,0,0,0.2)",
+      "sites": 9,
+      "decls": 18,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 2px 8px #0000001a",
+      "sites": 9,
+      "decls": 14,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 1px 2px 0 rgba(60,64,67,.3),0 1px 3px 1px rgba(60,64,67,.15)",
+      "sites": 9,
+      "decls": 34,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "var(--bs-btn-focus-box-shadow)",
+      "sites": 9,
+      "decls": 45,
+      "kind": "varOnly",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "0 0 0 var(--bs-navbar-toggler-focus-width)",
+      "sites": 9,
+      "decls": 10,
+      "kind": "varPartial",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "0 6px 12px rgba(0,0,0,.175)",
+      "sites": 9,
+      "decls": 12,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "inset 0 1px 2px rgba(0,0,0,.1)",
+      "sites": 9,
+      "decls": 10,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 3px 9px rgba(0,0,0,.5)",
+      "sites": 9,
+      "decls": 9,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 0 0 .2rem rgba(58,176,195,.5)",
+      "sites": 9,
+      "decls": 18,
+      "kind": "ok",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "0 0 0 .2rem rgba(23,162,184,.5)",
+      "sites": 9,
+      "decls": 25,
+      "kind": "ok",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "inset 1px 1px 1px #ccc",
+      "sites": 9,
+      "decls": 9,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 4px 4px #00000040",
+      "sites": 8,
+      "decls": 17,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "var(--shadow-elevated)",
+      "sites": 8,
+      "decls": 8,
+      "kind": "varOnly",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "0 0 4px #0000001a",
+      "sites": 8,
+      "decls": 10,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 1px 2px 0 rgba(60,64,67,.3),0 2px 6px 2px rgba(60,64,67,.15)",
+      "sites": 8,
+      "decls": 26,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "inset 0 1px 1px rgba(0,0,0,0.075)",
+      "sites": 8,
+      "decls": 32,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "var(--bs-box-shadow)",
+      "sites": 8,
+      "decls": 10,
+      "kind": "varOnly",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "var(--bs-box-shadow-sm)",
+      "sites": 8,
+      "decls": 12,
+      "kind": "varOnly",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "var(--bs-box-shadow-lg)",
+      "sites": 8,
+      "decls": 9,
+      "kind": "varOnly",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "inset 0-1px 0 rgba(0,0,0,.25)",
+      "sites": 8,
+      "decls": 8,
+      "kind": "malformed",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "inset 0 1px 1px rgba(0,0,0,.05)",
+      "sites": 8,
+      "decls": 8,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 2px 4px #0003",
+      "sites": 7,
+      "decls": 21,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "var(--tooltip-box-shadow)",
+      "sites": 7,
+      "decls": 8,
+      "kind": "varOnly",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "0 2px 4px #0000001a",
+      "sites": 7,
+      "decls": 10,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 2px 8px #00000026",
+      "sites": 7,
+      "decls": 7,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "var(--tw-ring-offset-shadow, 0 0 #0000),var(--tw-ring-shadow, 0 0 #0000),var(--tw-shadow)",
+      "sites": 7,
+      "decls": 106,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 2px 4px rgba(0,0,0,.2)",
+      "sites": 7,
+      "decls": 21,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 4px 12px rgba(0,0,0,.15)",
+      "sites": 7,
+      "decls": 9,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 0 0 2px #1a73e8",
+      "sites": 7,
+      "decls": 29,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "var(--bs-accordion-btn-focus-box-shadow)",
+      "sites": 7,
+      "decls": 8,
+      "kind": "varOnly",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "var(--bs-btn-close-focus-shadow)",
+      "sites": 7,
+      "decls": 8,
+      "kind": "varOnly",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "var(--bs-toast-box-shadow)",
+      "sites": 7,
+      "decls": 8,
+      "kind": "varOnly",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "inset 0 1px 0 rgba(255,255,255,.1)",
+      "sites": 7,
+      "decls": 8,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "inset 0-1px 0 rgba(0,0,0,.15)",
+      "sites": 7,
+      "decls": 7,
+      "kind": "malformed",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "0 5px 10px rgba(0,0,0,.2)",
+      "sites": 7,
+      "decls": 7,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 0 0 .2rem rgba(40,167,69,.25)",
+      "sites": 7,
+      "decls": 26,
+      "kind": "ok",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "0 0 0 .2rem rgba(222,170,12,.5)",
+      "sites": 7,
+      "decls": 14,
+      "kind": "ok",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "0 0 0 .2rem rgba(82,88,93,.5)",
+      "sites": 7,
+      "decls": 14,
+      "kind": "ok",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "0 0 0 .2rem rgba(255,193,7,.5)",
+      "sites": 7,
+      "decls": 21,
+      "kind": "ok",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "0 0 0 .2rem rgba(248,249,250,.5)",
+      "sites": 7,
+      "decls": 24,
+      "kind": "ok",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "0 0 0 .2rem rgba(52,58,64,.5)",
+      "sites": 7,
+      "decls": 22,
+      "kind": "ok",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "0 .25rem .75rem rgba(0,0,0,.1)",
+      "sites": 7,
+      "decls": 8,
+      "kind": "ok",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow)",
+      "sites": 7,
+      "decls": 14,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 0 3px 1px rgb(94,158,214)",
+      "sites": 7,
+      "decls": 7,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "initial",
+      "sites": 7,
+      "decls": 14,
+      "kind": "global",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6)",
+      "sites": 7,
+      "decls": 8,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "0 2px 6px #00000026",
+      "sites": 6,
+      "decls": 6,
+      "kind": "ok",
+      "px": true,
+      "resolved": true
+    },
+    {
+      "value": "var(--focus-ring-shadow-default)",
+      "sites": 6,
+      "decls": 24,
+      "kind": "varOnly",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "0 10px 21px var(--barcelona-box-shadow-08)",
+      "sites": 6,
+      "decls": 6,
+      "kind": "varPartial",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "0 12px 28px 0 var(--shadow-2),0 2px 4px 0 var(--shadow-1),inset 0 0 0 1px var(--shadow-inset)",
+      "sites": 6,
+      "decls": 12,
+      "kind": "varPartial",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "0 0 0 1px var(--shadow-1)",
+      "sites": 6,
+      "decls": 14,
+      "kind": "varPartial",
+      "px": false,
+      "resolved": false
+    },
+    {
+      "value": "0 2px 12px var(--shadow-2)",
+      "sites": 6,
+      "decls": 6,
+      "kind": "varPartial",
+      "px": false,
+      "resolved": false
+    }
+  ],
+  "exampleTable": [
+    {
+      "domain": "readthedocs.io",
+      "total": 914,
+      "ok": 422,
+      "none": 194,
+      "varOnly": 0,
+      "layers": 462,
+      "px": 462
+    },
+    {
+      "domain": "meta.com",
+      "total": 577,
+      "ok": 152,
+      "none": 5,
+      "varOnly": 414,
+      "layers": 218,
+      "px": 218
+    },
+    {
+      "domain": "tinyurl.com",
+      "total": 511,
+      "ok": 61,
+      "none": 22,
+      "varOnly": 0,
+      "layers": 67,
+      "px": 67
+    },
+    {
+      "domain": "facebook.com",
+      "total": 499,
+      "ok": 90,
+      "none": 6,
+      "varOnly": 395,
+      "layers": 124,
+      "px": 124
+    },
+    {
+      "domain": "fbcdn.net",
+      "total": 499,
+      "ok": 90,
+      "none": 6,
+      "varOnly": 395,
+      "layers": 124,
+      "px": 124
+    },
+    {
+      "domain": "fb.com",
+      "total": 499,
+      "ok": 90,
+      "none": 6,
+      "varOnly": 395,
+      "layers": 124,
+      "px": 124
+    },
+    {
+      "domain": "kaspersky.com",
+      "total": 447,
+      "ok": 364,
+      "none": 72,
+      "varOnly": 0,
+      "layers": 395,
+      "px": 395
+    },
+    {
+      "domain": "pccc.com",
+      "total": 417,
+      "ok": 237,
+      "none": 85,
+      "varOnly": 1,
+      "layers": 242,
+      "px": 242
+    },
+    {
+      "domain": "who.int",
+      "total": 381,
+      "ok": 219,
+      "none": 142,
+      "varOnly": 0,
+      "layers": 365,
+      "px": 365
+    },
+    {
+      "domain": "instagram.com",
+      "total": 372,
+      "ok": 191,
+      "none": 8,
+      "varOnly": 163,
+      "layers": 263,
+      "px": 263
+    },
+    {
+      "domain": "github.com",
+      "total": 351,
+      "ok": 56,
+      "none": 103,
+      "varOnly": 163,
+      "layers": 84,
+      "px": 84
+    },
+    {
+      "domain": "discord.com",
+      "total": 334,
+      "ok": 230,
+      "none": 79,
+      "varOnly": 0,
+      "layers": 288,
+      "px": 288
+    },
+    {
+      "domain": "discordapp.com",
+      "total": 334,
+      "ok": 230,
+      "none": 79,
+      "varOnly": 0,
+      "layers": 288,
+      "px": 288
+    },
+    {
+      "domain": "walmart.com",
+      "total": 325,
+      "ok": 74,
+      "none": 48,
+      "varOnly": 2,
+      "layers": 82,
+      "px": 82
+    },
+    {
+      "domain": "discord.gg",
+      "total": 316,
+      "ok": 220,
+      "none": 71,
+      "varOnly": 0,
+      "layers": 278,
+      "px": 278
+    },
+    {
+      "domain": "hostinger.com",
+      "total": 316,
+      "ok": 36,
+      "none": 52,
+      "varOnly": 223,
+      "layers": 36,
+      "px": 36
+    },
+    {
+      "domain": "www.gov.br",
+      "total": 295,
+      "ok": 169,
+      "none": 83,
+      "varOnly": 15,
+      "layers": 174,
+      "px": 174
+    },
+    {
+      "domain": "itch.io",
+      "total": 294,
+      "ok": 154,
+      "none": 113,
+      "varOnly": 6,
+      "layers": 169,
+      "px": 169
+    },
+    {
+      "domain": "threads.com",
+      "total": 274,
+      "ok": 145,
+      "none": 8,
+      "varOnly": 113,
+      "layers": 211,
+      "px": 211
+    },
+    {
+      "domain": "yahoo.com",
+      "total": 260,
+      "ok": 92,
+      "none": 1,
+      "varOnly": 129,
+      "layers": 266,
+      "px": 266
+    },
+    {
+      "domain": "seznam.cz",
+      "total": 258,
+      "ok": 90,
+      "none": 12,
+      "varOnly": 147,
+      "layers": 129,
+      "px": 129
+    },
+    {
+      "domain": "globalsign.com",
+      "total": 237,
+      "ok": 135,
+      "none": 28,
+      "varOnly": 0,
+      "layers": 149,
+      "px": 149
+    },
+    {
+      "domain": "amazonalexa.com",
+      "total": 236,
+      "ok": 101,
+      "none": 107,
+      "varOnly": 0,
+      "layers": 126,
+      "px": 126
+    },
+    {
+      "domain": "xbox.com",
+      "total": 234,
+      "ok": 100,
+      "none": 50,
+      "varOnly": 37,
+      "layers": 108,
+      "px": 108
+    },
+    {
+      "domain": "capgemini.com",
+      "total": 215,
+      "ok": 96,
+      "none": 82,
+      "varOnly": 22,
+      "layers": 99,
+      "px": 99
+    },
+    {
+      "domain": "cdnvideo.ru",
+      "total": 210,
+      "ok": 127,
+      "none": 78,
+      "varOnly": 0,
+      "layers": 138,
+      "px": 138
+    },
+    {
+      "domain": "slack.com",
+      "total": 204,
+      "ok": 105,
+      "none": 43,
+      "varOnly": 0,
+      "layers": 106,
+      "px": 106
+    },
+    {
+      "domain": "youtube.com",
+      "total": 193,
+      "ok": 157,
+      "none": 30,
+      "varOnly": 1,
+      "layers": 264,
+      "px": 264
+    },
+    {
+      "domain": "youtu.be",
+      "total": 193,
+      "ok": 157,
+      "none": 30,
+      "varOnly": 1,
+      "layers": 264,
+      "px": 264
+    },
+    {
+      "domain": "odoo.com",
+      "total": 191,
+      "ok": 54,
+      "none": 37,
+      "varOnly": 21,
+      "layers": 267,
+      "px": 267
+    },
+    {
+      "domain": "crashlytics.com",
+      "total": 189,
+      "ok": 108,
+      "none": 54,
+      "varOnly": 0,
+      "layers": 202,
+      "px": 202
+    },
+    {
+      "domain": "datadoghq.com",
+      "total": 186,
+      "ok": 122,
+      "none": 28,
+      "varOnly": 13,
+      "layers": 262,
+      "px": 262
+    },
+    {
+      "domain": "tbank.ru",
+      "total": 184,
+      "ok": 126,
+      "none": 19,
+      "varOnly": 8,
+      "layers": 166,
+      "px": 166
+    },
+    {
+      "domain": "lg.com",
+      "total": 182,
+      "ok": 13,
+      "none": 51,
+      "varOnly": 5,
+      "layers": 13,
+      "px": 13
+    },
+    {
+      "domain": "surveymonkey.com",
+      "total": 179,
+      "ok": 23,
+      "none": 25,
+      "varOnly": 130,
+      "layers": 27,
+      "px": 27
+    },
+    {
+      "domain": "appsflyer.com",
+      "total": 178,
+      "ok": 74,
+      "none": 42,
+      "varOnly": 5,
+      "layers": 84,
+      "px": 84
+    },
+    {
+      "domain": "onelink.me",
+      "total": 177,
+      "ok": 75,
+      "none": 42,
+      "varOnly": 5,
+      "layers": 85,
+      "px": 85
+    },
+    {
+      "domain": "chaturbate.com",
+      "total": 177,
+      "ok": 146,
+      "none": 8,
+      "varOnly": 20,
+      "layers": 148,
+      "px": 148
+    },
+    {
+      "domain": "mediafire.com",
+      "total": 170,
+      "ok": 108,
+      "none": 26,
+      "varOnly": 5,
+      "layers": 171,
+      "px": 171
+    },
+    {
+      "domain": "linkedin.com",
+      "total": 166,
+      "ok": 155,
+      "none": 5,
+      "varOnly": 3,
+      "layers": 226,
+      "px": 226
+    }
+  ]
+}

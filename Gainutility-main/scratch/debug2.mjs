@@ -1,0 +1,10 @@
+import fs from "node:fs";
+const src = fs.readFileSync(process.argv[2], "utf8");
+const start = src.indexOf("<input");
+const end = src.indexOf("/>", start);
+const endGt = src.indexOf(">", start);
+console.log({ end, endGt, same: end === endGt - 1 });
+const stop = end >= 0 && (endGt < 0 || end < endGt) ? end : endGt;
+const attr = src.slice(start, stop + 2);
+console.log(JSON.stringify(attr.slice(-120)));
+console.log("id match:", (attr.match(/\bid=\{?"([^"}]+)/) || [])[1]);

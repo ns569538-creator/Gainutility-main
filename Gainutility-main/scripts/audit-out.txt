@@ -1,0 +1,3 @@
+﻿Audited 523 generated HTML files.
+Expected routes: 523; sitemap URLs: 512
+AUDIT PASS: no issues found.

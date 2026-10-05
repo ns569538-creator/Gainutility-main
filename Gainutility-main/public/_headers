@@ -1,0 +1,17 @@
+# Cloudflare Workers Assets custom headers
+#
+# Hashed build assets (Vite emits content-fingerprinted filenames like
+# index-XXXXXX.js / index-XXXXXX.css) are immutable: the filename changes on
+# every deploy, so browsers/edge can cache them indefinitely and the current
+# HTML always references the matching, already-cached file. This removes any
+# revalidation of hashed assets and any window where an old HTML could pair
+# with a missing/mismatched JS or CSS (mixed-version delivery).
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Prerendered HTML documents ("/", "/tools/...", localized routes, ...) keep
+# Cloudflare's safe default: `public, max-age=0, must-revalidate`. Because the
+# value includes `must-revalidate`, the browser is required to revalidate the
+# HTML (via ETag) on every page load before it may use a cached copy. This
+# guarantees the fresh-open shell is always the CURRENT prerendered homepage,
+# never an old cached shell served after a deployment.

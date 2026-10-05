@@ -1,0 +1,287 @@
+[
+  {
+    "id": "json-format-debug-guide",
+    "slug": "format-and-debug-json-when-api-responses-are-unreadable",
+    "title": "How to Read and Fix Unreadable JSON From an API",
+    "description": "Minified API responses are one long line until you adopt the three-habit routine: format first, validate second, diff after a change.",
+    "category": "Developer",
+    "author": "GainUtility",
+    "date": "2026-05-18",
+    "readingTime": "4 min read",
+    "tags": [
+      "json",
+      "developer",
+      "debugging"
+    ],
+    "quickAnswer": "Format the response first, validate it if anything fails to parse, and diff against a known-good copy after a change. Format → validate → diff, in that order, is the whole habit.",
+    "content": [
+      {
+        "paragraphs": [
+          "Open a raw API response and you'll often see one long line of JSON with no spaces. It's technically correct and completely unreadable — and the fix is a habit, not a skill."
+        ]
+      },
+      {
+        "heading": "Why it looks like that",
+        "paragraphs": [
+          "APIs usually return minified JSON to save bandwidth. Whitespace and line breaks are stripped because they add bytes. Great for the server, terrible for the person trying to read it."
+        ]
+      },
+      {
+        "heading": "Format first",
+        "paragraphs": [
+          "Before you try to parse a response in your head, format it. A formatter rebuilds the indentation and line breaks, turning one dense line into a structure you can scan. One line becomes a small tree:"
+        ],
+        "tool": {
+          "label": "The JSON Beautifier makes a minified response readable in one step.",
+          "toolId": "json-beautifier"
+        }
+      },
+      {
+        "heading": "Validate before you trust",
+        "paragraphs": [
+          "If something isn't parsing, check whether the JSON is even valid before hunting for logic bugs. A trailing comma or an unescaped quote breaks an entire object — faster to confirm that than to debug a phantom."
+        ],
+        "tool": {
+          "label": "The JSON Validator points at the exact problem in an invalid payload.",
+          "toolId": "json-validator"
+        }
+      },
+      {
+        "heading": "Diff after you change things",
+        "paragraphs": [
+          "When you're checking whether a fix worked, a side-by-side diff beats eyeballing two long strings. See exactly which keys moved — and which you didn't mean to touch."
+        ],
+        "tool": {
+          "label": "The JSON Diff tool highlights exactly what changed between two responses.",
+          "toolId": "json-compare-diff"
+        }
+      }
+    ],
+    "toolCta": {
+      "label": "Got a minified or broken JSON response? Start with the Beautifier.",
+      "toolId": "json-beautifier"
+    },
+    "relatedArticles": [
+      "how-to-make-a-qr-code",
+      "clean-up-css-gradients-and-borders-in-design-work",
+      "write-seo-title-and-meta-description-in-twenty-minutes"
+    ],
+    "keyTakeaway": "Format → validate → diff: three small habits turn any unreadable JSON response into something you can actually reason about.",
+    "seoTitle": "How to Read and Fix Unreadable JSON From an API | GainUtility",
+    "seoDescription": "Minified or broken API responses, fixed with three habits: format the JSON, validate it, and diff it after a change. Free browser tools."
+  },
+  {
+    "id": "qr-code-guide",
+    "slug": "how-to-make-a-qr-code",
+    "title": "How to Make a QR Code That Actually Scans",
+    "description": "The URL and the error-correction level decide whether a QR code scans the first time. Get those right and the rest is easy.",
+    "category": "Developer",
+    "author": "GainUtility",
+    "date": "2026-09-13",
+    "readingTime": "5 min read",
+    "tags": [
+      "qr code",
+      "developer",
+      "tools"
+    ],
+    "quickAnswer": "Decide what the code should contain, keep a URL short and final, choose a higher error-correction level, then generate, download, and scan it once with your own phone before printing.",
+    "content": [
+      {
+        "paragraphs": [
+          "A QR code fails in two ways: nobody scans it because it's buried or too small, or somebody scans it and it points somewhere wrong. The second one is the expensive failure — it's on you, not the scanner."
+        ]
+      },
+      {
+        "heading": "Decide what the code contains",
+        "paragraphs": [
+          "Most codes hold a URL, which is the right default. Text or contact info have their uses, but a short URL gives you full control later — point it at a page that resolves, and the code can outlive the campaign.",
+          "Make the URL the final destination and keep it short. Long URLs inflate the code's density, and dense codes are harder to scan from a poster or a bumper."
+        ]
+      },
+      {
+        "heading": "Error correction is a real setting",
+        "paragraphs": [
+          "QR codes carry a redundancy level — low, medium, high. Higher redundancy means the code still scans when part of it is printed poorly, creased, or covered by a logo. For anything printed, choose a higher level: a few extra modules of pattern are a fair trade for a code that always works."
+        ],
+        "tool": {
+          "label": "The QR Code Generator sets the level, size, and format for you.",
+          "toolId": "qr-code-generator"
+        }
+      },
+      {
+        "heading": "The step most people skip: test it",
+        "paragraphs": [
+          "Generate, download, then scan the file with your own phone before you print or ship it. That one scan catches the dead URL, the wrong URL, and the code that's too small to read from the distance people will actually be at."
+        ]
+      },
+      {
+        "heading": "Step by step",
+        "paragraphs": [
+          "The whole job, in order:"
+        ],
+        "steps": [
+          "Make the link you'll encode final — after it's live, not before.",
+          "Open the GainUtility QR code generator and paste the URL.",
+          "Choose a higher error-correction level for anything that will be printed.",
+          "Pick a size that fits the usage — poster codes want more modules, not just more pixels.",
+          "Download the high-resolution image.",
+          "Scan it once with a phone before printing. That's the whole test."
+        ]
+      }
+    ],
+    "toolCta": {
+      "label": "Generate a QR code that scans the first time.",
+      "toolId": "qr-code-generator"
+    },
+    "relatedArticles": [
+      "write-seo-title-and-meta-description-in-twenty-minutes",
+      "format-and-debug-json-when-api-responses-are-unreadable",
+      "clean-up-css-gradients-and-borders-in-design-work"
+    ],
+    "keyTakeaway": "Short, final URLs and a higher error-correction level beat clever designs — and a self-test scan beats all of it.",
+    "seoTitle": "How to Make a QR Code That Actually Scans | GainUtility",
+    "seoDescription": "Make a QR code in your browser that scans the first time. Keep the URL short and final, raise error correction, and test before printing."
+  },
+  {
+    "id": "cleanup-css-gradients-design-work",
+    "slug": "clean-up-css-gradients-and-borders-in-design-work",
+    "title": "How to Tune CSS Gradients, Shadows, and Contrast Without Guessing",
+    "description": "The last ten percent of a UI is gradients, shadows, and contrast — the fiddly details that eat time until you preview them instead of guessing.",
+    "category": "Developer",
+    "author": "GainUtility",
+    "date": "2026-05-04",
+    "readingTime": "4 min read",
+    "tags": [
+      "css",
+      "design",
+      "gradients",
+      "contrast"
+    ],
+    "quickAnswer": "Adjust gradients, shadows, and radii in a live preview tool and copy the finished CSS. Check foreground/background contrast against WCAG before shipping — one number beats eyeballing a colour.",
+    "content": [
+      {
+        "paragraphs": [
+          "The last ten percent of a UI is often the fiddliest. Getting a gradient to feel right, a shadow to sit naturally, or a border radius to look intentional takes almost as long as the whole design before it. The pattern that ends the guessing is simple: preview, don't type."
+        ]
+      },
+      {
+        "heading": "Gradients are forgiving until they aren't",
+        "paragraphs": [
+          "A simple two-colour gradient is easy by hand. Add more stops, change the angle, or match a brand colour and the CSS gets harder to reason about. A visual preview shows the result while you adjust the stops."
+        ],
+        "tool": {
+          "label": "The Gradient Generator lets you tune stops and angles and copy the CSS.",
+          "toolId": "gradient-generator"
+        }
+      },
+      {
+        "heading": "Shadows rarely work first try",
+        "paragraphs": [
+          "A natural shadow needs the right offset, blur, spread, and a colour that isn't pure black. Nudging numbers in code to find that combination is slow — a live preview halves it."
+        ],
+        "tool": {
+          "label": "The Box Shadow Generator previews layers as you adjust them.",
+          "toolId": "box-shadow-generator"
+        }
+      },
+      {
+        "heading": "Contrast is a number, not a feeling",
+        "paragraphs": [
+          "A colour that looks fine can still fail WCAG contrast, which matters if anyone with a visual impairment reads that text. It's cheaper to check the pair early than to redo a button style late."
+        ],
+        "tool": {
+          "label": "The Contrast Checker tests a foreground and background pair against WCAG.",
+          "toolId": "contrast-checker"
+        }
+      },
+      {
+        "heading": "Copy-paste beats retyping",
+        "paragraphs": [
+          "The point of these tools is that you adjust visually and copy finished CSS instead of re-typing it from memory. That's the entire advantage — the fiddly part becomes a preview and a paste."
+        ]
+      }
+    ],
+    "toolCta": {
+      "label": "Tuning a gradient by hand? Preview it instead.",
+      "toolId": "gradient-generator"
+    },
+    "relatedArticles": [
+      "write-seo-title-and-meta-description-in-twenty-minutes",
+      "format-and-debug-json-when-api-responses-are-unreadable",
+      "how-to-make-a-qr-code"
+    ],
+    "keyTakeaway": "Preview instead of guessing: gradients, shadows, and contrast all stop eating time the moment you see the result live.",
+    "seoTitle": "How to Tune CSS Gradients, Shadows, and Contrast | GainUtility",
+    "seoDescription": "Tune CSS gradients, shadows, radii, and contrast with live preview tools and copy the finished CSS — no more guessing the numbers."
+  },
+  {
+    "id": "seo-meta-tags-in-twenty-minutes",
+    "slug": "write-seo-title-and-meta-description-in-twenty-minutes",
+    "title": "How to Write a Page Title and Meta Description",
+    "description": "The title and meta description are the ad your page shows in search results. Write them like real sentences people read.",
+    "category": "SEO",
+    "author": "GainUtility",
+    "date": "2026-04-22",
+    "readingTime": "5 min read",
+    "tags": [
+      "seo",
+      "meta",
+      "snippet",
+      "search results"
+    ],
+    "quickAnswer": "Answer what the page does in one sentence. Make that the title, keep it under the display length, put the important words early, and render the pair in a search preview before you finish.",
+    "content": [
+      {
+        "paragraphs": [
+          "A page's title and meta description are what a search engine shows — and what a person actually reads before deciding to click. They don't require an SEO course. They require an honest answer to one question."
+        ]
+      },
+      {
+        "heading": "Start with what the page is for",
+        "paragraphs": [
+          "Before writing anything, answer in a sentence: what does this page let someone do? Your title and description should reflect that answer, not a stacked list of keywords."
+        ]
+      },
+      {
+        "heading": "Write the title for reading, not ranking",
+        "paragraphs": [
+          "A title should read like a clear headline. Keep it close to the length search engines display, put the most important words early, and accept that cramming more in makes it cut off or confusing."
+        ]
+      },
+      {
+        "heading": "Describe, don't hype",
+        "paragraphs": [
+          "The description tells what the page offers, in a sentence someone would want to read. It's the thing that shows in search results, so make it useful rather than promotional."
+        ]
+      },
+      {
+        "heading": "Check the preview before you finish",
+        "paragraphs": [
+          "The surest way to know if a title or description gets cut off is to render it. A search-results preview catches the truncation, the duplicate, and the bland phrasing in one look."
+        ],
+        "tool": {
+          "label": "The SEO Meta Generator builds the title and description tags and previews the snippet.",
+          "toolId": "seo-meta-generator"
+        }
+      },
+      {
+        "heading": "Repeat the routine",
+        "paragraphs": [
+          "Twenty minutes per page, done as a routine when you publish, is more effective than an occasional all-day cleanup. Consistency beats intensity when the goal is pages that stay honest and useful."
+        ]
+      }
+    ],
+    "toolCta": {
+      "label": "See how your title and description will render in search results.",
+      "toolId": "seo-meta-generator"
+    },
+    "relatedArticles": [
+      "how-to-make-a-qr-code",
+      "format-and-debug-json-when-api-responses-are-unreadable",
+      "clean-up-css-gradients-and-borders-in-design-work"
+    ],
+    "keyTakeaway": "Purpose → readable title → honest description → render preview: a short routine that keeps search snippets useful.",
+    "seoTitle": "How to Write a Page Title and Meta Description | GainUtility",
+    "seoDescription": "Write a page title and meta description that read well in search results — a short, repeatable routine with a snippet preview."
+  }
+]
