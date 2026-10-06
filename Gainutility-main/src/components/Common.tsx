@@ -20,7 +20,8 @@ import {
 import { useLocale } from "../i18n/LocaleContext";
 import { t, tf } from "../i18n/ui";
 import { preparePushNavigation } from "../lib/navigationHistory";
-import { pathToView } from "../router";
+import { pathToView, publicPathForView } from "../router";
+import type { ViewState } from "../types";
 
 /// --- BUTTON SYSTEM ---
 interface ButtonProps
@@ -629,6 +630,12 @@ interface CrumbItem {
   onClick?: () => void;
   /** Root-relative SPA path (e.g. "/tools/merge-pdf"). Rendered as a real link. */
   href?: string;
+  /**
+   * Router view for this crumb. Preferred over a hand-written `href`: the URL
+   * is resolved through `publicPathForView`, so the crumb link is localized
+   * only when that view really exists in the reader's language.
+   */
+  view?: ViewState;
 }
 
 /** Navigate an SPA path using the History API and notify the router. */
@@ -666,6 +673,52 @@ export const Breadcrumbs: React.FC<{ paths?: CrumbItem[]; items?: CrumbItem[] }>
 
   if (list.length === 0) return null;
 
+  const crumbClass =
+    "hover:text-brand-primary hover:underline transition-colors cursor-pointer text-left focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded px-0.5";
+
+  /**
+   * One crumb, one markup rule: if it has an `href` it is ALWAYS a real
+   * <a href>, with any caller `onClick` layered on top of it. Only crumbs with
+   * no URL fall back to a <button>, and only the active page is a <span>.
+   * This is what keeps breadcrumbs crawlable sitewide.
+   */
+  const renderCrumb = (p: CrumbItem, isLast: boolean) => {
+    const text = p.name || p.label || "";
+    const href =
+      p.href ??
+      (p.view && p.view.type !== "notFound" ? publicPathForView(p.view, locale) : undefined);
+    if (!isLast && href) {
+      return (
+        <a
+          href={href}
+          onClick={(e) => {
+            e.preventDefault();
+            if (typeof p.onClick === "function") p.onClick();
+            else navigateHref(href);
+          }}
+          className={crumbClass}
+        >
+          {text}
+        </a>
+      );
+    }
+    if (!isLast && typeof p.onClick === "function") {
+      return (
+        <button onClick={p.onClick} className={crumbClass}>
+          {text}
+        </button>
+      );
+    }
+    return (
+      <span
+        className={`${isLast ? "text-brand-primary font-bold select-all" : "text-text-muted"} cursor-default`}
+        {...(isLast ? { "aria-current": "page" } : {})}
+      >
+        {text}
+      </span>
+    );
+  };
+
   // Determine items to render based on mobile collapse state
   const shouldCollapse = isMobile && list.length > 3 && !isExpanded;
 
@@ -684,26 +737,7 @@ export const Breadcrumbs: React.FC<{ paths?: CrumbItem[]; items?: CrumbItem[] }>
             {/* First Item (Home) */}
             <li className="flex items-center space-x-1.5 md:space-x-2">
               <span className="text-text-disabled select-none" aria-hidden="true">/</span>
-              {list[0].onClick ? (
-                <button
-                  onClick={list[0].onClick}
-                  className="hover:text-brand-primary hover:underline transition-colors cursor-pointer text-left focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded px-0.5"
-                >
-                  {list[0].name || list[0].label}
-                </button>
-              ) : list[0].href ? (
-                <a
-                  href={list[0].href}
-                  onClick={(e) => { e.preventDefault(); navigateHref(list[0].href!); }}
-                  className="hover:text-brand-primary hover:underline transition-colors cursor-pointer text-left focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded px-0.5"
-                >
-                  {list[0].name || list[0].label}
-                </a>
-              ) : (
-                <span className="text-text-muted cursor-default">
-                  {list[0].name || list[0].label}
-                </span>
-              )}
+              {renderCrumb(list[0], false)}
             </li>
 
             {/* Ellipsis Button */}
@@ -732,40 +766,11 @@ export const Breadcrumbs: React.FC<{ paths?: CrumbItem[]; items?: CrumbItem[] }>
           </>
         ) : (
           list.map((p, idx) => {
-            const text = p.name || p.label || "";
             const isLast = idx === list.length - 1;
-            const isClickable = !isLast && (typeof p.onClick === "function" || !!p.href);
-
             return (
               <li key={idx} className="flex items-center space-x-1.5 md:space-x-2">
                 <span className="text-text-disabled select-none" aria-hidden="true">/</span>
-                {isClickable && p.href && typeof p.onClick !== "function" ? (
-                  <a
-                    href={p.href}
-                    onClick={(e) => { e.preventDefault(); navigateHref(p.href!); }}
-                    className="hover:text-brand-primary hover:underline transition-colors cursor-pointer text-left focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded px-0.5"
-                  >
-                    {text}
-                  </a>
-                ) : isClickable ? (
-                  <button 
-                    onClick={p.onClick} 
-                    className="hover:text-brand-primary hover:underline transition-colors cursor-pointer text-left focus:outline-none focus-visible:ring-1 focus-visible:ring-brand-primary rounded px-0.5"
-                  >
-                    {text}
-                  </button>
-                ) : (
-                  <span 
-                    className={`${
-                      isLast 
-                        ? "text-brand-primary font-bold select-all" 
-                        : "text-text-muted"
-                    } cursor-default`}
-                    {...(isLast ? { "aria-current": "page" } : {})}
-                  >
-                    {text}
-                  </span>
-                )}
+                {renderCrumb(p, isLast)}
               </li>
             );
           })

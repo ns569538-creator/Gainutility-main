@@ -54,6 +54,7 @@ import { pageText, isLocalizedView } from "../src/i18n/pages";
 import { t } from "../src/i18n/ui";
 import { localizedToolName, localizedStudioName, LocaleCode } from "../src/i18n/slugs";
 import { viewToPath, publicPathForView, pathToView } from "../src/router";
+import { EXCLUDED_TOOL_IDS } from "./sitemap-excludes.mjs";
 import { renderToString } from "react-dom/server";
 import * as React from "react";
 import App from "../src/App";
@@ -1544,14 +1545,24 @@ export const generatePages = (
   const routes: string[] = [
     "/",
     ...Object.keys(STATIC_PATHS).filter((p) => p !== "/"),
-    ...Object.keys(toolsRegistry).map((id) => `/tools/${id}`),
+    // Consolidated / retired aliases (json-formatter -> json-beautifier,
+    // webp/png-jpg/heic/svg-converter -> image-converter, ...) must NOT ship an
+    // indexable document: the host 301s them (public/_redirects + vercel.json).
+    // Emitting HTML for them would leave two conflicting signals for one URL.
+    ...Object.keys(toolsRegistry)
+      .filter((id) => !EXCLUDED_TOOL_IDS.has(id))
+      .map((id) => `/tools/${id}`),
     ...TRANSLATOR_PAIR_SLUGS.map((slug) => `/tools/pdf-translator/${slug}`),
     ...SEO_PAGES.map((p) => p.path),
     ...COMPARISON_PAGES.map((p) => p.path),
     ...CATEGORY_BEST_PAGES.map((p) => p.path),
     // Library hubs (/names, /symbols) come from STATIC_PATHS; add children only
     ...ALL_LIBRARY_PATHS.filter((p) => !(p in STATIC_PATHS)),
-    // Color Studio: workspace sections + deep links
+    // Color Studio: the studio home route (linked from every /colors/* page)
+    // plus each workspace section + deep links. Without a real document the
+    // home route had to be rewritten to the SPA shell, which served the
+    // homepage's canonical on a URL that is not the homepage.
+    "/studios/color",
     ...["generator", "picker", "explore", "scales", "colors", "ui-colors", "visualizer", "contrast", "image", "gradients"].map(
       (s) => `/studios/color/${s}`
     ),

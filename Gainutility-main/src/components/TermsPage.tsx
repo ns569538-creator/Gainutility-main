@@ -33,7 +33,7 @@ export const TermsPage: React.FC<TermsPageProps> = ({ onChangeView }) => {
       {/* Breadcrumbs */}
       <div className="flex items-center justify-between flex-wrap gap-3 text-sm text-text-muted font-medium">
         <Breadcrumbs paths={[
-          { name: t("crumbsHome", locale), active: false, onClick: () => onChangeView({ type: "home" }) },
+          { name: t("crumbsHome", locale), active: false, view: { type: "home" }, onClick: () => onChangeView({ type: "home" }) },
           { name: pageText("terms.crumbTitle", locale), active: true }
         ]} />
         <div className="flex items-center gap-1.5 text-xs font-mono text-text-disabled uppercase">

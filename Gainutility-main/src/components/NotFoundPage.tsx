@@ -10,6 +10,7 @@ import { Compass, Search, ArrowRight } from "lucide-react";
 import { useLocale } from "../i18n/LocaleContext";
 import { pageText } from "../i18n/pages";
 import { getLocalizedSeo } from "../i18n/seo";
+import { internalLinkProps } from "./RelatedToolsSection";
 
 interface NotFoundPageProps {
   onChangeView: (view: ViewState) => void;
@@ -67,10 +68,10 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onChangeView }) => {
             const locSeo = locale === "en" ? null : getLocalizedSeo(entry.id, locale, entry.name);
             const toolName = locSeo?.h1 || entry.name;
             return (
-              <button
+              <a
                 key={entry.id}
-                onClick={() => onChangeView({ type: "tool", id: entry.id })}
-                className="flex items-center justify-between gap-3 p-3.5 rounded-xl border border-border-light bg-surface-base hover:border-brand-primary/40 hover:bg-brand-primary-light/10 text-left transition-colors cursor-pointer group"
+                {...internalLinkProps({ type: "tool", id: entry.id }, locale, onChangeView)}
+                className="flex items-center justify-between gap-3 p-3.5 rounded-xl border border-border-light bg-surface-base hover:border-brand-primary/40 hover:bg-brand-primary-light/10 text-left transition-colors cursor-pointer group no-underline"
               >
                 <span className="min-w-0">
                   <span className="block text-sm font-sans font-semibold text-text-main truncate group-hover:text-brand-primary transition-colors">
@@ -79,18 +80,18 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onChangeView }) => {
                   <span className="block text-[11px] text-text-muted truncate">{entry.category}</span>
                 </span>
                 <ArrowRight className="w-4 h-4 text-text-muted group-hover:text-brand-primary shrink-0 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-              </button>
+              </a>
             );
           })}
         </div>
       </div>
 
-      <button
-        onClick={() => onChangeView({ type: "home" })}
-        className="h-11 px-6 rounded-xl bg-brand-primary hover:bg-brand-primary-hover text-[#FAF8F1] font-sans font-bold text-sm transition-colors cursor-pointer whitespace-nowrap"
+      <a
+        {...internalLinkProps({ type: "home" }, locale, onChangeView)}
+        className="h-11 px-6 rounded-xl bg-brand-primary hover:bg-brand-primary-hover text-[#FAF8F1] font-sans font-bold text-sm transition-colors cursor-pointer whitespace-nowrap no-underline inline-flex items-center"
       >
         {pageText("notFound.returnHome", locale) || "Return to Homepage"}
-      </button>
+      </a>
     </section>
   );
 };

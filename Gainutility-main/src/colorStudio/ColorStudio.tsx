@@ -129,8 +129,8 @@ export const ColorStudioWorkspace: React.FC<ColorStudioWorkspaceProps> = ({
       <div className="flex items-center justify-between flex-wrap gap-2.5 text-xs sm:text-sm text-text-muted font-medium">
         <Breadcrumbs
           paths={[
-            { name: "Home", active: false, onClick: () => onChangeView({ type: "home" }) },
-            { name: "Color Studio", active: section === "home", onClick: () => navTo("home") },
+            { name: "Home", active: false, view: { type: "home" }, onClick: () => onChangeView({ type: "home" }) },
+            { name: "Color Studio", active: section === "home", view: { type: "color-studio", section: "home" }, onClick: () => navTo("home") },
             ...(section !== "home"
               ? [{ name: SECTION_TITLES[section], active: true as const, onClick: undefined as undefined }]
               : []),

@@ -28,6 +28,7 @@ import { motion } from "motion/react";
 import { useLocale } from "../i18n/LocaleContext";
 import "../i18n/tools/youtubeKeywordExplorer";
 import { tt, ttf } from "../i18n/toolUi";
+import { internalLinkProps } from "./RelatedToolsSection";
 
 const TOOL_ID = "youtube-keyword-explorer";
 const HISTORY_KEY = "gainutility_keyword_history";
@@ -935,13 +936,17 @@ export const YoutubeKeywordExplorer: React.FC<YoutubeKeywordExplorerProps> = ({ 
                         ))}
                       </div>
                       {onChangeView && (
-                        <button
-                          onClick={() => onChangeView({ type: "tool", id: "youtube-title-analyzer" })}
+                        <a
+                          {...internalLinkProps(
+                            { type: "tool", id: "youtube-title-analyzer" },
+                            locale,
+                            onChangeView
+                          )}
                           className="text-xs font-bold text-brand-primary hover:underline cursor-pointer flex items-center gap-1"
                         >
                           <ArrowRight className="w-3.5 h-3.5" />
                           {tt(TOOL_ID, "titleIdeasUseInAnalyzer", locale)}
-                        </button>
+                        </a>
                       )}
                     </div>
                   );

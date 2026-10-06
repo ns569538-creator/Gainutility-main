@@ -5,7 +5,8 @@
 
 import React from "react";
 import type { ToolId, ViewState } from "../types";
-import { toolCanonicalUrl } from "../site";
+import { absoluteUrl } from "../site";
+import { publicPathForView } from "../router";
 import { toolsRegistry } from "../toolsRegistry";
 import { ToolVisual, isStatusBadge, normalizeBadge, getToolTrust } from "../studioIcons";
 import { ChevronRight } from "lucide-react";
@@ -103,7 +104,7 @@ export const ToolCard: React.FC<ToolCardProps> = ({ toolId, onChangeView, coming
     <a
       id={`tool-card-${toolId}`}
       data-tool-id={toolId}
-      href={toolCanonicalUrl(toolId)}
+      href={absoluteUrl(publicPathForView({ type: "tool", id: toolId }, locale))}
       onClick={(e) => {
         e.preventDefault();
         onChangeView({ type: "tool", id: toolId }, { clickedElementId: `tool-card-${toolId}` });

@@ -4,6 +4,9 @@ import { ChevronRight, CheckCircle, HelpCircle, ArrowRight, ExternalLink } from 
 import { ToolId, ViewState } from "../types";
 import { ComparisonPageEntry } from "../seo/comparisonPages";
 import { absoluteUrl } from "../site";
+import { publicPathForView, pathToView } from "../router";
+import { useLocale } from "../i18n/LocaleContext";
+import { RelatedToolCard, internalLinkProps } from "./RelatedToolsSection";
 import { buildSelfBreadcrumbJsonLd, buildFAQJsonLd } from "../seo/shared";
 
 interface ComparisonPageProps {
@@ -21,6 +24,7 @@ const ToolLoader = () => (
 );
 
 export const ComparisonPage: React.FC<ComparisonPageProps> = ({ entry, toolAComponent, toolBComponent, onChangeView }) => {
+  const locale = useLocale();
   useEffect(() => {
     document.title = entry.title;
     document.querySelector('meta[name="description"]')?.setAttribute("content", entry.description);
@@ -54,12 +58,18 @@ export const ComparisonPage: React.FC<ComparisonPageProps> = ({ entry, toolAComp
           <React.Fragment key={crumb.url}>
             {i > 0 && <ChevronRight className="w-3.5 h-3.5 text-text-disabled shrink-0" />}
             {i < entry.breadcrumbs.length - 1 ? (
-              <button
-                onClick={() => onChangeView({ type: "home" })}
+              <a
+                {...internalLinkProps(
+                  pathToView(crumb.url).view.type === "notFound"
+                    ? { type: "home" }
+                    : pathToView(crumb.url).view,
+                  locale,
+                  onChangeView
+                )}
                 className="hover:text-brand-primary transition-colors cursor-pointer"
               >
                 {crumb.name}
-              </button>
+              </a>
             ) : (
               <span className="text-text-main font-medium">{crumb.name}</span>
             )}
@@ -209,46 +219,41 @@ export const ComparisonPage: React.FC<ComparisonPageProps> = ({ entry, toolAComp
         </section>
       )}
 
-      {/* Related Tool Links */}
+      {/* Related Tool Links — crawlable <a> cards (RelatedToolsSection) */}
       <section className="mb-10">
         <h2 className="font-sans font-bold text-xl text-text-main mb-4">Try Each Tool</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <button
-            onClick={() => onChangeView({ type: "tool", id: entry.toolA.id })}
-            className="group p-4 bg-surface-muted/30 rounded-xl hover:bg-brand-primary-light/5 transition-all text-left cursor-pointer"
-          >
-            <div className="flex items-center gap-2 mb-1">
-              <span className="font-sans font-semibold text-sm text-text-main group-hover:text-brand-primary transition-colors">
-                {entry.toolA.name}
-              </span>
-              <ExternalLink className="w-3 h-3 text-text-disabled group-hover:text-brand-primary transition-colors" />
-            </div>
-            <p className="text-xs text-text-muted leading-relaxed">{entry.toolA.description}</p>
-          </button>
-          <button
-            onClick={() => onChangeView({ type: "tool", id: entry.toolB.id })}
-            className="group p-4 bg-surface-muted/30 rounded-xl hover:bg-brand-primary-light/5 transition-all text-left cursor-pointer"
-          >
-            <div className="flex items-center gap-2 mb-1">
-              <span className="font-sans font-semibold text-sm text-text-main group-hover:text-brand-primary transition-colors">
-                {entry.toolB.name}
-              </span>
-              <ExternalLink className="w-3 h-3 text-text-disabled group-hover:text-brand-primary transition-colors" />
-            </div>
-            <p className="text-xs text-text-muted leading-relaxed">{entry.toolB.description}</p>
-          </button>
+          {[entry.toolA, entry.toolB].map((tool) => (
+            <RelatedToolCard
+              key={tool.id}
+              item={{
+                key: tool.id,
+                path: publicPathForView({ type: "tool", id: tool.id }, locale),
+                view: { type: "tool", id: tool.id },
+                id: `compare-tool-${tool.id}`,
+                title: tool.name,
+                desc: tool.description,
+              }}
+              onChangeView={onChangeView}
+              className="group p-4 bg-surface-muted/30 rounded-xl hover:bg-brand-primary-light/5 transition-all text-left cursor-pointer"
+            />
+          ))}
         </div>
       </section>
 
       {/* Back link */}
       <div className="mt-10 pt-6">
-        <button
-          onClick={() => onChangeView({ type: "home" })}
+        <a
+          href={absoluteUrl("/tools")}
+          onClick={(e) => {
+            e.preventDefault();
+            onChangeView({ type: "tools-directory" });
+          }}
           className="gu-tap inline-flex items-center gap-2 text-sm font-sans font-semibold text-brand-primary hover:text-brand-primary-dark transition-colors cursor-pointer"
         >
           <ArrowRight className="w-4 h-4 rotate-180" />
           Browse all tools on GainUtility
-        </button>
+        </a>
       </div>
     </div>
   );

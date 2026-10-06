@@ -59,7 +59,7 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onChangeView, onAddToa
       {/* Breadcrumbs */}
       <div className="flex items-center justify-between flex-wrap gap-3 text-sm text-text-muted font-medium">
         <Breadcrumbs paths={[
-          { name: t("crumbsHome", locale), active: false, onClick: () => onChangeView({ type: "home" }) },
+          { name: t("crumbsHome", locale), active: false, view: { type: "home" }, onClick: () => onChangeView({ type: "home" }) },
           { name: pageText("contact.crumbTitle", locale), active: true }
         ]} />
       </div>

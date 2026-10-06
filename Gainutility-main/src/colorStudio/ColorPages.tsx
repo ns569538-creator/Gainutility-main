@@ -104,9 +104,9 @@ const ColorPage: React.FC<ColorPagesProps & { token: string }> = ({ token, onCha
     <div className="flex flex-col gap-6 sm:gap-8">
       <Breadcrumbs
         paths={[
-          { name: "Home", active: false, onClick: () => onChangeView({ type: "home" }) },
-          { name: "Color Studio", active: false, onClick: () => goStudio("home", onChangeView) },
-          { name: "Colors", active: false, onClick: () => goStudio("colors", onChangeView) },
+          { name: "Home", active: false, view: { type: "home" }, onClick: () => onChangeView({ type: "home" }) },
+          { name: "Color Studio", active: false, view: { type: "color-studio", section: "home" }, onClick: () => goStudio("home", onChangeView) },
+          { name: "Colors", active: false, view: { type: "color-studio", section: "colors" }, onClick: () => goStudio("colors", onChangeView) },
           { name, active: true },
         ]}
       />
@@ -342,9 +342,9 @@ const PalettePage: React.FC<ColorPagesProps & { palette: ResolvedPalette }> = ({
     <div className="flex flex-col gap-6 sm:gap-8">
       <Breadcrumbs
         paths={[
-          { name: "Home", active: false, onClick: () => onChangeView({ type: "home" }) },
-          { name: "Color Studio", active: false, onClick: () => goStudio("home", onChangeView) },
-          { name: "Palettes", active: false, onClick: () => goStudio("explore", onChangeView) },
+          { name: "Home", active: false, view: { type: "home" }, onClick: () => onChangeView({ type: "home" }) },
+          { name: "Color Studio", active: false, view: { type: "color-studio", section: "home" }, onClick: () => goStudio("home", onChangeView) },
+          { name: "Palettes", active: false, view: { type: "color-studio", section: "explore" }, onClick: () => goStudio("explore", onChangeView) },
           { name: palette.name, active: true },
         ]}
       />
@@ -559,9 +559,9 @@ const UiColorPage: React.FC<ColorPagesProps & { system: UIColorSystem }> = ({ sy
     <div className="flex flex-col gap-6 sm:gap-8">
       <Breadcrumbs
         paths={[
-          { name: "Home", active: false, onClick: () => onChangeView({ type: "home" }) },
-          { name: "Color Studio", active: false, onClick: () => goStudio("home", onChangeView) },
-          { name: "UI Colors", active: false, onClick: () => goStudio("ui-colors", onChangeView) },
+          { name: "Home", active: false, view: { type: "home" }, onClick: () => onChangeView({ type: "home" }) },
+          { name: "Color Studio", active: false, view: { type: "color-studio", section: "home" }, onClick: () => goStudio("home", onChangeView) },
+          { name: "UI Colors", active: false, view: { type: "color-studio", section: "ui-colors" }, onClick: () => goStudio("ui-colors", onChangeView) },
           { name: system.name, active: true },
         ]}
       />

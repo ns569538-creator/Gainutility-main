@@ -4,7 +4,11 @@
  */
 
 import React, { useState, useEffect, useMemo, useRef, useCallback } from "react";
-import { ViewState } from "../types";
+import { ToolId, ViewState } from "../types";
+import { absoluteUrl } from "../site";
+import { publicPathForView } from "../router";
+import { useLocale } from "../i18n/LocaleContext";
+import { WORKFLOW_GRAPH } from "./ContinueEditing";
 import {
   Sparkles,
   Download,
@@ -153,6 +157,7 @@ export const LogoMaker: React.FC<LogoMakerProps> = ({
   onAddToast,
   onChangeView,
 }) => {
+  const locale = useLocale();
   const postDownload = usePostDownload();
 
   // ── 1. CANONICAL BRAND STATE ──────────────────────────────────────
@@ -3821,13 +3826,16 @@ export const LogoMaker: React.FC<LogoMakerProps> = ({
             </span>
             <p>
               Take the exported standalone square mark into the{" "}
-              <button
-                type="button"
-                onClick={() => onChangeView?.({ type: "tool", id: "favicon-generator" })}
+              <a
+                href={absoluteUrl(publicPathForView({ type: "tool", id: "favicon-generator" }, locale))}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onChangeView?.({ type: "tool", id: "favicon-generator" });
+                }}
                 className="text-brand-primary underline hover:text-brand-primary-hover font-semibold inline cursor-pointer"
               >
                 GainUtility Favicon Generator
-              </button>{" "}
+              </a>{" "}
               to compile your multi-resolution .ico container, Apple touch icons, and Android PWA manifests in one click.
             </p>
           </div>
@@ -3985,59 +3993,42 @@ export const LogoMaker: React.FC<LogoMakerProps> = ({
           Turn your finished logo into a complete online identity with related browser utilities:
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5 pt-1">
-          <button
-            type="button"
-            onClick={() => onChangeView?.({ type: "tool", id: "favicon-generator" })}
-            className="p-3 rounded-xl border border-border-subtle bg-surface-base hover:bg-surface-muted text-left transition-all cursor-pointer space-y-0.5 min-h-[56px]"
-          >
-            <span className="text-xs font-bold text-brand-primary block">Favicon Generator</span>
-            <span className="text-[11px] text-text-muted block">Turn your logo mark into .ico and touch icons</span>
-          </button>
+          {[
+            { id: "favicon-generator", label: "Favicon Generator", desc: "Turn your logo mark into .ico and touch icons" },
+            { id: "gradient-generator", label: "CSS Gradient Studio", desc: "Build harmonious brand gradients and CSS backgrounds" },
+            { id: "qr-code-generator", label: "QR Code Generator", desc: "Generate scannable codes styled with brand colors" },
+            { id: "og-meta-generator", label: "OG Meta Tag Studio", desc: "Configure social share previews for X and LinkedIn" },
+            { id: "image-resizer", label: "Image Resizer", desc: "Quickly adjust logo raster dimensions offline" },
+          ]
+            // The handoff cards below already advertise these — never list the
+            // same destination twice on one page.
+            .filter(({ id }) => !(WORKFLOW_GRAPH["logo-maker"] ?? []).includes(id as ToolId))
+            .map(({ id, label, desc }) => (
+              <a
+                key={id}
+                href={absoluteUrl(publicPathForView({ type: "tool", id: id as ToolId }, locale))}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onChangeView?.({ type: "tool", id: id as ToolId });
+                }}
+                className="p-3 rounded-xl border border-border-subtle bg-surface-base hover:bg-surface-muted text-left transition-all cursor-pointer space-y-0.5 min-h-[56px] block"
+              >
+                <span className="text-xs font-bold text-brand-primary block">{label}</span>
+                <span className="text-[11px] text-text-muted block">{desc}</span>
+              </a>
+            ))}
 
-          <button
-            type="button"
-            onClick={() => onChangeView?.({ type: "tool", id: "gradient-generator" })}
-            className="p-3 rounded-xl border border-border-subtle bg-surface-base hover:bg-surface-muted text-left transition-all cursor-pointer space-y-0.5 min-h-[56px]"
-          >
-            <span className="text-xs font-bold text-brand-primary block">CSS Gradient Studio</span>
-            <span className="text-[11px] text-text-muted block">Build harmonious brand gradients and CSS backgrounds</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => onChangeView?.({ type: "tool", id: "qr-code-generator" })}
-            className="p-3 rounded-xl border border-border-subtle bg-surface-base hover:bg-surface-muted text-left transition-all cursor-pointer space-y-0.5 min-h-[56px]"
-          >
-            <span className="text-xs font-bold text-brand-primary block">QR Code Generator</span>
-            <span className="text-[11px] text-text-muted block">Generate scannable codes styled with brand colors</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => onChangeView?.({ type: "tool", id: "og-meta-generator" })}
-            className="p-3 rounded-xl border border-border-subtle bg-surface-base hover:bg-surface-muted text-left transition-all cursor-pointer space-y-0.5 min-h-[56px]"
-          >
-            <span className="text-xs font-bold text-brand-primary block">OG Meta Tag Studio</span>
-            <span className="text-[11px] text-text-muted block">Configure social share previews for X and LinkedIn</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => onChangeView?.({ type: "tool", id: "image-resizer" })}
-            className="p-3 rounded-xl border border-border-subtle bg-surface-base hover:bg-surface-muted text-left transition-all cursor-pointer space-y-0.5 min-h-[56px]"
-          >
-            <span className="text-xs font-bold text-brand-primary block">Image Resizer</span>
-            <span className="text-[11px] text-text-muted block">Quickly adjust logo raster dimensions offline</span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => onChangeView?.({ type: "seo-page", id: "image" })}
-            className="p-3 rounded-xl border border-border-subtle bg-surface-base hover:bg-surface-muted text-left transition-all cursor-pointer space-y-0.5 min-h-[56px]"
+          <a
+            href={absoluteUrl(publicPathForView({ type: "seo-page", id: "image" }, locale))}
+            onClick={(e) => {
+              e.preventDefault();
+              onChangeView?.({ type: "seo-page", id: "image" });
+            }}
+            className="p-3 rounded-xl border border-border-subtle bg-surface-base hover:bg-surface-muted text-left transition-all cursor-pointer space-y-0.5 min-h-[56px] block"
           >
             <span className="text-xs font-bold text-brand-primary block">Image Tools Hub</span>
             <span className="text-[11px] text-text-muted block">Explore background remover, cropper &amp; converters</span>
-          </button>
+          </a>
         </div>
       </section>
 

@@ -16,7 +16,10 @@ import {
   TranslatorPairEntry,
   pairLabel,
   getTranslatorPair,
+  translatorPairPath,
 } from "../seo/translatorPairs";
+import { absoluteUrl } from "../site";
+import { RelatedToolCard } from "./RelatedToolsSection";
 
 interface TranslatorPairPageProps {
   entry: TranslatorPairEntry;
@@ -41,17 +44,19 @@ export const TranslatorPairPage: React.FC<TranslatorPairPageProps> = ({
     <div className="w-full max-w-4xl">
       <Breadcrumbs
         paths={[
-          { name: "Home", active: false, onClick: () => onChangeView({ type: "home" }) },
-          {
-            name: "PDF Tools",
-            active: false,
-            onClick: () => onChangeView({ type: "seo-page", id: "pdf" }),
-          },
-          {
-            name: "PDF Translator",
-            active: false,
-            onClick: () => onChangeView({ type: "tool", id: "pdf-translator" }),
-          },
+          { name: "Home", active: false, view: { type: "home" }, onClick: () => onChangeView({ type: "home" }) },
+              {
+                name: "PDF Tools",
+                active: false,
+                view: { type: "seo-page", id: "pdf" },
+                onClick: () => onChangeView({ type: "seo-page", id: "pdf" }),
+              },
+              {
+                name: "PDF Translator",
+                active: false,
+                view: { type: "tool", id: "pdf-translator" },
+                onClick: () => onChangeView({ type: "tool", id: "pdf-translator" }),
+              },
           { name: pairLabel(entry), active: true },
         ]}
       />
@@ -151,7 +156,7 @@ export const TranslatorPairPage: React.FC<TranslatorPairPageProps> = ({
         </Card>
       )}
 
-      {/* Other pairs */}
+      {/* Other pairs — crawlable <a> cards (RelatedToolsSection) */}
       {relatedPairs.length > 0 && (
         <section className="mt-8 sm:mt-10" aria-label="Other PDF translations">
           <h2 className="mb-4 text-lg font-bold text-slate-900 dark:text-slate-50">
@@ -159,29 +164,42 @@ export const TranslatorPairPage: React.FC<TranslatorPairPageProps> = ({
           </h2>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {relatedPairs.map((p) => (
-              <button
+              <RelatedToolCard
                 key={p.slug}
-                onClick={() => onChangeView({ type: "translator-pair", pair: p.slug })}
+                item={{
+                  key: p.slug,
+                  path: translatorPairPath(p.slug),
+                  view: { type: "translator-pair", pair: p.slug },
+                  id: `related-pair-${p.slug}`,
+                  title: pairLabel(p),
+                }}
+                onChangeView={onChangeView}
                 className="rounded-lg border border-slate-200 p-3 text-left text-sm font-medium text-slate-700 transition hover:border-emerald-400 hover:bg-emerald-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 dark:border-slate-700 dark:text-slate-200 dark:hover:bg-emerald-900/20"
-              >
-                {pairLabel(p)}
-              </button>
+              />
             ))}
           </div>
-          <p className="mt-4">
-            <button
-              onClick={() => onChangeView({ type: "tool", id: "pdf-translator" })}
+          <p className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-2">
+            <a
+              href={absoluteUrl("/tools/pdf-translator")}
+              onClick={(e) => {
+                e.preventDefault();
+                onChangeView({ type: "tool", id: "pdf-translator" });
+              }}
               className="text-sm font-semibold text-emerald-700 hover:underline dark:text-emerald-300"
             >
               Translate any PDF in the PDF Translator →
-            </button>
+            </a>
             <span className="mx-2 text-slate-300 dark:text-slate-600">|</span>
-            <button
-              onClick={() => onChangeView({ type: "seo-page", id: "pdf" })}
+            <a
+              href={absoluteUrl("/pdf")}
+              onClick={(e) => {
+                e.preventDefault();
+                onChangeView({ type: "seo-page", id: "pdf" });
+              }}
               className="text-sm font-semibold text-emerald-700 hover:underline dark:text-emerald-300"
             >
               Browse all PDF tools →
-            </button>
+            </a>
           </p>
         </section>
       )}

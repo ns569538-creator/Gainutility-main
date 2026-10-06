@@ -9,6 +9,7 @@
 import React from "react";
 import { ViewState } from "../types";
 import { Breadcrumbs } from "./Common";
+import { internalLinkProps } from "./RelatedToolsSection";
 import { useLocale } from "../i18n/LocaleContext";
 import { pageText } from "../i18n/pages";
 import { t } from "../i18n/ui";
@@ -36,7 +37,7 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onChangeView }) => {
       {/* 1. Breadcrumbs */}
       <div className="flex items-center justify-between flex-wrap gap-3 text-sm text-text-muted font-medium">
         <Breadcrumbs paths={[
-          { name: t("crumbsHome", locale), active: false, onClick: () => onChangeView({ type: "home" }) },
+          { name: t("crumbsHome", locale), active: false, view: { type: "home" }, onClick: () => onChangeView({ type: "home" }) },
           { name: pageText("privacy.crumbTitle", locale), active: true }
         ]} />
         <div className="flex items-center gap-1.5 text-xs font-mono text-text-disabled uppercase">
@@ -124,12 +125,12 @@ export const PrivacyPage: React.FC<PrivacyPageProps> = ({ onChangeView }) => {
           </h2>
           <p className="text-sm text-text-sub leading-relaxed">
             {pageText("contact.description", locale)}{" "}
-            <button 
-              onClick={() => onChangeView({ type: "contact" })}
+            <a
+              {...internalLinkProps({ type: "contact" }, locale, onChangeView)}
               className="text-brand-primary font-bold underline hover:opacity-80 cursor-pointer"
             >
               {pageText("contact.crumbTitle", locale)}
-            </button>.
+            </a>.
           </p>
         </div>
 

@@ -669,6 +669,18 @@ export const SEO_PAGES: SeoPageEntry[] = [
       { question: "Is my JSON data sent to a server?", answer: "No. All JSON processing happens entirely in your browser. Your data never leaves your device." },
       { question: "What JSON features are supported?", answer: "Full JSON specification support including nested objects, arrays, unicode strings, and numeric types." },
     ],
+    sections: [
+      {
+        type: "chooser",
+        heading: "Which JSON job do you have?",
+        note: "Pick the job rather than the tool name. Each one runs in your browser, so your payload is never uploaded.",
+        items: [
+          { label: "Format and beautify JSON", path: `${JSON_ROOT}/formatter`, hint: "Prettify a minified response with consistent indentation and syntax highlighting." },
+          { label: "Validate JSON", path: `${JSON_ROOT}/validator`, hint: "Catch syntax errors with the line number and character position." },
+          { label: "Read JSON as a tree", path: `${JSON_ROOT}/viewer`, hint: "Expand and collapse nested objects and arrays instead of scanning raw text." },
+        ],
+      },
+    ],
     keywords: ["json formatter online free", "json validator", "json tools", "format json online"],
   },
 
@@ -790,6 +802,8 @@ export const SEO_PAGES: SeoPageEntry[] = [
       "image-upscaler",
       "passport-photo-maker",
       "collage-maker",
+      "favicon-generator",
+      "linkedin-carousel-maker",
     ]),
     breadcrumbs: [
       { name: "Home", url: "/" },
@@ -817,6 +831,23 @@ export const SEO_PAGES: SeoPageEntry[] = [
       { question: "How do I convert HEIC to JPG?", answer: "Use our Image Converter — select iPhone HEIC photos directly from your computer or phone, and they are decoded locally to universal JPG files." },
       { question: "Can I resize an image to exact pixels?", answer: "Yes. The Image Resizer lets you enter custom width and height in pixels with an optional aspect ratio lock to prevent distortion." },
       { question: "Can I use these image tools on my phone?", answer: "Yes. All GainUtility image tools are built with responsive mobile layouts and work directly in Safari, Chrome, and mobile browsers." },
+    ],
+    sections: [
+      {
+        type: "chooser",
+        heading: "Which image job do you have?",
+        note: "Pick the job rather than the tool name. Files are processed on your device unless a page says otherwise.",
+        items: [
+          { label: "Resize an image", path: `${IMAGE_ROOT}/resize`, hint: "Scale to exact pixels or a percentage with an aspect-ratio lock, one file or a batch." },
+        ],
+      },
+      {
+        type: "links",
+        heading: "Resizing, step by step",
+        items: [
+          { path: "/blog/how-to-resize-an-image", title: "Resize an image the right way", desc: "Pixels versus percentage, when to upsample, and the quality settings worth keeping." },
+        ],
+      },
     ],
     keywords: ["free online image tools", "image compressor", "image resizer", "image converter", "crop image", "background remover", "webp converter", "heic to jpg"],
   },
@@ -1407,6 +1438,18 @@ export const SEO_PAGES: SeoPageEntry[] = [
     faq: [
       { question: "Are these tools suitable for production use?", answer: "Our tools are designed for development, testing, and debugging. For production security tools like password generation, always use established libraries." },
     ],
+    sections: [
+      {
+        type: "chooser",
+        heading: "Which developer job do you have?",
+        note: "Pick the job rather than the tool name. Everything below runs locally, with no account and no upload.",
+        items: [
+          { label: "Make a QR code", path: `${DEV_ROOT}/qr-code`, hint: "Styled codes for URLs, WiFi, email, WhatsApp and vCards." },
+          { label: "Encode or decode Base64", path: `${DEV_ROOT}/base64`, hint: "UTF-8 safe conversion with automatic detection of which direction you need." },
+          { label: "Generate a password", path: `${DEV_ROOT}/password`, hint: "Set length and character groups, then copy a Web Crypto random password." },
+        ],
+      },
+    ],
     keywords: ["developer tools online free", "qr code generator", "base64 encoder", "uuid generator"],
   },
 
@@ -1514,7 +1557,7 @@ export const SEO_PAGES: SeoPageEntry[] = [
     title: "Free SEO Tools — Meta Tags, Schema & Sitemaps | GainUtility",
     description: "Use free SEO tools in your browser. Generate meta tags, Open Graph cards, schema markup, sitemaps, robots.txt, and SERP previews. Fast, private.",
     primaryTool: null,
-    relatedTools: seoRelated(["check-my-website", "launch-checklist", "seo-meta-generator", "schema-markup-generator", "google-serp-preview", "xml-sitemap-generator", "robots-txt-generator", "utm-builder"]),
+    relatedTools: seoRelated(["check-my-website", "launch-checklist", "seo-meta-generator", "schema-markup-generator", "google-serp-preview", "xml-sitemap-generator", "robots-txt-generator", "utm-builder", "slug-generator"]),
     breadcrumbs: [
       { name: "Home", url: "/" },
       { name: "SEO Tools", url: SEO_ROOT },
@@ -2022,6 +2065,9 @@ export const localizedSeoEntry = (
   return {
     ...en,
     category: overlay.category,
+    // Only override when the overlay carries one: a hub whose English H1 is
+    // the generic template keeps falling back to the localized template.
+    ...(overlay.h1 ? { h1: overlay.h1 } : {}),
     title: overlay.title,
     description: overlay.description,
     intro: overlay.intro,

@@ -329,10 +329,6 @@ for (const file of htmlFiles) {
     if (/\.(png|svg|ico|webmanifest|xml|txt|css|js|csv)$/.test(path)) continue;
     if (path === "/404.html") continue;
     const normalized = path.length > 1 ? path.replace(/\/$/, "") : "/";
-    // /studios/color (the Color Studio home) has no prerendered index.html —
-    // it is a valid routed view served via the _redirects SPA rewrite to
-    // /index.html (see scripts/generate-sitemap.mjs), so links to it are fine.
-    if (normalized === "/studios/color") continue;
     // Consolidated URLs (tool aliases + legacy classics) now 301 straight to
     // their canonical destination — internal links must never target them
     // (self-references on the redirect pages' own shell HTML are exempt).
@@ -360,8 +356,9 @@ for (const sp of sitemapPaths)
   if (!expectedRoutes.has(sp)) warn(`sitemap URL not a generated page: ${SITE}${sp}`);
 for (const er of expectedRoutes) {
   // The 404 shell is an error page, deliberately absent from the sitemap.
-  // /studios/color/* are prerendered app surfaces (not content landing pages)
-  // and are deliberately excluded from the sitemap (generate-sitemap.mjs).
+  // /studios/color and /studios/color/* are prerendered app surfaces (not
+  // content landing pages) and are deliberately excluded from the sitemap
+  // (generate-sitemap.mjs).
   // EXCLUDED_TOOL_IDS = legacy classics + consolidated aliases: they 301 to
   // their modern successors (consolidatedRedirects in generate-sitemap.mjs),
   // so their prerendered HTML is a redirect target, not a sitemapped page.
@@ -380,7 +377,7 @@ for (const er of expectedRoutes) {
   const isEsCo = er === "/es-co" || er.startsWith("/es-co/");
   if (
     er !== "/404" &&
-    !er.startsWith("/studios/color/") &&
+    !er.startsWith("/studios/color") &&
     !isExcludedTool &&
     !isColorPage &&
     !isEsCo &&

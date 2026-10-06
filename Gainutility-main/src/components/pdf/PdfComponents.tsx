@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import { Button } from "../Common";
 import { ViewState, ToolId } from "../../types";
+import { absoluteUrl } from "../../site";
 
 // ==========================================
 // 1. PDF ERROR ALERT (What Happened + What Can I Do)
@@ -518,6 +519,15 @@ const DEFAULT_PDF_RELATED_TOOLS: Record<string, RelatedToolItem[]> = {
   ]
 };
 
+/**
+ * Destinations this component already advertises for a given tool.
+ *
+ * Layout's "Related tools" grid reads this so a tool page never lists the
+ * same next step twice (merge-pdf/split-pdf used to show rotate-pdf twice).
+ */
+export const pdfRelatedIdsFor = (toolId: string): string[] =>
+  (DEFAULT_PDF_RELATED_TOOLS[toolId] ?? []).map((i) => i.id);
+
 export const PDFRelatedTools: React.FC<PDFRelatedToolsProps> = ({
   currentToolId,
   onChangeView,
@@ -543,7 +553,7 @@ export const PDFRelatedTools: React.FC<PDFRelatedToolsProps> = ({
         {items.map((item) => (
           <a
             key={item.id}
-            href={item.url}
+            href={absoluteUrl(item.url)}
             onClick={(e) => {
               if (onChangeView) {
                 e.preventDefault();

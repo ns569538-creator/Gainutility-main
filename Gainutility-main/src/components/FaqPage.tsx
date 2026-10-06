@@ -10,6 +10,7 @@
 import React, { useState, useMemo } from "react";
 import { ViewState } from "../types";
 import { Breadcrumbs } from "./Common";
+import { internalLinkProps } from "./RelatedToolsSection";
 import { useLocale } from "../i18n/LocaleContext";
 import { pageText } from "../i18n/pages";
 import { t } from "../i18n/ui";
@@ -87,7 +88,7 @@ export const FaqPage: React.FC<FaqPageProps> = ({ onChangeView }) => {
       <div className="flex items-center justify-between flex-wrap gap-3 text-sm text-text-muted font-medium">
         <Breadcrumbs
           paths={[
-            { name: t("crumbsHome", locale), active: false, onClick: () => onChangeView({ type: "home" }) },
+            { name: t("crumbsHome", locale), active: false, view: { type: "home" }, onClick: () => onChangeView({ type: "home" }) },
             { name: pageText("faq.crumbTitle", locale), active: true },
           ]}
         />
@@ -232,12 +233,12 @@ export const FaqPage: React.FC<FaqPageProps> = ({ onChangeView }) => {
             {pageText("faq.supportSubtitle", locale)}
           </p>
         </div>
-        <button
-          onClick={() => onChangeView({ type: "contact" })}
-          className="w-full sm:w-auto px-6 py-3 rounded-xl bg-brand-primary hover:bg-brand-primary-hover text-white text-sm font-bold shadow-premium-sm transition-all min-h-[44px] flex items-center justify-center cursor-pointer"
+        <a
+          {...internalLinkProps({ type: "contact" }, locale, onChangeView)}
+          className="w-full sm:w-auto px-6 py-3 rounded-xl bg-brand-primary hover:bg-brand-primary-hover text-white text-sm font-bold shadow-premium-sm transition-all min-h-[44px] flex items-center justify-center cursor-pointer no-underline"
         >
           {pageText("faq.supportButton", locale)}
-        </button>
+        </a>
       </div>
     </div>
   );

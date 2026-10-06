@@ -83,8 +83,10 @@ if (hasTranslatorTool) {
 }
 // The Color Studio is a functional in-app workspace (its pages are prerendered,
 // but they are app surfaces, not standalone content landing pages). Per the
-// indexing model we do NOT add /studios/color/* to the sitemap; /studios/color
-// stays reachable via _redirects.
+// indexing model we do NOT add /studios/color or /studios/color/* to the
+// sitemap. The studio home is a real prerendered document (it used to be a
+// _redirects rewrite to the SPA shell, which served the homepage canonical on
+// a non-homepage URL), so links to it resolve like any other route.
 //
 // INDEX-READY audit (Phase G): the 151 programmatic color landing pages
 // (/colors/*, /color-palettes/*, /ui-colors/*) are thin template pages
@@ -397,13 +399,6 @@ for (const r of blogLegacyRedirects) netlify += `${r.source.padEnd(36)} ${r.dest
 // 410 Gone for permanently removed tools
 netlify += `/image-to-code                    410\n`;
 netlify += `/tools/image-to-code              410\n`;
-// The Color Studio home route (`/studios/color`, the "home" section) is a valid
-// in-app view but has no separate prerendered index.html (only the ten explicit
-// `/studios/color/<section>` pages are prerendered). On Cloudflare Pages a direct
-// load of `/studios/color` would otherwise 404, so we rewrite it to the SPA shell.
-// This is deliberately scoped to that one path — it is NOT a broad `/*` catch-all,
-// so genuinely unknown routes still return the prerendered 404.html.
-netlify += `/studios/color         /index.html                           200\n`;
 writeFileSync(resolve(root, "public", "_redirects"), netlify);
 
 console.log(

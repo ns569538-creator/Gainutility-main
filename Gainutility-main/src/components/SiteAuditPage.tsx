@@ -6,6 +6,7 @@
 import React, { useState, useMemo } from "react";
 import { ViewState, ToolId } from "../types";
 import { Breadcrumbs } from "./Common";
+import { internalLinkProps } from "./RelatedToolsSection";
 import { toolsRegistry } from "../toolsRegistry";
 import { 
   FileCheck2, 
@@ -487,7 +488,7 @@ export const SiteAuditPage: React.FC<SiteAuditPageProps> = ({ onChangeView, onAd
       {/* Breadcrumbs */}
       <div className="flex items-center justify-between flex-wrap gap-3 text-sm text-text-muted font-medium">
         <Breadcrumbs paths={[
-          { name: "Home", active: false, onClick: () => onChangeView({ type: "home" }) },
+          { name: "Home", active: false, view: { type: "home" }, onClick: () => onChangeView({ type: "home" }) },
           { name: "Site-Wide Content & SEO Quality Audit", active: true }
         ]} />
         <div className="flex items-center gap-1.5 text-xs font-mono text-text-disabled uppercase">
@@ -659,13 +660,14 @@ export const SiteAuditPage: React.FC<SiteAuditPageProps> = ({ onChangeView, onAd
                     </span>
                   </td>
                   <td className="p-3.5 text-center whitespace-nowrap">
-                    <button
-                      onClick={() => onChangeView({ type: "tool", id: entry.toolId })}
-                      className="p-1.5 hover:bg-brand-primary-light text-brand-primary rounded-lg transition-colors cursor-pointer"
+                    <a
+                      {...internalLinkProps({ type: "tool", id: entry.toolId }, undefined, onChangeView)}
+                      className="p-1.5 hover:bg-brand-primary-light text-brand-primary rounded-lg transition-colors cursor-pointer inline-flex"
                       title={`Open ${entry.toolName}`}
+                      aria-label={`Open ${entry.toolName}`}
                     >
-                      <ExternalLink className="w-4 h-4" />
-                    </button>
+                      <ExternalLink className="w-4 h-4" aria-hidden="true" />
+                    </a>
                   </td>
                 </tr>
               ))}

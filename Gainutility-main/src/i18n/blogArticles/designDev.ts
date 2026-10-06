@@ -1791,7 +1791,7 @@ export const DESIGN_DEV_ARTICLES_LOCALIZED: Record<string, Partial<Record<Locale
       quickAnswer: "Utilisez box-shadow pour les conteneurs d'interface (cartes, boutons, modales) : il suit le border-box et gère spread et inset. Utilisez filter: drop-shadow() pour les formes transparentes (icônes SVG, images détourées).",
       keyTakeaway: "Choisissez selon la forme : box-shadow pour les blocs rectangulaires, drop-shadow() pour les éléments transparents et les tracés SVG.",
       toolCta: {"label":"Générez des ombres visuellement avec calques, inset et aperçu en temps réel.","toolId":"box-shadow-generator"},
-      seoTitle: "box-shadow vs filter: drop-shadow() en CSS | GainUtility",
+      seoTitle: "box-shadow vs drop-shadow() : comparatif CSS | GainUtility",
       seoDescription: "Comparatif complet entre box-shadow et filter: drop-shadow() en CSS : gestion de la transparence, rayon de flou et cas d'usage.",
       content: [
         {

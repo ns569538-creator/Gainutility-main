@@ -8,6 +8,7 @@ import { ViewState, ToolId } from "../types";
 import { toolCanonicalUrl } from "../site";
 import { STUDIOS } from "../studiosData";
 import { Breadcrumbs } from "./Common";
+import { internalLinkProps } from "./RelatedToolsSection";
 import { toolsRegistry } from "../toolsRegistry";
 import { useLocale } from "../i18n/LocaleContext";
 import { t, tf } from "../i18n/ui";
@@ -175,12 +176,12 @@ export const StudioPage: React.FC<StudioPageProps> = ({ studioId, onChangeView, 
         <Info className="w-12 h-12 text-status-warning mx-auto" />
         <h2 className="text-xl font-bold text-text-main">{t("studioNotFoundTitle", locale)}</h2>
         <p className="text-sm text-text-muted">{t("studioNotFoundBody", locale)}</p>
-        <button
-          onClick={() => onChangeView({ type: "home" })}
-          className="px-4 py-2 bg-brand-primary text-[#FAF8F1] rounded-lg font-bold hover:bg-brand-primary-hover cursor-pointer whitespace-nowrap"
+        <a
+          {...internalLinkProps({ type: "home" }, locale, onChangeView)}
+          className="px-4 py-2 bg-brand-primary text-[#FAF8F1] rounded-lg font-bold hover:bg-brand-primary-hover cursor-pointer whitespace-nowrap no-underline inline-block"
         >
           {t("goBackHome", locale)}
-        </button>
+        </a>
       </div>
     );
   }
@@ -239,8 +240,8 @@ export const StudioPage: React.FC<StudioPageProps> = ({ studioId, onChangeView, 
       {/* 1. BREADCRUMBS PATH */}
       <div className="flex items-center justify-between flex-wrap gap-3 text-sm md:text-[16px] text-text-muted font-medium">
         <Breadcrumbs paths={[
-          { name: t("crumbsHome", locale), active: false, onClick: () => onChangeView({ type: "home" }) },
-          { name: t("crumbsStudios", locale), active: false, onClick: () => onChangeView({ type: "home" }) },
+          { name: t("crumbsHome", locale), active: false, view: { type: "home" }, onClick: () => onChangeView({ type: "home" }) },
+          { name: t("crumbsStudios", locale), active: false, view: { type: "home" }, onClick: () => onChangeView({ type: "home" }) },
           { name: studio.name, active: true }
         ]} />
         <div className="flex items-center gap-1.5 text-xs md:text-sm font-mono text-text-disabled uppercase">
@@ -268,13 +269,13 @@ export const StudioPage: React.FC<StudioPageProps> = ({ studioId, onChangeView, 
         </div>
 
         <div className="shrink-0 w-full sm:w-auto">
-          <button
-            onClick={() => onChangeView({ type: "home" })}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 min-h-[44px] h-11 sm:h-12 px-5 sm:px-6 rounded-xl border border-border-light bg-background hover:bg-surface-muted text-text-sub hover:text-brand-primary transition-all cursor-pointer text-xs sm:text-sm font-sans font-bold whitespace-nowrap"
+          <a
+            {...internalLinkProps({ type: "home" }, locale, onChangeView)}
+            className="w-full sm:w-auto flex items-center justify-center gap-2 min-h-[44px] h-11 sm:h-12 px-5 sm:px-6 rounded-xl border border-border-light bg-background hover:bg-surface-muted text-text-sub hover:text-brand-primary transition-all cursor-pointer text-xs sm:text-sm font-sans font-bold whitespace-nowrap no-underline"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>{t("returnHome", locale)}</span>
-          </button>
+          </a>
         </div>
       </section>
 
@@ -658,23 +659,17 @@ export const StudioPage: React.FC<StudioPageProps> = ({ studioId, onChangeView, 
                   { id: "social-resizer" as ToolId, studio: "image" },
                   { id: "collage-maker" as ToolId, studio: "image" },
                   { id: "favicon-generator" as ToolId, studio: "image" },
-                ].map(({ id, studio }) => {
+                ].map(({ id }) => {
                   const tool = toolsRegistry[id];
                   if (!tool) return null;
+                  // Cards advertise a TOOL, so they link to that tool's page.
+                  // The old behaviour (switch to the tool's studio) had no
+                  // crawlable URL at all: /studios/* redirects to home.
                   return (
-                    <button
+                    <a
                       key={id}
-                      onClick={() => {
-                        onChangeView({ type: "studio", id: studio });
-                        onAddToast(`Switched to ${studio === "media" ? "Media Studio" : "Image Studio"}`, "info");
-                      }}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key === " ") {
-                          e.preventDefault();
-                          onChangeView({ type: "studio", id: studio });
-                        }
-                      }}
-                      className="group p-3 rounded-xl border border-border-light bg-surface-base hover:border-brand-primary hover:bg-brand-primary-light/5 transition-all text-left cursor-pointer flex items-center gap-3 shadow-premium-sm focus:outline-none focus-visible:outline-2 focus-visible:outline-brand-primary focus-visible:outline-offset-[3px]"
+                      {...internalLinkProps({ type: "tool", id }, locale, onChangeView)}
+                      className="group p-3 rounded-xl border border-border-light bg-surface-base hover:border-brand-primary hover:bg-brand-primary-light/5 transition-all text-left cursor-pointer flex items-center gap-3 shadow-premium-sm focus:outline-none focus-visible:outline-2 focus-visible:outline-brand-primary focus-visible:outline-offset-[3px] no-underline"
                     >
                       <div className="gu-icon-tile w-8 h-8 rounded-lg bg-brand-primary-light/40 border border-brand-primary/10 flex items-center justify-center shrink-0">
                         <ToolIcon slug={id} size={17} />
@@ -688,7 +683,7 @@ export const StudioPage: React.FC<StudioPageProps> = ({ studioId, onChangeView, 
                         </span>
                       </div>
                       <span className="text-xs font-sans font-bold text-brand-primary">Open</span>
-                    </button>
+                    </a>
                   );
                 })}
               </div>

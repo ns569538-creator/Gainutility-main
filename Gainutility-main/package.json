@@ -15,6 +15,7 @@
     "br-assets:upload": "node scripts/br-assets-upload.mjs",
     "br-assets:sync": "npm run br-assets:fetch && npm run br-assets:upload",
     "verify:brembg": "node scripts/verify-brembg.mjs",
+    "verify:indexation": "node scripts/verify-seo-indexation.mjs",
     "lint": "tsc --noEmit"
   },
   "dependencies": {

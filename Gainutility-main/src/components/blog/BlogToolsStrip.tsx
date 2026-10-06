@@ -10,7 +10,7 @@ import React from "react";
 import { ToolId, ViewState } from "../../types";
 import { toolsRegistry } from "../../toolsRegistry";
 import { localizedToolName } from "../../i18n/slugs";
-import { publicPathForView } from "../../router";
+import { internalLinkProps } from "../RelatedToolsSection";
 import { getLocalizedSeo } from "../../i18n/seo";
 import { Wrench, ArrowRight, ShieldCheck } from "lucide-react";
 
@@ -42,14 +42,13 @@ export const BlogToolsStrip: React.FC<BlogToolsStripProps> = ({
             Try the Tools Mentioned in Our Guides
           </h2>
         </div>
-        <button
-          type="button"
-          onClick={() => onChangeView({ type: "tools-directory" })}
-          className="gu-tap text-xs sm:text-sm font-sans font-semibold text-brand-primary hover:text-brand-primary-hover transition-colors flex items-center gap-1.5 cursor-pointer self-start sm:self-auto gu-focus"
+        <a
+          {...internalLinkProps({ type: "tools-directory" }, locale, onChangeView)}
+          className="gu-tap text-xs sm:text-sm font-sans font-semibold text-brand-primary hover:text-brand-primary-hover transition-colors flex items-center gap-1.5 cursor-pointer self-start sm:self-auto gu-focus no-underline"
         >
           <span>Explore All 140+ Tools</span>
           <ArrowRight className="w-4 h-4" />
-        </button>
+        </a>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4">
@@ -58,16 +57,11 @@ export const BlogToolsStrip: React.FC<BlogToolsStripProps> = ({
           if (!meta) return null;
           const locSeo = locale === "en" ? null : getLocalizedSeo(id, locale, meta.name);
           const toolName = locSeo?.h1 || localizedToolName(id, locale, meta.name);
-          const href = publicPathForView({ type: "tool", id }, locale);
 
           return (
             <a
               key={id}
-              href={href}
-              onClick={(e) => {
-                e.preventDefault();
-                onChangeView({ type: "tool", id });
-              }}
+              {...internalLinkProps({ type: "tool", id }, locale, onChangeView)}
               className="group p-4 rounded-xl border border-border-subtle bg-surface-base hover:border-brand-primary/40 hover:shadow-premium-sm transition-all duration-200 no-underline cursor-pointer flex flex-col justify-between gap-3 gu-focus"
             >
               <div className="space-y-1.5">

@@ -5,7 +5,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ToolId, SEOMetadata, ViewState } from "../types";
+import { ToolId, SEOMetadata, ViewState, RelatedTool } from "../types";
 import { RatingSection } from "./RatingSection";
 import { isRatableTool } from "../ratingsConfig";
 import { onToolCompletionChange, isToolCompleted } from "../toolCompletion";
@@ -34,7 +34,7 @@ import {
   Breadcrumbs,
   Card
 } from "./Common";
-import { getMergedSEO, buildPageMeta, buildWebSiteJsonLd, buildOrganizationJsonLd, buildAboutPageJsonLd, buildPageBreadcrumbJsonLd, buildFAQJsonLd, buildImageHubJsonLd, buildToolJsonLd, buildBlogPostingJsonLd, buildBlogCollectionJsonLd, buildHowToJsonLd, seoHubForTool } from "../seo/shared";
+import { getMergedSEO, buildPageMeta, buildWebSiteJsonLd, buildOrganizationJsonLd, buildAboutPageJsonLd, buildPageBreadcrumbJsonLd, buildFAQJsonLd, buildImageHubJsonLd, buildToolJsonLd, buildBlogPostingJsonLd, buildBlogCollectionJsonLd, buildHowToJsonLd, seoHubForTool, localizedCrumbPath } from "../seo/shared";
 import { SEO_PAGE_MAP, localizedSeoEntry } from "../seo/seoPageContent";
 import { TOOL_GUIDES } from "../seo/toolGuides";
 import { COMPARISON_PAGE_MAP, CATEGORY_BEST_MAP } from "../seo/comparisonPages";
@@ -48,7 +48,8 @@ import { localizedToolName } from "../i18n/slugs";
 import { isLocalizedView } from "../i18n/pages";
 import { toolLastUpdated } from "../changelogData";
 import { getToolExternalNotice } from "../studioIcons";
-import { WORKFLOW_GRAPH } from "./ContinueEditing";
+import { CONTINUE_EDITING_TOOLS, WORKFLOW_GRAPH } from "./ContinueEditing";
+import { pdfRelatedIdsFor } from "./pdf/PdfComponents";
 import { t, tf } from "../i18n/ui";
 import { getLocalizedSeo } from "../i18n/seo";
 import { toolBodyOverlay } from "../i18n/toolBodies";
@@ -540,11 +541,27 @@ export const Layout: React.FC<LayoutProps> = ({
     };
   }, [baseMetadata, bodyOverlay]);
   // Tools already offered by the embedded "Next step" handoff cards
-  // (ContinueEditing). The related-tools grid below must not repeat them.
-  const workflowNextIds: ToolId[] = view.type === "tool" ? WORKFLOW_GRAPH[view.id] ?? [] : [];
-  const relatedTools = (metadata?.related || []).filter(
-    (tool) => !workflowNextIds.includes(tool.id)
-  );
+  // (ContinueEditing). The related-tools grid below must not repeat them —
+  // but ONLY on pages that actually render that handoff section. Gating on
+  // WORKFLOW_GRAPH alone hid cards from the ~100 tools that never show a
+  // handoff at all, shrinking the internal-link graph for nothing.
+  const showsHandoff = view.type === "tool" && CONTINUE_EDITING_TOOLS.has(view.id);
+  const workflowNextIds: ToolId[] = showsHandoff ? WORKFLOW_GRAPH[view.id] ?? [] : [];
+  // Tools already listed by the PDF "Next Actions" section on merge/split PDF.
+  const pdfNextIds = view.type === "tool" ? pdfRelatedIdsFor(view.id) : [];
+  const relatedTools = (() => {
+    const seen = new Set<string>();
+    const out: RelatedTool[] = [];
+    for (const tool of metadata?.related || []) {
+      if (seen.has(tool.id)) continue;
+      if (view.type === "tool" && tool.id === view.id) continue;
+      if (workflowNextIds.includes(tool.id)) continue;
+      if (pdfNextIds.includes(tool.id)) continue;
+      seen.add(tool.id);
+      out.push(tool);
+    }
+    return out;
+  })();
   const locSeo = locale !== DEFAULT_LOCALE && view.type === "tool"
     ? getLocalizedSeo(activeTool, locale, toolsRegistry[activeTool]?.name ?? activeTool)
     : null;
@@ -1260,12 +1277,7 @@ export const Layout: React.FC<LayoutProps> = ({
                       ? [{
                           name: hubLink.label,
                           active: false,
-                          href: absoluteUrl(
-                            publicPathForView(
-                              { type: "seo-page", id: hubLink.path },
-                              locale
-                            )
-                          )
+                          href: absoluteUrl(localizedCrumbPath(locale, hubLink.path))
                         }]
                       : []),
                     { name: getToolDisplayName(), active: true }
@@ -1627,16 +1639,16 @@ export const Layout: React.FC<LayoutProps> = ({
                       </a>
                     ))}
                   </div>
-                  {view.type === "tool" && seoHubForTool(view.id) && (
+                  {view.type === "tool" && hubLink && (
                     <a
-                      href={absoluteUrl(publicPathForView({ type: "seo-page", id: seoHubForTool(view.id)!.path }, locale))}
+                      href={absoluteUrl(localizedCrumbPath(locale, hubLink.path))}
                       onClick={(e) => {
                         e.preventDefault();
-                        onChangeView({ type: "seo-page", id: seoHubForTool(view.id)!.path });
+                        onChangeView({ type: "seo-page", id: hubLink.path.replace(/^\//, "") });
                       }}
                       className="gu-tap mt-1 inline-flex items-center gap-2 text-sm font-sans font-semibold text-brand-primary hover:text-brand-primary-dark transition-colors cursor-pointer"
                     >
-                      {tf("browseAll", locale, { label: seoHubForTool(view.id)!.label })}
+                      {tf("browseAll", locale, { label: hubLink.label })}
                       <ChevronRight className="w-4 h-4" />
                     </a>
                   )}
@@ -1758,6 +1770,7 @@ export const Layout: React.FC<LayoutProps> = ({
                   <li><a href={publicPathForView({ type: "blog" }, locale)} onClick={(e) => { e.preventDefault(); onChangeView({ type: "blog" }); }} className="text-text-sub hover:text-text-main hover:underline underline-offset-4 decoration-border-strong transition-colors cursor-pointer py-0.5 gu-focus">{t("navBlog", locale)}</a></li>
                   <li><a href={publicPathForView({ type: "changelog" }, locale)} onClick={(e) => { e.preventDefault(); onChangeView({ type: "changelog" }); }} className="text-text-sub hover:text-text-main hover:underline underline-offset-4 decoration-border-strong transition-colors cursor-pointer py-0.5 gu-focus">{t("footerChangelog", locale)}</a></li>
                   <li><a href={publicPathForView({ type: "security" }, locale)} onClick={(e) => { e.preventDefault(); onChangeView({ type: "security" }); }} className="text-text-sub hover:text-text-main hover:underline underline-offset-4 decoration-border-strong transition-colors cursor-pointer py-0.5 gu-focus">{t("footerSecurity", locale)}</a></li>
+                  <li><a href={publicPathForView({ type: "audit" }, locale)} onClick={(e) => { e.preventDefault(); onChangeView({ type: "audit" }); }} className="text-text-sub hover:text-text-main hover:underline underline-offset-4 decoration-border-strong transition-colors cursor-pointer py-0.5 gu-focus">{t("footerSiteAudit", locale)}</a></li>
                   <li><a href={publicPathForView({ type: "privacy" }, locale)} onClick={(e) => { e.preventDefault(); onChangeView({ type: "privacy" }); }} className="text-text-sub hover:text-text-main hover:underline underline-offset-4 decoration-border-strong transition-colors cursor-pointer py-0.5 gu-focus">{t("footerPrivacy", locale)}</a></li>
                   <li><a href={publicPathForView({ type: "terms" }, locale)} onClick={(e) => { e.preventDefault(); onChangeView({ type: "terms" }); }} className="text-text-sub hover:text-text-main hover:underline underline-offset-4 decoration-border-strong transition-colors cursor-pointer py-0.5 gu-focus">{t("footerTerms", locale)}</a></li>
                   <li><a href={publicPathForView({ type: "cookies" }, locale)} onClick={(e) => { e.preventDefault(); onChangeView({ type: "cookies" }); }} className="text-text-sub hover:text-text-main hover:underline underline-offset-4 decoration-border-strong transition-colors cursor-pointer py-0.5 gu-focus">{t("footerCookies", locale)}</a></li>

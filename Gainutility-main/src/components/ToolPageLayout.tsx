@@ -1,6 +1,7 @@
 import React, { ReactNode } from "react";
 import { useLocale } from "../i18n/LocaleContext";
 import { t, tf } from "../i18n/ui";
+import { internalLinkProps } from "./RelatedToolsSection";
 import { ArrowRight, HelpCircle } from "lucide-react";
 
 interface ToolPageLayoutProps {
@@ -99,13 +100,16 @@ export const ToolPageLayout: React.FC<ToolPageLayoutProps> = ({
         <p className="text-sm text-text-sub">
           Need another creator tool?
         </p>
-        <button
-          onClick={() => onChangeView({ type: "studio", id: "creator" })}
-          className="inline-flex items-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-colors cursor-pointer"
+        {/* The legacy /studios/creator route 301s to home (router.ts), so this
+            CTA points at the indexed Creator hub — the same rule seo/shared.ts
+            applies when it maps a studio to its crawlable hub. */}
+        <a
+          {...internalLinkProps({ type: "seo-page", id: "creator" }, locale, onChangeView)}
+          className="inline-flex items-center gap-2 bg-brand-primary hover:bg-brand-primary/90 text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-colors cursor-pointer no-underline"
         >
           <ArrowRight className="w-4 h-4" />
           Back to Creator Studio
-        </button>
+        </a>
       </section>
     </div>
   );

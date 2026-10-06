@@ -236,13 +236,7 @@ const computePageMeta = (view: ViewState, L: string): PageMeta => {
         const hub = seoHubForTool(view.id);
         crumb.push({
           name: hub?.label ?? localizedStudioName(studio.id, L, studio.name),
-          url: absoluteUrl(
-            publicPathForLocale(
-              { type: "studio", id: studio.id } as ViewState,
-              L,
-              hubPath
-            )
-          ),
+          url: absoluteUrl(localizedCrumbPath(L, hubPath)),
         });
       } else {
         // Studios without a hub (creator, security, converter) still get a
@@ -251,7 +245,7 @@ const computePageMeta = (view: ViewState, L: string): PageMeta => {
         // breadcrumb which always resolves via seoHubForTool.
         const hub = seoHubForTool(view.id);
         if (hub) {
-          crumb.push({ name: hub.label, url: absoluteUrl(hub.path) });
+          crumb.push({ name: hub.label, url: absoluteUrl(localizedCrumbPath(L, hub.path)) });
         }
       }
       crumb.push({

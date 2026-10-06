@@ -8,7 +8,8 @@ import type { ToolId, ViewState } from "../types";
 import { POPULAR_TOOLS_CONFIG } from "../data/popularTools";
 import { toolsRegistry } from "../toolsRegistry";
 import { ToolVisual } from "../studioIcons";
-import { toolCanonicalUrl } from "../site";
+import { absoluteUrl } from "../site";
+import { publicPathForView } from "../router";
 import { useLocale } from "../i18n/LocaleContext";
 import { localizedToolName } from "../i18n/slugs";
 import { ChevronRight, ArrowRight, Sparkles } from "lucide-react";
@@ -252,7 +253,7 @@ export const PopularSection: React.FC<PopularSectionProps> = ({ onChangeView, lo
                 key={item.id}
                 id={`popular-card-${item.id}`}
                 data-tool-id={item.id}
-                href={toolCanonicalUrl(item.id)}
+                href={absoluteUrl(publicPathForView({ type: "tool", id: item.id }, locale))}
                 onClick={(e) => handleToolClick(item.id, e)}
                 className="popular-tool-card group gu-utility-card relative flex flex-col justify-between p-4 sm:p-5 rounded-2xl bg-surface-base border border-border-subtle hover:border-brand-primary/60 hover:shadow-premium-md transition-all duration-200 cursor-pointer text-left"
               >

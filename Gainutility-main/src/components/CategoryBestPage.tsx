@@ -8,6 +8,7 @@ import { buildSelfBreadcrumbJsonLd, buildFAQJsonLd } from "../seo/shared";
 import { articleBySlug, hasLocalizedArticle } from "../blog/blogData";
 import { pathToView, publicPathForView } from "../router";
 import { useLocale } from "../i18n/LocaleContext";
+import { RelatedToolCard } from "./RelatedToolsSection";
 
 interface CategoryBestPageProps {
   entry: CategoryBestEntry;
@@ -47,12 +48,16 @@ export const CategoryBestPage: React.FC<CategoryBestPageProps> = ({ entry, onCha
           <React.Fragment key={crumb.url}>
             {i > 0 && <ChevronRight className="w-3.5 h-3.5 text-text-disabled shrink-0" />}
             {i < entry.breadcrumbs.length - 1 ? (
-              <button
-                onClick={() => onChangeView({ type: "home" })}
+              <a
+                href={absoluteUrl(publicPathForView({ type: "home" }, locale))}
+                onClick={(e) => {
+                  e.preventDefault();
+                  onChangeView({ type: "home" });
+                }}
                 className="hover:text-brand-primary transition-colors cursor-pointer"
               >
                 {crumb.name}
-              </button>
+              </a>
             ) : (
               <span className="text-text-main font-medium">{crumb.name}</span>
             )}
@@ -78,35 +83,28 @@ export const CategoryBestPage: React.FC<CategoryBestPageProps> = ({ entry, onCha
         </p>
       </motion.div>
 
-      {/* Ranked Tool List */}
+      {/* Ranked Tool List — crawlable <a> cards (RelatedToolsSection) */}
       <section className="mb-10">
         <h2 className="font-sans font-bold text-xl text-text-main mb-4">Top {entry.tools.length} {entry.category}</h2>
         <div className="space-y-3">
           {entry.tools.map((tool) => (
-            <motion.div
+            <RelatedToolCard
               key={tool.id}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.2, delay: tool.rank * 0.05 }}
-              className="group bg-surface-muted/30 border border-border-light rounded-xl p-5 hover:border-brand-primary/20 hover:bg-brand-primary-light/5 transition-all cursor-pointer"
-              onClick={() => onChangeView({ type: "tool", id: tool.id })}
-            >
-              <div className="flex items-start gap-4">
-                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-brand-primary/10 text-brand-primary font-sans font-bold text-lg shrink-0">
-                  {tool.rank}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
-                    <h3 className="font-sans font-semibold text-text-main group-hover:text-brand-primary transition-colors">
-                      {tool.name}
-                    </h3>
-                    <ExternalLink className="w-3 h-3 text-text-disabled group-hover:text-brand-primary transition-colors" />
-                  </div>
-                  <p className="text-sm text-text-sub leading-relaxed mb-1">{tool.description}</p>
+              item={{
+                key: tool.id,
+                path: publicPathForView({ type: "tool", id: tool.id }, locale),
+                view: { type: "tool", id: tool.id },
+                id: `best-tool-${tool.id}`,
+                title: tool.name,
+                desc: tool.description,
+                rank: tool.rank,
+                footer: (
                   <p className="text-xs text-text-muted">Best for: {tool.bestFor}</p>
-                </div>
-              </div>
-            </motion.div>
+                ),
+              }}
+              onChangeView={onChangeView}
+              className="group bg-surface-muted/30 border border-border-light rounded-xl p-5 hover:border-brand-primary/20 hover:bg-brand-primary-light/5 transition-all cursor-pointer"
+            />
           ))}
         </div>
       </section>

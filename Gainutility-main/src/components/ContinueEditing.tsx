@@ -33,6 +33,37 @@ import { ToolId, ViewState } from "../types";
 import { useLocale } from "../i18n/LocaleContext";
 import { t } from "../i18n/ui";
 import { getToolExternalNotice } from "../studioIcons";
+import { absoluteUrl } from "../site";
+import { publicPathForView } from "../router";
+
+/**
+ * Tools whose page actually renders <ContinueEditing>.
+ *
+ * Layout uses this to decide whether the "Related tools" grid should hide the
+ * handoff targets: filtering by WORKFLOW_GRAPH unconditionally removed cards
+ * from pages that never render the handoff section at all, shrinking the
+ * internal-link graph for no reason.
+ */
+export const CONTINUE_EDITING_TOOLS: ReadonlySet<string> = new Set([
+  "canonical-url-generator",
+  "collage-maker",
+  "favicon-generator",
+  "google-serp-preview",
+  "hreflang-tag-generator",
+  "image-blur-pixelate",
+  "image-converter",
+  "image-cropper",
+  "image-resizer",
+  "image-watermark",
+  "logo-maker",
+  "robots-txt-generator",
+  "schema-markup-generator",
+  "seo-meta-generator",
+  "social-resizer",
+  "twitter-card-generator",
+  "utm-builder",
+  "xml-sitemap-generator",
+]);
 
 // Handoff types
 export interface HandoffFile {
@@ -350,11 +381,14 @@ export const ContinueEditing: React.FC<ContinueEditingProps> = ({
 
       <div className="gu-related">
         {recommendations.map((rec) => (
-          <button
+          <a
             key={rec.id}
             id={`continue-edit-${rec.id}`}
-            type="button"
-            onClick={() => handleNavigateToTool(rec.id, rec.name)}
+            href={absoluteUrl(publicPathForView({ type: "tool", id: rec.id }, locale))}
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavigateToTool(rec.id, rec.name);
+            }}
             className="gu-related-card gu-focus group relative flex flex-col gap-2.5 rounded-[16px] border border-border-light bg-surface-muted/20 hover:border-brand-primary hover:bg-surface-muted/40 hover:shadow-premium-sm transition-all duration-200 cursor-pointer p-4 text-left min-w-0"
           >
             <span className="p-2 bg-brand-primary-light/80 text-brand-primary rounded-lg inline-block self-start group-hover:bg-brand-primary/20 transition-colors duration-200">
@@ -368,7 +402,7 @@ export const ContinueEditing: React.FC<ContinueEditingProps> = ({
                 {rec.desc}
               </span>
             </span>
-          </button>
+          </a>
         ))}
       </div>
 

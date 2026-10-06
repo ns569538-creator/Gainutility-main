@@ -36,6 +36,12 @@ export interface HubBreadcrumb {
 export interface HubOverlay {
   /** Localized category label (also feeds the H1 + category link). */
   category: string;
+  /**
+   * Localized H1 override. Only needed when the hub's English H1 is a bespoke
+   * string rather than the generic "{category} — Free Online Tools" template;
+   * without it the English H1 would leak into every localized copy.
+   */
+  h1?: string;
   title: string;
   description: string;
   intro: string;
@@ -420,6 +426,7 @@ export const HUB_LOCALIZED: Record<string, HubLocaleOverlays> = {
   image: {
     "pt-br": {
       category: "Ferramentas de Imagem",
+      h1: "Ferramentas de Imagem Online Grátis",
       title: "Ferramentas de Imagem Online Grátis – Comprima, Redimensione, Converta & Edite | GainUtility",
       description:
         "Use ferramentas de imagem grátis no seu navegador. Comprima, redimensione, recorte, converta, adicione marcas d'água e edite imagens instantaneamente. Rápido, privado, sem uploads.",
@@ -448,6 +455,7 @@ export const HUB_LOCALIZED: Record<string, HubLocaleOverlays> = {
     },
     id: {
       category: "Alat Gambar",
+      h1: "Alat Gambar Online Gratis",
       title: "Alat Gambar Online Gratis — Kompres, Ubah Ukuran, Konversi & Edit | GainUtility",
       description:
         "Gunakan alat gambar gratis di browser Anda. Kompres, ubah ukuran, potong, konversi, beri tanda air, dan edit gambar secara instan. Cepat, pribadi, tanpa unggahan.",
@@ -476,6 +484,7 @@ export const HUB_LOCALIZED: Record<string, HubLocaleOverlays> = {
     },
     "es-mx": {
       category: "Herramientas de Imagen",
+      h1: "Herramientas de imagen en línea gratis",
       title: "Herramientas de imagen en línea gratis – Comprime, redimensiona, convierte y edita | GainUtility",
       description:
         "Usa herramientas de imagen gratis en tu navegador. Comprime, redimensiona, recorta, convierte, añade marcas de agua y edita imágenes al instante. Rápido, privado, sin subidas.",
@@ -504,6 +513,7 @@ export const HUB_LOCALIZED: Record<string, HubLocaleOverlays> = {
     },
     de: {
       category: "Bildwerkzeuge",
+      h1: "Kostenlose Online-Bildtools",
       title: "Kostenlose Online-Bildtools – Komprimieren, Skalieren, Konvertieren & Bearbeiten | GainUtility",
       description:
         "Nutzen Sie kostenlose Bildtools im Browser. Bilder komprimieren, skalieren, zuschneiden, konvertieren, mit Wasserzeichen versehen und bearbeiten. Schnell, privat, keine Uploads.",
@@ -532,6 +542,7 @@ export const HUB_LOCALIZED: Record<string, HubLocaleOverlays> = {
     },
     fr: {
       category: "Outils d'image",
+      h1: "Outils d'image en ligne gratuits",
       title: "Outils d'image en ligne gratuits – Comprimer, redimensionner, convertir et éditer | GainUtility",
       description:
         "Utilisez des outils d'image gratuits dans votre navigateur. Compressez, redimensionnez, recadrez, convertissez, filigranez et éditez des images instantanément. Rapide, privé, sans envoi.",
@@ -560,6 +571,7 @@ export const HUB_LOCALIZED: Record<string, HubLocaleOverlays> = {
     },
     it: {
       category: "Strumenti Immagine",
+      h1: "Strumenti immagine online gratuiti",
       title: "Strumenti immagine online gratuiti – Comprimi, ridimensiona, converti e modifica | GainUtility",
       description:
         "Usa strumenti immagine gratuiti nel tuo browser. Comprimi, ridimensiona, ritaglia, converti, applica filigrane e modifica immagini all'istante. Veloce, privato, senza caricamenti.",

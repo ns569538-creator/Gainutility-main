@@ -8,6 +8,7 @@ import { SYMBOL_COLLECTION_BY_ID } from "../stylishNames/symbols";
 import { absoluteUrl } from "../site";
 import { buildSelfBreadcrumbJsonLd, buildFAQJsonLd } from "../seo/shared";
 import { pathToView } from "../router";
+import { RelatedToolCard } from "./RelatedToolsSection";
 import { copyText } from "../lib/clipboard";
 
 interface LibraryPageProps {
@@ -71,12 +72,16 @@ export const LibraryPage: React.FC<LibraryPageProps> = ({ entry, onChangeView })
           <React.Fragment key={crumb.url}>
             {i > 0 && <ChevronRight className="w-3.5 h-3.5 text-text-disabled shrink-0" />}
             {i < entry.breadcrumbs.length - 1 ? (
-              <button
-                onClick={() => navigate(crumb.url)}
+              <a
+                href={absoluteUrl(crumb.url)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate(crumb.url);
+                }}
                 className="hover:text-brand-primary transition-colors cursor-pointer"
               >
                 {crumb.name}
-              </button>
+              </a>
             ) : (
               <span className="text-text-main font-medium" aria-current="page">
                 {crumb.name}
@@ -185,24 +190,23 @@ export const LibraryPage: React.FC<LibraryPageProps> = ({ entry, onChangeView })
         </section>
       )}
 
-      {/* Related pages */}
+      {/* Related pages — crawlable <a> cards (RelatedToolsSection) */}
       <section className="mb-10">
         <h2 className="font-sans font-bold text-xl text-text-main mb-4">Related pages</h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {entry.related.map((rel) => (
-            <button
+            <RelatedToolCard
               key={rel.path}
-              onClick={() => navigate(rel.path)}
+              item={{
+                key: rel.path,
+                path: rel.path,
+                id: `library-related-${rel.path.replace(/^\//, "")}`,
+                title: rel.label,
+                desc: rel.desc,
+              }}
+              onChangeView={onChangeView}
               className="group p-4 bg-surface-muted/30 border border-border-light rounded-xl hover:border-brand-primary/20 hover:bg-brand-primary-light/5 transition-all text-left cursor-pointer"
-            >
-              <div className="flex items-center gap-2 mb-1">
-                <span className="font-sans font-semibold text-sm text-text-main group-hover:text-brand-primary transition-colors">
-                  {rel.label}
-                </span>
-                <ExternalLink className="w-3 h-3 text-text-disabled group-hover:text-brand-primary transition-colors" />
-              </div>
-              <p className="text-xs text-text-muted leading-relaxed">{rel.desc}</p>
-            </button>
+            />
           ))}
         </div>
       </section>
@@ -215,24 +219,32 @@ export const LibraryPage: React.FC<LibraryPageProps> = ({ entry, onChangeView })
           bubble and other Unicode fonts — plus hearts, sparkles and emojis. Everything runs in your
           browser.
         </p>
-        <button
-          onClick={() => navigate("/tools/stylish-name-generator")}
+        <a
+          href={absoluteUrl("/tools/stylish-name-generator")}
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/tools/stylish-name-generator");
+          }}
           className="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-brand-primary hover:bg-brand-primary-hover text-[#FAF8F1] font-sans font-bold text-sm transition-all duration-200 cursor-pointer shadow-premium-sm hover:shadow-premium-md active:scale-[0.98] min-h-[44px]"
         >
           Open the Stylish Name Generator
           <ArrowRight className="w-4 h-4" />
-        </button>
+        </a>
       </section>
 
       {/* Back link */}
       <div className="mt-8 pt-6 border-t border-border-light/50">
-        <button
-          onClick={() => navigate("/")}
+        <a
+          href={absoluteUrl("/tools")}
+          onClick={(e) => {
+            e.preventDefault();
+            navigate("/tools");
+          }}
           className="gu-tap inline-flex items-center gap-2 text-sm font-sans font-semibold text-brand-primary hover:text-brand-primary-dark transition-colors cursor-pointer"
         >
           <ArrowRight className="w-4 h-4 rotate-180" />
           Browse all tools on GainUtility
-        </button>
+        </a>
       </div>
     </div>
   );

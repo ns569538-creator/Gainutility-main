@@ -9,6 +9,7 @@
 import React from "react";
 import { ToolId, ViewState } from "../types";
 import { Breadcrumbs } from "./Common";
+import { internalLinkProps } from "./RelatedToolsSection";
 import { t } from "../i18n/ui";
 import { useLocale } from "../i18n/LocaleContext";
 import { CHANGELOG } from "../changelogData";
@@ -35,7 +36,7 @@ export const ChangelogPage: React.FC<ChangelogPageProps> = ({ onChangeView }) =>
     <div className="flex flex-col gap-10 animate-fade-in max-w-4xl mx-auto">
       {/* 1. BREADCRUMBS */}
       <Breadcrumbs paths={[
-        { name: t("crumbsHome", locale), active: false, onClick: () => onChangeView({ type: "home" }) },
+        { name: t("crumbsHome", locale), active: false, view: { type: "home" }, onClick: () => onChangeView({ type: "home" }) },
         { name: "Changelog", active: true }
       ]} />
 
@@ -74,16 +75,17 @@ export const ChangelogPage: React.FC<ChangelogPageProps> = ({ onChangeView }) =>
                   <h3 className="text-sm font-sans font-bold text-text-main flex items-center gap-1.5">
                     {item.area}
                     {href && (
-                      <button
-                        onClick={() => {
-                          const id = AREA_TOOL_MAP[item.area];
-                          if (id) onChangeView({ type: "tool", id });
-                        }}
+                      <a
+                        {...internalLinkProps(
+                          { type: "tool", id: AREA_TOOL_MAP[item.area] },
+                          locale,
+                          onChangeView
+                        )}
                         className="inline-flex items-center gap-1 text-brand-primary hover:underline cursor-pointer gu-focus rounded-sm"
                         aria-label={`Open the ${item.area} tool`}
                       >
                         <ExternalLink className="w-3.5 h-3.5" />
-                      </button>
+                      </a>
                     )}
                   </h3>
                   <ul className="space-y-1.5 text-xs sm:text-sm text-text-sub leading-relaxed ml-1">
@@ -108,25 +110,25 @@ export const ChangelogPage: React.FC<ChangelogPageProps> = ({ onChangeView }) =>
           Only real work is listed: fixes, launches, and meaningful product changes. The date on a
           tool page's <em>Last updated</em> line always matches an entry on this page. If you ever
           see a date here that does not check out, that is a bug — and you can report it on the{" "}
-          <button
-            onClick={() => onChangeView({ type: "contact" })}
+          <a
+            {...internalLinkProps({ type: "contact" }, locale, onChangeView)}
             className="text-brand-primary font-semibold hover:underline cursor-pointer gu-focus rounded-sm"
           >
             contact page
-          </button>
+          </a>
           .
         </p>
       </section>
 
       {/* 5. RETURN */}
       <div className="flex items-center justify-center pt-4">
-        <button
-          onClick={() => onChangeView({ type: "home" })}
-          className="flex items-center gap-2 px-6 h-12 bg-brand-primary hover:bg-brand-primary-hover text-[#FAF8F1] rounded-xl font-sans font-bold text-base transition-all shadow-premium-sm cursor-pointer whitespace-nowrap"
+        <a
+          {...internalLinkProps({ type: "home" }, locale, onChangeView)}
+          className="flex items-center gap-2 px-6 h-12 bg-brand-primary hover:bg-brand-primary-hover text-[#FAF8F1] rounded-xl font-sans font-bold text-base transition-all shadow-premium-sm cursor-pointer whitespace-nowrap no-underline"
         >
           <ArrowLeft className="w-5 h-5" />
           <span>Back to all tools</span>
-        </button>
+        </a>
       </div>
     </div>
   );
