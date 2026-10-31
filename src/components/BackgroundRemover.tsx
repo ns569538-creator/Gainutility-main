@@ -688,6 +688,17 @@ export default function BackgroundRemover({
             <p className="text-sm md:text-base text-text-muted leading-relaxed max-w-lg mx-auto">
               Cut out the subject of your photo — people, products, pets, vehicles — in a few seconds.
             </p>
+            <div className="flex flex-wrap items-center justify-center gap-2 pt-1">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-surface-muted text-text-main border border-border-light">
+                <Sparkles className="w-3.5 h-3.5 text-brand-primary" /> Transparent PNG Export
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-surface-muted text-text-main border border-border-light">
+                <CheckCircle className="w-3.5 h-3.5 text-status-success" /> Full Resolution (No Paywall)
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-surface-muted text-text-main border border-border-light">
+                <Shield className="w-3.5 h-3.5 text-brand-primary" /> 100% Private (No Upload)
+              </span>
+            </div>
           </div>
 
           <UniversalUploadComponent

@@ -24,8 +24,11 @@ import { overlay as boxShadowGenerator } from "./boxShadowGenerator";
 import { overlay as slugGenerator } from "./slugGenerator";
 import { overlay as imageConverter } from "./imageConverter";
 import { overlay as mergePdf } from "./mergePdf";
+import { overlay as splitPdf } from "./splitPdf";
+import { overlay as fontDetector } from "./fontDetector";
 import { overlay as youtubeThumbnailPreview } from "./youtubeThumbnailPreview";
 import { overlay as youtubeKeywordExplorer } from "./youtubeKeywordExplorer";
+import { overlay as stylishNameGenerator } from "./stylishNameGenerator";
 
 const OVERLAYS: Record<string, Partial<Record<LocaleCode, ToolBodyOverlay>>> = {
   "contrast-checker": contrastChecker,
@@ -35,8 +38,11 @@ const OVERLAYS: Record<string, Partial<Record<LocaleCode, ToolBodyOverlay>>> = {
   "slug-generator": slugGenerator,
   "image-converter": imageConverter,
   "merge-pdf": mergePdf,
+  "split-pdf": splitPdf,
+  "font-detector": fontDetector,
   "youtube-thumbnail-preview": youtubeThumbnailPreview,
   "youtube-keyword-explorer": youtubeKeywordExplorer,
+  "stylish-name-generator": stylishNameGenerator,
 };
 
 export const toolBodyOverlay = (

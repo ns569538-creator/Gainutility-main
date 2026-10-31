@@ -179,12 +179,20 @@ export const toolsRegistry: Record<ToolId, { name: string; desc: string; categor
       desc: "Preview a thumbnail across YouTube's desktop, mobile, and TV layouts.",
       category: "Creator Studio",
       icon: <ToolIcon slug="youtube-thumbnail-preview" />,
+      aliases: [
+        "youtube thumbnail preview", "thumbnail preview", "youtube thumbnail tester",
+        "youtube thumbnail checker", "preview youtube thumbnail", "thumbnail test",
+      ],
     },
     "youtube-title-analyzer": {
       name: "YouTube Title Analyzer",
       desc: "Check a video title's length and see where mobile feeds would cut it off.",
       category: "Creator Studio",
-      icon: <ToolIcon slug="youtube-title-analyzer" />
+      icon: <ToolIcon slug="youtube-title-analyzer" />,
+      aliases: [
+        "youtube title analyzer", "youtube title score", "headline analyzer",
+        "video title optimizer", "youtube title tester", "youtube title checker",
+      ],
     },
     "youtube-timestamp-formatter": {
       name: "YouTube Timestamp Formatter",
@@ -234,6 +242,7 @@ export const toolsRegistry: Record<ToolId, { name: string; desc: string; categor
       category: "Creator Studio",
       icon: <ToolIcon slug="stylish-name-generator" />,
       aliases: [
+        "stylish name maker", "stylish name", "stylish name generator",
         "nickname generator", "fancy name generator", "cool name generator",
         "stylish nickname generator", "fancy text", "unicode name generator",
         "name style engine", "emoji name generator", "aesthetic name generator",
@@ -742,7 +751,11 @@ export const toolsRegistry: Record<ToolId, { name: string; desc: string; categor
       name: "Background Remover",
       desc: "Remove the background from an image in your browser.",
       category: "Image Studio",
-      icon: <ToolIcon slug="background-remover" />
+      icon: <ToolIcon slug="background-remover" />,
+      aliases: [
+        "transparent png", "make transparent png", "remove background",
+        "image background remover", "transparent background maker", "png cutout",
+      ],
     },
     "passport-photo-maker": {
       name: "Passport Photo Maker",

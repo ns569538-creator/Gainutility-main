@@ -1,4 +1,4 @@
-﻿/**
+/**
  * @license
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -14,9 +14,9 @@ const LOCAL =
 
 export const CREATOR_SEO: Partial<Record<ToolId, ToolSeoEntry>> = {
   "youtube-thumbnail-preview": {
-    title: "YouTube Thumbnail Preview — Test Before You Publish",
+    title: "YouTube Thumbnail Preview — Test Mobile & Feed Readability Online Free | GainUtility",
     description:
-      "Preview YouTube thumbnails across desktop, mobile, TV, and search feeds before publishing. Catch unreadable designs instantly — free.",
+      "Preview YouTube video thumbnails live across desktop feeds, mobile search, watch sidebar, and TV before publishing. Catch unreadable text and crop issues free.",
     intro:
       "Your thumbnail looks great full-size — but how does it read in a crowded sidebar on a phone? Preview every real placement before you commit.",
     steps: [
@@ -61,9 +61,9 @@ export const CREATOR_SEO: Partial<Record<ToolId, ToolSeoEntry>> = {
     privacyExplanation: LOCAL
   },
   "youtube-title-analyzer": {
-    title: "YouTube Title Analyzer — Optimize Video Titles",
+    title: "YouTube Title Analyzer — Test & Score Video Titles Free | GainUtility",
     description:
-      "Analyze video titles for length, power words, emoji use, and mobile truncation risk. Score titles before publishing — free tool.",
+      "Analyze and optimize YouTube video titles with live character meters, mobile truncation preview, power-word analysis, and CTR recommendations. 100% free and private.",
     intro:
       "Titles decide clicks. Get instant feedback on character limits, truncation points, emotional triggers, and formatting best practices.",
     steps: [

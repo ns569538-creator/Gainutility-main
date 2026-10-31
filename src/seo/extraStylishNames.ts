@@ -13,9 +13,9 @@ const LOCAL =
 
 export const STYLISH_NAME_SEO: Partial<Record<ToolId, ToolSeoEntry>> = {
   "stylish-name-generator": {
-    title: "Stylish Name Generator — Nicknames & Symbols | GainUtility",
+    title: "Stylish Name Maker & Generator (Copy & Paste) — 100+ Cool Fonts & Nicknames | GainUtility",
     description:
-      "Create stylish names, nicknames and emoji names with 100+ text styles and decorative characters. Generate, customize and copy them for profiles and games.",
+      "Generate stylish names and fancy nicknames in 100+ cool Unicode fonts and aesthetic symbols. Instant 1-click copy & paste for Free Fire, PUBG, Instagram, Discord, and gaming profiles.",
     intro:
       "Type any name, pick a mood, and copy a look you love — bold, script, bubble, small-caps and more, finished with symbols and emojis. Everything runs in your browser.",
     steps: [

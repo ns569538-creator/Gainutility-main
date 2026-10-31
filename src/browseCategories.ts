@@ -16,6 +16,7 @@
 import type { ToolId } from "./types";
 import { toolsRegistry } from "./toolsRegistry";
 import { getPopularToolIds } from "./data/popularTools";
+import { EXCLUDED_TOOL_IDS } from "../scripts/sitemap-excludes.mjs";
 
 export type BrowseCategoryId =
   | "Popular"
@@ -65,7 +66,7 @@ const PRIMARY_BUCKET: Record<string, Exclude<BrowseCategoryId, "Popular">> = {
   "Advanced": "PDF",
   "PDF Studio": "PDF",
   "Document Security": "PDF",
-  "Exam & Application": "PDF",
+  "Exam & Application": "Images",
 };
 
 /** Deterministic keyword rules for cross-cutting Security membership. */
@@ -110,23 +111,17 @@ const categoryCache = new Map<BrowseCategoryId, ToolId[]>();
 
 const buildCategoryList = (category: BrowseCategoryId): ToolId[] => {
   if (category === "Popular") {
-    return POPULAR_TOOLS.filter((id) => Boolean(toolsRegistry[id]));
+    return POPULAR_TOOLS.filter((id) => Boolean(toolsRegistry[id]) && !EXCLUDED_TOOL_IDS.has(id));
   }
   return (Object.keys(toolsRegistry) as ToolId[]).filter((id) => {
+    if (EXCLUDED_TOOL_IDS.has(id)) return false;
     const meta = toolsRegistry[id];
     if (!meta) return false;
 
     // Strict image filtering: only genuine image-processing tools
     if (category === "Images") {
       if (STRICT_NON_IMAGE_TOOLS.has(id)) return false;
-      return meta.category === "Image Studio" || CROSS_CATEGORY_IMAGE_TOOLS.has(id);
-    }
-
-    // Exclude exam photo/signature/thumb fixers from PDF bucket
-    if (category === "PDF") {
-      if (id === "exam-photo-fixer" || id === "exam-signature-fixer" || id === "exam-thumb-fixer") {
-        return false;
-      }
+      return meta.category === "Image Studio" || meta.category === "Exam & Application" || CROSS_CATEGORY_IMAGE_TOOLS.has(id);
     }
 
     const primary = PRIMARY_BUCKET[meta.category];
@@ -159,5 +154,7 @@ export const browseToolsForCategory = (category: BrowseCategoryId): ToolId[] => 
 export const browseCategoryCount = (category: BrowseCategoryId): number =>
   browseToolsForCategory(category).length;
 
-/** Total number of tools registered on the platform. */
-export const TOTAL_TOOL_COUNT = Object.keys(toolsRegistry).length;
+/** Total number of indexable tools registered on the platform. */
+export const TOTAL_TOOL_COUNT = Object.keys(toolsRegistry).filter(
+  (id) => !EXCLUDED_TOOL_IDS.has(id as ToolId)
+).length;

@@ -1320,8 +1320,8 @@ description: "Design border-radius visually with linked or independent corners, 
       }
     },
     "seo-meta-generator": {
-      title: "SEO Meta Tag Generator | Custom HTML Metadata Creator",
-      description: "Generate professional, search-engine optimized HTML meta tags for your website headers. Includes real-time character count limits and live HTML previews.",
+      title: "SEO Generator — Free Meta Tags, Title & Description Builder | GainUtility",
+      description: "Generate search-engine optimized title tags, meta descriptions, and HTML page metadata with real-time character counters and live Google SERP preview.",
       canonicalUrl: `${rootUrl}/tools/seo-meta-generator`,
       ogType: "website",
       breadcrumb: [
@@ -2196,8 +2196,8 @@ description: "Design border-radius visually with linked or independent corners, 
       }
     },
     "background-remover": {
-      title: "Free AI Background Remover Online | GainUtility",
-      description: "Remove image backgrounds directly in your browser with GainUtility. Free AI background removal with transparent PNG export, no account, and no image upload.",
+      title: "Make Transparent PNG & Remove Background Online Free | GainUtility",
+      description: "Remove image backgrounds and create transparent PNGs directly in your browser. Free AI cutout tool with instant alpha channel export, no account, and no file uploads.",
       canonicalUrl: `${rootUrl}/tools/background-remover`,
       ogType: "website",
       breadcrumb: [
@@ -2525,8 +2525,8 @@ description: "Calculate billable hours, rates, overtime tiers, expenses and taxe
       }
     },
     "pdf-difference-checker": {
-title: "PDF Difference Checker — Compare Text Content",
-description: "Compare two PDFs by extracting and diffing their text content. Highlight added, removed and modified clauses, then download a difference report. Runs locally.",
+title: "PDF Difference Checker — Compare Two PDF Files Online Free",
+description: "Compare two PDF documents side by side to detect added, removed, and modified text or contract clauses. 100% private in-browser diffing with downloadable change report.",
       canonicalUrl: `${rootUrl}/tools/pdf-difference-checker`,
       ogType: "website",
       indexable: true,
@@ -2712,8 +2712,8 @@ description: "Compare two PDFs by extracting and diffing their text content. Hig
       }
     },
     "font-detector": {
-title: "Font Finder & Identifier | Extract from Image & PDF",
-description: "Identify fonts from images and PDFs, browse a curated Google Fonts catalog, preview typefaces live, find free alternatives, and copy ready-to-use CSS.",
+title: "Font Detector — Identify Fonts from Image & PDF Online Free",
+description: "Detect and identify fonts from images, screenshots, and PDFs in seconds. Find font names, matches, free Google Fonts alternatives, and copy ready-to-use CSS.",
       canonicalUrl: `${rootUrl}/tools/font-detector`,
       ogType: "website",
       indexable: true,

@@ -111,9 +111,9 @@ export const PDF_SEO: Partial<Record<ToolId, ToolSeoEntry>> = {
     ]
   },
   "rotate-pdf": {
-    title: "Rotate PDF Pages — Turn Pages Permanently",
+    title: "Rotate PDF Online Free — Turn & Save PDF Pages Permanently | GainUtility",
     description:
-      "Rotate single pages or an entire PDF by 90°, 180°, or 270° with a live preview. Save the corrected file — processed locally, free.",
+      "Rotate PDF pages 90, 180, or 270 degrees clockwise or counterclockwise with live preview. Save single pages or whole documents permanently. 100% free and private.",
     intro:
       "Fix sideways scans in seconds. Rotate any page with a visual preview and export a PDF where every page faces the right way.",
     steps: [
